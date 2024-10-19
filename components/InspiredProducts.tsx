@@ -20,7 +20,9 @@ const InspiredProducts =  ({ props }: any) => {
     try {
       console.log("Featureprod received from parent *******  ", props);
 
-      const url = `${ENDPOINT.BASE_URL}/api/products?filters[category][$equals]=tablets&sort=defaultSort&page=1`;
+      // const url = `${ENDPOINT.BASE_URL}/api/products?filters[category][$equals]=tablets&sort=defaultSort&page=1`;
+   const url = `${ENDPOINT.BASE_URL}/api/products?filters[category][$equals]=${props.name}`
+
 
       // const url = `${ENDPOINT.BASE_URL}/api/products?filters[category][$equals]=${
       //   slug?.searchParams?.price || 3000
