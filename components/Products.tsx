@@ -16,15 +16,11 @@ import ENDPOINT from '@/config/appConfig';
 const Products =  ({ slug }: any) => {
   const [products, setProducts] = useState([]);
 
-  
-  console.log("naziya *****123************", slug);
-// const 
 
-  console.log("naziya *****************", slug.params);
-  
+  const category =slug.params.slug[0]
   useEffect(() => {
-    // const url  =   `${ENDPOINT.BASE_URL}/api/categories/b19d8af9-3776-4038-81ae-b298c1f59d4d`
-   const url = `${ENDPOINT.BASE_URL}/api/products?filters[category][$equals]=new-products`
+  //  const url = `${ENDPOINT.BASE_URL}/api/products?filters[category][$equals]=new-products`
+   const url = `${ENDPOINT.BASE_URL}/api/products?filters[category][$equals]=${category}`
     fetch(url)
       .then((res) => {
         console.log("Category List" , res);
