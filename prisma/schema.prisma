@@ -1,0 +1,93 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:root@localhost:3306/Myzk"
+}
+
+model Product {
+  id             String                   @id @default(uuid())
+  slug           String                   @unique
+  title          String
+  mainImage      String
+  price          Int                      @default(0)
+  salePrice      Int                      @default(0)
+  rating         Int                      @default(0)
+  description    String
+  manufacturer   String
+  inStock        Int                      @default(1)
+  categoryId     String
+  testcol        String?                  @db.VarChar(45)
+  category       Category                 @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  Wishlist       Wishlist[]
+  customerOrders customer_order_product[]
+
+  @@index([categoryId], map: "Product_categoryId_fkey")
+}
+
+model Image {
+  imageID   String @id @default(uuid())
+  productID String
+  image     String
+}
+
+model User {
+  id       String     @id @default(uuid())
+  email    String     @unique
+  password String?
+  role     String?    @default("user")
+  Wishlist Wishlist[]
+}
+
+model Customer_order {
+  id          String                   @id @default(uuid())
+  name        String
+  lastname    String
+  phone       String
+  email       String
+  company     String
+  adress      String
+  apartment   String
+  postalCode  String
+  dateTime    DateTime?                @default(now())
+  status      String
+  city        String
+  country     String
+  orderNotice String?
+  total       Int
+  products    customer_order_product[]
+}
+
+model customer_order_product {
+  id              String         @id @default(uuid())
+  customerOrderId String
+  productId       String
+  quantity        Int
+  customerOrder   Customer_order @relation(fields: [customerOrderId], references: [id])
+  product         Product        @relation(fields: [productId], references: [id])
+
+  @@index([customerOrderId], map: "customer_order_product_customerOrderId_fkey")
+  @@index([productId], map: "customer_order_product_productId_fkey")
+}
+
+model Category {
+  id       String    @id @default(uuid())
+  name     String    @unique
+  image    String?
+  href     String?
+  products Product[]
+}
+
+model Wishlist {
+  id        String  @id @default(uuid())
+  productId String
+  userId    String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([productId], map: "Wishlist_productId_fkey")
+  @@index([userId], map: "Wishlist_userId_fkey")
+}
