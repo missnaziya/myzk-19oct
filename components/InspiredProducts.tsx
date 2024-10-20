@@ -130,7 +130,7 @@ const InspiredProducts =  ({ props }: any) => {
     // </div>
     // </>
     <div className="bg-white border-t-4 border-white">
-    <div className="max-w-screen-2xl mx-auto pt-20">
+    <div className="max-w-screen-2xl mx-auto">
       <Heading title="INSPIRED PRODUCTS" />
       <div className="grid grid-cols-3 justify-items-center max-w-screen-2xl mx-auto py-10 gap-x-2 px-10 gap-y-8 max-md:grid-cols-2 max-sm:grid-cols-1">
           {products.map((product: Product) => (
