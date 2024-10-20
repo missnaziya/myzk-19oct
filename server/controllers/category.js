@@ -88,8 +88,12 @@ async function getCategory(request, response) {
 }
 
 async function getAllCategories(request, response) {
+  console.log("get my categoriess.....");
+  
   try {
     const categories = await prisma.category.findMany({});
+    console.log("categories::",categories);
+    
     return response.json(categories);
   } catch (error) {
     return response.status(500).json({ error: "Error fetching categories" });
