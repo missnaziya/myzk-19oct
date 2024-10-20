@@ -9,10 +9,12 @@ import Image from "next/image";
 const DashboardNewCategoryPage = () => {
   const [categoryInput, setcategoryInput] = useState<{
     name: string;
+    displayName: string;
     href: string;
     image: string;
   }>({
     name: "",
+    displayName: "",
     href: "",
     image: "",
   });
@@ -64,6 +66,7 @@ const DashboardNewCategoryPage = () => {
 
           setcategoryInput({
             name: "",
+            displayName: "",
             href: "",
             image: "",
           });
@@ -96,6 +99,23 @@ const DashboardNewCategoryPage = () => {
             />
           </label>
         </div>
+        <div>
+          <label className="form-control w-full max-w-xs">
+            <div className="label">
+              <span className="label-text">Internal name:</span>
+            </div>
+            <input
+              type="text"
+              className="input input-bordered w-full max-w-xs"
+              placeholder="internal Name"
+              value={categoryInput.displayName}
+              onChange={(e) =>
+                setcategoryInput({ ...categoryInput, displayName: e.target.value })
+              }
+            />
+          </label>
+        </div>
+
 
         <div>
           <label className="form-control w-full max-w-xs">

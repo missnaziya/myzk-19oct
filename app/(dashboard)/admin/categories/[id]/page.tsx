@@ -14,8 +14,9 @@ interface DashboardSingleCategoryProps {
 const DashboardSingleCategory = ({
   params: { id },
 }: DashboardSingleCategoryProps) => {
-  const [categoryInput, setCategoryInput] = useState<{ name: string }>({
+  const [categoryInput, setCategoryInput] = useState<{ name: string,displayName:string }>({
     name: "",
+    displayName: "",
   });
   const router = useRouter();
 
@@ -44,7 +45,9 @@ const DashboardSingleCategory = ({
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: convertCategoryNameToURLFriendly(categoryInput.name),
+          name: categoryInput.name,
+          displayName: categoryInput.displayName,
+          // name: convertCategoryNameToURLFriendly(categoryInput.name),
         }),
       };
       // sending API request for updating a category
@@ -75,6 +78,7 @@ const DashboardSingleCategory = ({
       .then((data) => {
         setCategoryInput({
           name: data?.name,
+          displayName: data?.displayName,
         });
       });
   }, [id]);

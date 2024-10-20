@@ -4,11 +4,13 @@ const prisma = new PrismaClient();
 async function createCategory(request, response) {
   try {
     const { name } = request.body;
+    const { displayName } = request.body;
     const { href } = request.body;
     const { image } = request.body;
     const category = await prisma.category.create({
       data: {
         name,
+        displayName,
         href,
         image,
       },
@@ -24,6 +26,7 @@ async function updateCategory(request, response) {
   try {
     const { id } = request.params;
     const { name } = request.body;
+    const { displayName } = request.body;
     const { href } = request.body;
     const { image } = request.body;
     const existingCategory = await prisma.category.findUnique({
@@ -43,6 +46,7 @@ async function updateCategory(request, response) {
       },
       data: {
         name,
+        displayName,
         href,
         image,
       },

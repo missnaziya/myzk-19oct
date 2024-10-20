@@ -6,6 +6,10 @@ interface Product {
   rating: number;
   description: string;
   mainImage: string;
+  alternateImage1:string,
+  alternateImage2:string,
+  alternateImage3:string,
+  alternateImage4:string,
   manufacturer: string;
   categoryId: string;
   category: {name: string}?;
@@ -36,6 +40,9 @@ interface OtherImages {
 interface Category {
   id: string;
   name: string;
+  displayName: string;
+  href: string;
+  image: string;
 }
 
 interface User {
@@ -69,10 +76,7 @@ interface SingleProductBtnProps {
 }
 
 
-interface Category {
-  id: string;
-  name: string;
-}
+
 
 interface WishListItem {
   id: string;

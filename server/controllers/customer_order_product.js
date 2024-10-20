@@ -137,6 +137,10 @@ async function getAllProductOrders(request, response) {
                     id: true,
                     title: true,
                     mainImage: true,
+                    alternateImage1:true,
+                    alternateImage2:true,
+                    alternateImage3:true,
+                    alternateImage4:true,
                     price: true,
                     slug: true
                 }
