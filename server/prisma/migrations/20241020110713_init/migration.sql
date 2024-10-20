@@ -4,10 +4,14 @@ CREATE TABLE `Product` (
     `slug` VARCHAR(191) NOT NULL,
     `title` VARCHAR(191) NOT NULL,
     `mainImage` VARCHAR(191) NOT NULL,
+    `alternateImage1` VARCHAR(191) NOT NULL,
+    `alternateImage2` VARCHAR(191) NOT NULL,
+    `alternateImage3` VARCHAR(191) NOT NULL,
+    `alternateImage4` VARCHAR(191) NOT NULL,
     `price` INTEGER NOT NULL DEFAULT 0,
     `salePrice` INTEGER NOT NULL DEFAULT 0,
     `rating` INTEGER NOT NULL DEFAULT 0,
-    `description` VARCHAR(191) NOT NULL,
+    `description` VARCHAR(1500) NOT NULL,
     `manufacturer` VARCHAR(191) NOT NULL,
     `inStock` INTEGER NOT NULL DEFAULT 1,
     `categoryId` VARCHAR(191) NOT NULL,
@@ -88,10 +92,12 @@ CREATE TABLE `customer_order_product` (
 CREATE TABLE `Category` (
     `id` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
+    `displayName` VARCHAR(191) NOT NULL,
     `image` VARCHAR(191) NULL,
     `href` VARCHAR(191) NULL,
 
     UNIQUE INDEX `Category_name_key`(`name`),
+    UNIQUE INDEX `Category_displayName_key`(`displayName`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
