@@ -19,6 +19,10 @@ interface OrderProduct {
     slug: string;
     title: string;
     mainImage: string;
+    alternateImage1:string,
+    alternateImage2:string,
+    alternateImage3:string,
+    alternateImage4:string,
     price: number;
     rating: number;
     description: string;

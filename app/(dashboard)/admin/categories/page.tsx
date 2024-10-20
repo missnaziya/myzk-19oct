@@ -68,7 +68,8 @@ const DashboardCategory = () => {
 
                     <td>
                       <div>
-                        <p>{formatCategoryName(category?.name)}</p>
+                        <p>{category?.displayName}</p>
+                        {/* <p>{formatCategoryName(category?.name)}</p> */}
                       </div>
                     </td>
 
