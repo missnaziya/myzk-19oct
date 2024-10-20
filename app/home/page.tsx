@@ -31,12 +31,12 @@ export default function Home() {
       {/* <IntroducingSection /> */}
       {/* <ProductsSection />       */}
       {/* <Products /> */}
-      <TopSellingProducts props={{name:"tablet"}} />
+      <TopSellingProducts props={{name:"topselling-products"}} />
       <OfferBanner />
-      <NewProducts props={{name:"tablet"}} />
-      <InspiredProducts props={{name:"tablet"}} />
+      <NewProducts props={{name:"new-products"}} />
+      <InspiredProducts props={{name:"inspired-products"}} />
 
-      <CategoryMenu2 />
+      {/* <CategoryMenu2 /> */}
     </>
   );
 }
