@@ -1,6 +1,7 @@
 import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";
-import { authOptions } from "./auth/[...nextauth]"
+//import { authOptions } from "./auth/[...nextauth]"
+import { authOptions } from '@/app/options';
 // import ENDPOINT from "../../config/appConfig";
 import ENDPOINT from '@/config/appConfig';
 

@@ -26,15 +26,15 @@ const PrivacyPolicy = () => {
         </Typography>
 
         <Typography paragraph>
-          MYZK (or "MYZK", "we", "our", and "us") value your privacy and adhere strictly to good privacy practices to
+          MYZK value your privacy and adhere strictly to good privacy practices to
           ensure that your privacy is respected and personal information you provide to us is kept in accordance with
           applicable laws and the policies and practices as described in this Privacy Policy.
         </Typography>
 
         <Typography paragraph>
           Our privacy policy discloses our privacy practices for handling online personal and non-personal information.
-          Please read this Privacy Policy carefully before you use any of MYZK's websites ("Site(s)") and/or MYZK's
-          PC/mobile applications (“Application(s)”). By using or accessing the Sites and/or Application(s), you are
+          Please read this Privacy Policy carefully before you use any of MYZK websites (Site(s)) and/or MYZK
+          PC/mobile applications (Application(s)). By using or accessing the Sites and/or Application(s), you are
           accepting this Privacy Policy. We reserve the right to change our Privacy Policy and our Terms of Use at any
           time and from time to time, without any notice to you. We encourage you to refer to this Privacy Policy on
           an ongoing basis so that you are aware of the current terms.
@@ -46,7 +46,7 @@ const PrivacyPolicy = () => {
         <Typography paragraph>
           As a visitor to our Sites, you can engage in many activities without providing any personal information.
           However, we do collect and aggregate information pertaining to the web pages visited and general usage
-          patterns through the use of "cookies" as described below. Such information is not linked to any sensitive
+          patterns through the use of cookies as described below. Such information is not linked to any sensitive
           information. The non-sensitive information we collect helps us identify the most popular areas of our Sites
           and determines the effectiveness of our promotional activities.
         </Typography>
@@ -56,7 +56,7 @@ const PrivacyPolicy = () => {
           Application(s), including any errors encountered, functions/features used, device type, navigation flow,
           operating system, and usage time for each application screen. Such information is technical, not linked to
           any sensitive/personal information, and is collected to help us better understand how users engage with our
-          Application(s), improve user experience, adapt or develop new features according to users' preferences, and
+          Application(s), improve user experience, adapt or develop new features according to users preferences, and
           determine the effectiveness of our Application(s). Our Application(s) use Google Analytics, which is a web
           analytics service provided by Google.
         </Typography>
@@ -69,7 +69,7 @@ const PrivacyPolicy = () => {
           participation. These activities may require the collection of your personal information, including: your
           name, postal address, e-mail address, telephone number, fax number, credit card details (only for payment
           obligations to complete your order(s), where required), and/or information about your interests in the use
-          of MYZK's various products, programs, and services. Such data collected may be combined with the information
+          of MYZK various products, programs, and services. Such data collected may be combined with the information
           you had previously provided (for example, if you had previously registered the ownership of your MYZK
           products). MYZK is committed to safeguarding your personal information and will only use such information to
           better understand your needs and to provide you with better service.
@@ -99,8 +99,8 @@ const PrivacyPolicy = () => {
 
         <Typography variant="h6" sx={{ marginTop: 2 }}>Cookies</Typography>
         <Typography paragraph>
-          Cookies are small text files that a web server can store on a user's device/machine. Cookies allow a website
-          to store information on a user's machine and retrieve it later. Cookies collect information like IP
+          Cookies are small text files that a web server can store on a user device/machine. Cookies allow a website
+          to store information on a user machine and retrieve it later. Cookies collect information like IP
           addresses, operating systems, and browser software, but they do not collect any personal information.
           Cookies enable us to customize your experience and provide greater convenience at our Sites. You have the
           ability to accept or decline cookies by modifying the settings on your browser; you may wish to refer to the
@@ -115,7 +115,7 @@ const PrivacyPolicy = () => {
 
         <Typography variant="h6" sx={{ marginTop: 2 }}>Third-Party Vendors/Marketing Agents</Typography>
         <Typography paragraph>
-          We engage third-party vendors/marketing agents (including Google, Inc. ("Google")) for online advertising,
+          We engage third-party vendors/marketing agents (including Google, Inc. for online advertising,
           marketing, and/or remarketing services for the purpose of remarketing, interest-based advertising, age,
           gender, demographic, or location targeting, etc., to better target and serve more relevant ads to our
           intended audience based on available data. Third-party vendors/marketing agents, including Google, may show
@@ -125,13 +125,13 @@ const PrivacyPolicy = () => {
 
         <Typography paragraph>
           For Sites, as part of our advertising and marketing activities, data analysis, and other activities, we have
-          implemented or may implement Google's Display Advertising features such as Remarketing, Google Display
+          implemented or may implement Google Display Advertising features such as Remarketing, Google Display
           Network Impression Reporting, DoubleClick Campaign Manager Integration, or Google Analytics Demographics and
           Interest Reporting. You may opt out of Google Analytics for Display Advertising and customize Google Display
           Network ads at: <Link href="https://www.google.com/settings/ads">Google Ads Settings</Link>. We and our
           third-party vendors/marketing agents (including but not limited to Google) use first-party cookies (such as
           the Google Analytics cookie) and third-party cookies (such as the DoubleClick cookie) together to inform,
-          optimize, and serve ads based on someone's past visits to our website. (Please refer to the section on Web
+          optimize, and serve ads based on someone past visits to our website. (Please refer to the section on Web
           Analytics/Statistics below for more information.)
         </Typography>
 
@@ -152,9 +152,9 @@ const PrivacyPolicy = () => {
           services.
         </Typography>
 
-        <Typography variant="h6" sx={{ marginTop: 2 }}>Children's Online Privacy Protection Act Compliance</Typography>
+        <Typography variant="h6" sx={{ marginTop: 2 }}>Childrens Online Privacy Protection Act Compliance</Typography>
         <Typography paragraph>
-          We comply with the Children's Online Privacy Protection Act (COPPA) and will not knowingly collect
+          We comply with the Childrens Online Privacy Protection Act (COPPA) and will not knowingly collect
           personally identifiable information from children under the age of 13. If you are a parent or guardian and
           believe that your child has provided us with personal information, please contact us.
         </Typography>

@@ -50,6 +50,9 @@ const AdminSingleOrder = () => {
     orderNotice: "",
     status: "processing",
     total: 0,
+    productId: "",
+    issuedAt: "" as any,
+    expiresAt: "" as any
   });
   const params = useParams<{ id: string }>();
 

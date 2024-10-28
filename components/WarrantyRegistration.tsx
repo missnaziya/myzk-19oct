@@ -82,19 +82,19 @@ const WarrantyRegistration = () => {
   const [message, setMessage] = useState('');  // For both success and error messages
   const [openSnackbar, setOpenSnackbar] = useState(false);  // Snackbar visibility
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const response = await axios.post(`${ENDPOINT.BASE_URL}/api/warranties`, formData);
       toast.success("Warranty issued successfully!")
       // setMessage('Warranty issued successfully!');
       setFormData({ email: '', orderNumber: '' });  // Reset form
-    } catch (error) {
+    } catch (error: any) {
       toast.error(error?.response?.data?.error)
       console.log(error);
       

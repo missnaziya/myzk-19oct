@@ -41,8 +41,8 @@ const HelpFaq = () => {
                                 How can I track my order?
                             </Typography>
                             <Typography>
-                                You can track your order by logging into your account and navigating to the "Track
-                                Order" section. You'll find tracking information for your recent purchases there.
+                                You can track your order by logging into your account and navigating to the Track
+                                Order section. You will find tracking information for your recent purchases there.
                             </Typography>
                         </Box>
 
@@ -61,7 +61,7 @@ const HelpFaq = () => {
                                 How do I return an item?
                             </Typography>
                             <Typography>
-                                To return an item, please visit our "Return" section on the website, fill out the
+                                To return an item, please visit our Return section on the website, fill out the
                                 return form, and follow the instructions provided. Make sure the item is in its
                                 original packaging and condition.
                             </Typography>
@@ -72,7 +72,7 @@ const HelpFaq = () => {
                                 What should I do if I forget my password?
                             </Typography>
                             <Typography>
-                                If you forget your password, click on the "Forgot Password" link on the login page.
+                                If you forget your password, click on the Forgot Password link on the login page.
                                 Follow the instructions to reset your password using your registered email address.
                             </Typography>
                         </Box>
