@@ -103,7 +103,12 @@ const ProfilePage = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [editMode, setEditMode] = useState(false);
-  const [formValues, setFormValues] = useState({
+  interface FormValues {
+    name: string;
+    email: string;
+  }
+
+  const [formValues, setFormValues] = useState<FormValues>({
     name: "",
     email: "",
   });
@@ -116,9 +121,9 @@ const ProfilePage = () => {
 
     if (session) {
       // Set user data from session
-      const { name, email } = session.user;
+      const { name = "", email = "" } = session.user || { name: "", email: "" };
       setUser({ name, email });
-      setFormValues({ name, email });
+      setFormValues({ name, email } as FormValues);
     } else {
       // Handle case where there is no session
       setError("No user session found");

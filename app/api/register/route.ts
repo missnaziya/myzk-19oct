@@ -24,7 +24,7 @@ export const POST = async (request: any) => {
     });
     return new NextResponse("user is registered", { status: 200 });
   } catch (err: any) {
-    return new NextResponse(err, {
+    return new NextResponse(err.message || "Internal Server Error", {
       status: 500,
     });
   }
