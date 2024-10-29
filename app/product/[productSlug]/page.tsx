@@ -39,102 +39,152 @@ const SingleProductPage = async ({ params }: SingleProductPageProps) => {
   }
 
   return (
-    <div className="bg-white">
-      <div className="max-w-screen-2xl mx-auto">
-        <div className="flex justify-center gap-x-16 pt-10 max-lg:flex-col items-center gap-y-5 px-5">
-     
-          <div>
+ <div className="bg-white">
+  <div className="max-w-screen-2xl mx-auto">
+    <div className="flex justify-center gap-x-16 pt-10 max-lg:flex-col items-center gap-y-5 px-5">
+      
+      {/* Left side: Alternate Images */}
+      <div className="flex flex-col gap-y-2">
+        {product?.alternateImage1 && (
+          <Image
+            src={`/${product.alternateImage1}`}
+            width={100}
+            height={100}
+            alt="alternate image 1"
+                  className="w-auto h-auto border border-gray-300 shadow-sm hover:shadow-lg hover:scale-105 transition-transform duration-200 cursor-pointer"
+          />
+        )}
+        {product?.alternateImage2 && (
+          <Image
+            src={`/${product.alternateImage2}`}
+            width={100}
+            height={100}
+            alt="alternate image 2"
+                  className="w-auto h-auto border border-gray-300 shadow-sm hover:shadow-lg hover:scale-105 transition-transform duration-200 cursor-pointer"
+          />
+        )}
+        {product?.alternateImage3 && (
+          <Image
+            src={`/${product.alternateImage3}`}
+            width={100}
+            height={100}
+            alt="alternate image 3"
+                  className="w-auto h-auto border border-gray-300 shadow-sm hover:shadow-lg hover:scale-105 transition-transform duration-200 cursor-pointer"
+          />
+        )}
+        {product?.alternateImage4 && (
+          <Image
+            src={`/${product.alternateImage4}`}
+            width={100}
+            height={100}
+            alt="alternate image 4"
+                  className="w-auto h-auto border border-gray-300 shadow-sm hover:shadow-lg hover:scale-105 transition-transform duration-200 cursor-pointer"
+          />
+        )}
+      </div>
+
+      {/* Main Image and Additional Content */}
+      <div>
+        <Image
+          src={product?.mainImage ? `/${product.mainImage}` : "/product_placeholder.jpg"}
+          width={500}
+          height={500}
+          alt="main image"
+          className="w-auto h-auto"
+        />
+        
+        {/* Thumbnail Images (Existing Mapping) */}
+        <div className="flex justify-around mt-5 flex-wrap gap-y-1 max-[500px]:justify-center max-[500px]:gap-x-1">
+          {images?.map((imageItem: ImageItem) => (
             <Image
-              src={product?.mainImage ? `/${product?.mainImage}` : "/product_placeholder.jpg"}
-              width={500}
-              height={500}
-              alt="main image"
+              key={imageItem.imageID}
+              src={`/${imageItem.image}`}
+              width={100}
+              height={100}
+              alt="laptop image"
               className="w-auto h-auto"
             />
-            <div className="flex justify-around mt-5 flex-wrap gap-y-1 max-[500px]:justify-center max-[500px]:gap-x-1">
-              {images?.map((imageItem: ImageItem) => (
-                <Image
-                  key={imageItem.imageID}
-                  src={`/${imageItem.image}`}
-                  width={100}
-                  height={100}
-                  alt="laptop image"
-                  className="w-auto h-auto"
-                />
-              ))}
-            </div>
-          </div>
-          <div className="flex flex-col gap-y-7 text-black max-[500px]:text-center">
-            <SingleProductRating rating={product?.rating} />
-            <h1 className="text-3xl">{product?.title}</h1>
-            <p className="text-xl font-semibold">${product?.price}</p>
-            <StockAvailabillity stock={94} inStock={product?.inStock} />
-            <SingleProductDynamicFields product={product} />
-            <div className="flex flex-col gap-y-2 max-[500px]:items-center">
-              <AddToWishlistBtn product={product} slug={params.productSlug} />
-              <p className="text-lg">
-                SKU: <span className="ml-1">abccd-18</span>
-              </p>
-              <div className="text-lg flex gap-x-2">
-                <span>Share:</span>
-                <div className="flex items-center gap-x-1 text-2xl">
-                  <FaSquareFacebook />
-                  <FaSquareXTwitter />
-                  <FaSquarePinterest />
-                </div>
-              </div>
-              <div className="flex gap-x-2">
-                <Image
-                  src="/visa.svg"
-                  width={50}
-                  height={50}
-                  alt="visa icon"
-                  className="w-auto h-auto"
-                />
-                <Image
-                  src="/mastercard.svg"
-                  width={50}
-                  height={50}
-                  alt="mastercard icon"
-                  className="h-auto w-auto"
-                />
-                <Image
-                  src="/ae.svg"
-                  width={50}
-                  height={50}
-                  alt="americal express icon"
-                  className="h-auto w-auto"
-                />
-                <Image
-                  src="/paypal.svg"
-                  width={50}
-                  height={50}
-                  alt="paypal icon"
-                  className="w-auto h-auto"
-                />
-                <Image
-                  src="/dinersclub.svg"
-                  width={50}
-                  height={50}
-                  alt="diners club icon"
-                  className="h-auto w-auto"
-                />
-                <Image
-                  src="/discover.svg"
-                  width={50}
-                  height={50}
-                  alt="discover icon"
-                  className="h-auto w-auto"
-                />
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
-        <div className="py-16">
-          <ProductTabs product={product} />
+      </div>
+
+      {/* Product Details */}
+      <div className="flex flex-col gap-y-7 text-black max-[500px]:text-center">
+        <SingleProductRating rating={product?.rating} />
+        <h1 className="text-3xl">{product?.title}</h1>
+        <p className="text-xl font-semibold">${product?.price}</p>
+        <StockAvailabillity stock={94} inStock={product?.inStock} />
+        <SingleProductDynamicFields product={product} />
+        
+        {/* Wishlist and SKU, Social Media, Payment Icons */}
+        <div className="flex flex-col gap-y-2 max-[500px]:items-center">
+          <AddToWishlistBtn product={product} slug={params.productSlug} />
+          <p className="text-lg">
+            SKU: <span className="ml-1">abccd-18</span>
+          </p>
+          <div className="text-lg flex gap-x-2">
+            <span>Share:</span>
+            <div className="flex items-center gap-x-1 text-2xl">
+              <FaSquareFacebook />
+              <FaSquareXTwitter />
+              <FaSquarePinterest />
+            </div>
+          </div>
+          <div className="flex gap-x-2">
+            <Image
+              src="/visa.svg"
+              width={50}
+              height={50}
+              alt="visa icon"
+              className="w-auto h-auto"
+            />
+            <Image
+              src="/mastercard.svg"
+              width={50}
+              height={50}
+              alt="mastercard icon"
+              className="h-auto w-auto"
+            />
+            <Image
+              src="/ae.svg"
+              width={50}
+              height={50}
+              alt="american express icon"
+              className="h-auto w-auto"
+            />
+            <Image
+              src="/paypal.svg"
+              width={50}
+              height={50}
+              alt="paypal icon"
+              className="w-auto h-auto"
+            />
+            <Image
+              src="/dinersclub.svg"
+              width={50}
+              height={50}
+              alt="diners club icon"
+              className="h-auto w-auto"
+            />
+            <Image
+              src="/discover.svg"
+              width={50}
+              height={50}
+              alt="discover icon"
+              className="h-auto w-auto"
+            />
+          </div>
         </div>
       </div>
     </div>
+
+    {/* Product Tabs */}
+    <div className="py-16">
+      <ProductTabs product={product} />
+    </div>
+  </div>
+</div>
+
   );
 };
 
