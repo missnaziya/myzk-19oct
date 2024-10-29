@@ -81,13 +81,13 @@ const AdminWarranties = () => {
 
                   <td>
                     <p>
-                    {new Date(Date.parse(warranty?.issuedAt)).toDateString()}
+                    {new Date(Date.parse(warranty?.issuedAt as any)).toDateString()}
                          {/* {warranty?.issuedAt} */}
                          </p>
                   </td>
 
                   <td>
-                    {new Date(Date.parse(warranty?.expiresAt)).toDateString()}
+                    {new Date(Date.parse(warranty?.expiresAt as any)).toDateString()}
                   </td>
                   <th>
                     {/* <Link

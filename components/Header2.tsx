@@ -65,8 +65,8 @@ const Header2 = () => {
                 'aria-labelledby': 'category-menu',
               }}
             >
-              <MenuItem onClick={handleMenuClose}>Adaptor's</MenuItem>
-              <MenuItem onClick={handleMenuClose}>Data Cable's</MenuItem>
+              <MenuItem onClick={handleMenuClose}>Adaptor</MenuItem>
+              <MenuItem onClick={handleMenuClose}>Data Cable</MenuItem>
               <MenuItem onClick={handleMenuClose}>Socket Board</MenuItem>
               <MenuItem onClick={handleMenuClose}>Water Level Controller</MenuItem>
               <MenuItem onClick={handleMenuClose}>WiFi Stability UPS</MenuItem>

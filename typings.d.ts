@@ -3,6 +3,7 @@ interface Product {
   slug: string;
   title: string;
   price: number;
+  salePrice: number;
   rating: number;
   description: string;
   mainImage: string;
@@ -53,6 +54,9 @@ interface User {
 }
 
 interface Order {
+  productId: ReactNode;
+  issuedAt(issuedAt: any): string | number | Date;
+  expiresAt(expiresAt: any): string | number | Date;
   id: string;
   adress: string;
   apartment: string;

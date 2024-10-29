@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3005",
+    "dev": "next dev -p 3000",
     "build": "next build",
-    "start": "next start",
+    "start": "node server.js",
     "lint": "next lint"
   },
   "dependencies": {
@@ -19,6 +19,7 @@
     "@tailwindcss/typography": "^0.5.10",
     "@types/bcryptjs": "^2.4.6",
     "@types/react-slick": "^0.23.13",
+    "assert": "^2.1.0",
     "axios": "^1.7.7",
     "bcryptjs": "^2.4.3",
     "express-fileupload": "^1.5.0",
@@ -26,6 +27,7 @@
     "nanoid": "^5.0.6",
     "next": "14.1.0",
     "next-auth": "^4.24.6",
+    "oidc-token-hash": "^5.0.3",
     "react": "^18",
     "react-apexcharts": "^1.4.1",
     "react-dom": "^18",

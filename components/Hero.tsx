@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import Slider from "react-slick";
 import { Box, Typography, IconButton, Button } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
@@ -9,7 +9,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const Hero = () => {
-  const [sliderRef, setSliderRef] = useState(null);
+  const sliderRef = useRef<Slider>(null);
 
   const settings = {
     dots: true,
@@ -46,7 +46,7 @@ const Hero = () => {
 
   return (
     <Box sx={{ position: "relative", maxWidth: "100%", margin: "auto" }}>
-      <Slider {...settings} ref={setSliderRef}>
+      <Slider {...settings} ref={sliderRef}>
         {slides.map((slide) => (
           <Box key={slide.id} sx={{ position: "relative" }}>
             <img
@@ -121,7 +121,7 @@ const Hero = () => {
 
       {/* Navigation Buttons */}
       <IconButton
-        onClick={() => sliderRef?.slickPrev()}
+        onClick={() => sliderRef.current?.slickPrev()}
         sx={{
           position: "absolute",
           top: "50%",
@@ -137,7 +137,7 @@ const Hero = () => {
         <ArrowBackIosIcon />
       </IconButton>
       <IconButton
-        onClick={() => sliderRef?.slickNext()}
+        onClick={() => sliderRef.current?.slickNext()}
         sx={{
           position: "absolute",
           top: "50%",

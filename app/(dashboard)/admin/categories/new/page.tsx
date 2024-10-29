@@ -41,6 +41,7 @@ const DashboardNewCategoryPage = () => {
 
   const addNewCategory = () => {
     if (categoryInput.name.length > 0) {
+      categoryInput.href = `/${categoryInput.name}`;
       const requestOptions = {
         method: "post",
         headers: { "Content-Type": "application/json" },
@@ -78,36 +79,43 @@ const DashboardNewCategoryPage = () => {
       toast.error("You need to enter values to add a category");
     }
   };
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const input = e.target.value;
+    const regex = /^[a-z0-9-]+$/;// Allows lowercase letters and hyphens only
+
+    if (input === '' || regex.test(input)) {
+      setcategoryInput({ ...categoryInput, name: input });
+    }
+  };
   return (
     <div className="bg-white flex justify-start max-w-screen-2xl mx-auto xl:h-full max-xl:flex-col max-xl:gap-y-5">
       <DashboardSidebar />
       <div className="flex flex-col gap-y-7 xl:pl-5 max-xl:px-5 w-full">
         <h1 className="text-3xl font-semibold">Add new category</h1>
-        <div>
-          <label className="form-control w-full max-w-xs">
-            <div className="label">
-              <span className="label-text">Category name:</span>
-            </div>
-            <input
-              type="text"
-              className="input input-bordered w-full max-w-xs"
-              placeholder="Category Name"
-              value={categoryInput.name}
-              onChange={(e) =>
-                setcategoryInput({ ...categoryInput, name: e.target.value })
-              }
-            />
-          </label>
+  
+           <div>
+      <label className="form-control w-full max-w-xs">
+        <div className="label">
+          <span className="label-text">Category name:</span>
+        </div>
+        <input
+          type="text"
+          className="input input-bordered w-full max-w-xs"
+          placeholder="category-name"
+          value={categoryInput.name}
+          onChange={handleInputChange}
+        />
+      </label>
         </div>
         <div>
           <label className="form-control w-full max-w-xs">
             <div className="label">
-              <span className="label-text">Internal name:</span>
+              <span className="label-text">Display name:</span>
             </div>
             <input
               type="text"
               className="input input-bordered w-full max-w-xs"
-              placeholder="internal Name"
+              placeholder="Display Name"
               value={categoryInput.displayName}
               onChange={(e) =>
                 setcategoryInput({ ...categoryInput, displayName: e.target.value })
@@ -123,10 +131,13 @@ const DashboardNewCategoryPage = () => {
               <span className="label-text">HREF:</span>
             </div>
             <input
+              readOnly
               type="text"
               className="input input-bordered w-full max-w-xs"
-              placeholder="/shop/categoryName"
-              value={categoryInput.href}
+              placeholder="/categoryName"
+              // placeholder="/shop/categoryName"
+              // value={categoryInput.href}
+              value={`/${categoryInput.name}`}
               onChange={(e) =>
                 setcategoryInput({ ...categoryInput, href: e.target.value })
               }

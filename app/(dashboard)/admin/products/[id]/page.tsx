@@ -19,7 +19,8 @@ interface DashboardProductDetailsProps {
 const DashboardProductDetails = ({
   params: { id },
 }: DashboardProductDetailsProps) => {
-  const [product, setProduct] = useState<Product>();
+  // const [product, setProduct] = useState<Product>();
+  const [product, setProduct] = useState<Product | undefined>();
   const [categories, setCategories] = useState<Category[]>();
   const [otherImages, setOtherImages] = useState<OtherImages[]>([]);
   const router = useRouter();
@@ -136,27 +137,53 @@ const DashboardProductDetails = ({
     fetchProductData();
   }, [id]);
 
+  // Helper function to convert text to a slug format
+  const convertToSlug = (text: string) => {
+    return text.toLowerCase().replace(/\s+/g, "-");
+  };
+
+  const handleTitleChange = (e: any) => {
+    const title = e.target.value;
+    const slug = convertToSlug(title);
+    setProduct({ ...product, title, slug } as Product); // Cast as Product to satisfy the type checker
+  };
+
   return (
     <div className="bg-white flex justify-start max-w-screen-2xl mx-auto xl:h-full max-xl:flex-col max-xl:gap-y-5">
       <DashboardSidebar />
       <div className="flex flex-col gap-y-7 xl:ml-5 w-full max-xl:px-5">
         <h1 className="text-3xl font-semibold">Product details</h1>
         {/* Product name input div - start */}
-        <div>
-          <label className="form-control w-full max-w-xs">
-            <div className="label">
-              <span className="label-text">Product name:</span>
-            </div>
-            <input
-              type="text"
-              className="input input-bordered w-full max-w-xs"
-              value={product?.title}
-              onChange={(e) =>
-                setProduct({ ...product!, title: e.target.value })
-              }
-            />
+
+        <div className="form-control md:w-1/2">
+          <label className="label">
+            <span className="label-text">Product name:</span>
           </label>
+          <input
+            type="text"
+            className="input input-bordered w-full"
+            value={product?.title}
+            onChange={handleTitleChange}
+            placeholder="Product Name"
+          />
         </div>
+
+        {/* Product manufacturer input div - end */}
+        {/* Product slug input div - start */}
+
+        <div className="form-control md:w-1/2">
+          <label className="label">
+            <span className="label-text">Product slug:</span>
+          </label>
+          <input
+            type="text"
+            className="input input-bordered w-full"
+            value={product?.slug}
+            placeholder="product-slug"
+            readOnly
+          />
+        </div>
+
         {/* Product name input div - end */}
         {/* Product price input div - start */}
 
@@ -192,27 +219,7 @@ const DashboardProductDetails = ({
             />
           </label>
         </div>
-        {/* Product manufacturer input div - end */}
-        {/* Product slug input div - start */}
 
-        <div>
-          <label className="form-control w-full max-w-xs">
-            <div className="label">
-              <span className="label-text">Slug:</span>
-            </div>
-            <input
-              type="text"
-              className="input input-bordered w-full max-w-xs"
-              value={product?.slug && convertSlugToURLFriendly(product?.slug)}
-              onChange={(e) =>
-                setProduct({
-                  ...product!,
-                  slug: convertSlugToURLFriendly(e.target.value),
-                })
-              }
-            />
-          </label>
-        </div>
         {/* Product slug input div - end */}
         {/* Product inStock select input div - start */}
 
@@ -267,9 +274,9 @@ const DashboardProductDetails = ({
             type="file"
             className="file-input file-input-bordered file-input-lg w-full max-w-sm"
             onChange={(e) => {
-              const selectedFile = e.target.files[0];
-
-              if (selectedFile) {
+              const files = e.target.files;
+              if (files && files[0]) {
+                const selectedFile = files[0];
                 uploadFile(selectedFile);
                 setProduct({ ...product!, mainImage: selectedFile.name });
               }
@@ -300,6 +307,120 @@ const DashboardProductDetails = ({
               />
             ))}
         </div>
+
+        <div className="md:w-1/2">
+          <label
+            htmlFor="file-upload"
+            className="block mb-2 text-sm font-medium text-gray-700"
+          >
+            alternate Image
+          </label>
+          <input
+            type="file"
+            className="file-input file-input-bordered w-full"
+            onChange={(e: any) => {
+              uploadFile(e.target.files[0]);
+              setProduct({
+                ...product,
+                alternateImage1: e.target.files[0].name,
+              } as Product);
+            }}
+          />
+          {product?.alternateImage1 && (
+            <Image
+              src={`/` + product?.alternateImage1}
+              alt={product?.title}
+              className="w-auto h-auto"
+              width={20}
+              height={20}
+            />
+          )}
+        </div>
+        <div className="md:w-1/2">
+          <label
+            htmlFor="file-upload"
+            className="block mb-2 text-sm font-medium text-gray-700"
+          >
+            alternate Image
+          </label>
+          <input
+            type="file"
+            className="file-input file-input-bordered w-full"
+            onChange={(e: any) => {
+              uploadFile(e.target.files[0]);
+              setProduct({
+                ...product,
+                alternateImage2: e.target.files[0].name,
+              } as Product);
+            }}
+          />
+          {product?.alternateImage2 && (
+            <Image
+              src={`/` + product?.alternateImage2}
+              alt={product?.title}
+              className="w-auto h-auto"
+              width={20}
+              height={20}
+            />
+          )}
+        </div>
+        <div className="md:w-1/2">
+          <label
+            htmlFor="file-upload"
+            className="block mb-2 text-sm font-medium text-gray-700"
+          >
+            alternate Image
+          </label>
+          <input
+            type="file"
+            className="file-input file-input-bordered w-full"
+            onChange={(e: any) => {
+              uploadFile(e.target.files[0]);
+              setProduct({
+                ...product,
+                alternateImage3: e.target.files[0].name,
+              } as Product);
+            }}
+          />
+          {product?.alternateImage3 && (
+            <Image
+              src={`/` + product?.alternateImage3}
+              alt={product?.title}
+              className="w-auto h-auto"
+              width={20}
+              height={20}
+            />
+          )}
+        </div>
+        <div className="md:w-1/2">
+          <label
+            htmlFor="file-upload"
+            className="block mb-2 text-sm font-medium text-gray-700"
+          >
+            alternate Image
+          </label>
+          <input
+            type="file"
+            className="file-input file-input-bordered w-full"
+            onChange={(e: any) => {
+              uploadFile(e.target.files[0]);
+              setProduct({
+                ...product,
+                alternateImage4: e.target.files[0].name,
+              } as Product);
+            }}
+          />
+          {product?.alternateImage4 && (
+            <Image
+              src={`/` + product?.alternateImage4}
+              alt={product?.title}
+              className="w-auto h-auto"
+              width={20}
+              height={20}
+            />
+          )}
+        </div>
+
         {/* Other images file upload div - end */}
         {/* Product description div - start */}
         <div>

@@ -149,18 +149,20 @@ const CategoryMenu = ({
         setCategoryMenuList2(data);
       });
   }, []);
-
+  const excludedSlugs = ['inspired-products', 'topselling-products', 'new-products'];
   return (
     <div
     onClick={handleMouseLeave}
       className="p-0 bg-white"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      style={{ width: "100vw" }}
+      style={{ width: "100vw", borderBottom:"2px solid grey" }}
     >
       <div className="max-w-screen-2xl mx-auto py-2 gap-x-5 px-16 max-md:px-10 gap-y-5 grid grid-cols-5 max-lg:grid-cols-3 max-md:grid-cols-2 max-[450px]:grid-cols-1">
-        {categoryMenuList2.map((item: any) => (
-          <CategoryItem title={item.name} key={item.id} href={"/shop"+item.href}>
+        {categoryMenuList2
+        .filter((item:any) => !excludedSlugs.includes(item.name ))
+        .map((item: any) => (
+          <CategoryItem title={item.displayName} key={item.id} href={"/shop"+item.href}>
             <img
               onClick={handleProductClick}
               src={`/${item.image}`}
