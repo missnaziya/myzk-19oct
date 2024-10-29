@@ -15,6 +15,7 @@ import { useRouter } from "next/navigation";
 import { useSortStore } from "@/app/_zustand/sortStore";
 import { usePaginationStore } from "@/app/_zustand/paginationStore";
 import ENDPOINT from '@/config/appConfig';
+import { Button, Stack } from '@mui/material';
 
 import Link from "next/link";
 
@@ -55,14 +56,15 @@ interface InputCategory {
 
 
   const [categoryMenuList, setCategoryMenuList] = useState([]);
+  const excludedSlugs = ['inspired-products', 'topselling-products', 'new-products'];
 
-  // useEffect(() => {
-  //   fetch(ENDPOINT.BASE_URL + "/api/categories/", { cache: "no-store" })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setCategoryMenuList(data);
-  //     });
-  // }, []);
+  useEffect(() => {
+    fetch(ENDPOINT.BASE_URL + "/api/categories/", { cache: "no-store" })
+      .then((res) => res.json())
+      .then((data) => {
+        setCategoryMenuList(data);
+      });
+  }, []);
 
   return (
     <div>
@@ -71,17 +73,32 @@ interface InputCategory {
       <div className="flex flex-col gap-y-1">
         {/* <h3 className="text-xl mb-2">Availability</h3> */}
         <h3 className="text-xl mb-2">Category</h3>
-        {/* <div className="form-control ">
-          {categoryMenuList.map((item: any) => (
-        
-              <Link href={item.href}>
-            <label className="cursor-pointer flex items-center" >
-            <span className="label-text text-sm ml-2 text-black hover:text-orange-400">{item.name}</span>
-          </label>
-              </Link>
-        ))}
-          
-        </div> */}
+        {/* <Link href={`/shop${item.href}`} key={item.id} passHref> */}
+    <div className="form-control">
+      <Stack spacing={1}>
+        {categoryMenuList
+           .filter((item:any) => !excludedSlugs.includes(item.name )) // Filter out the excluded slugs
+           .map((item:any) => (
+            <Link href={`/shop${item.href}`} key={item.id} passHref>
+              <Button
+                variant="contained" // Change to 'contained' or 'text' as needed
+                className="cursor-pointer"
+                sx={{
+                  color: 'black',
+                  borderColor: 'black',
+                  '&:hover': {
+                    color: 'white',
+                    backgroundColor: "#f37321",
+                    borderColor: 'orange',
+                  },
+                }}
+              >
+                {item.name}
+              </Button>
+            </Link>
+          ))}
+      </Stack>
+    </div>
         {/* <div className="form-control">
           <label className="cursor-pointer flex items-center">
             <input

@@ -300,6 +300,120 @@ const DashboardProductDetails = ({
               />
             ))}
         </div>
+
+        {/* <div className="md:w-1/2">
+            <label htmlFor="file-upload" className="block mb-2 text-sm font-medium text-gray-700">
+              alternate Image
+            </label>
+            <input
+              type="file"
+              className="file-input file-input-bordered w-full"
+              onChange={(e: any) => {
+                uploadFile(e.target.files[0]);
+                setProduct({ ...product, alternateImage1: e.target.files[0].name });
+              }}
+            />
+            {product?.alternateImage2 && (
+              <Image
+                src={`/` + product?.alternateImage2}
+                alt={product?.title}
+                className="w-auto h-auto"
+                width={20}
+                height={20}
+              />
+            )}
+          </div>
+        <div className="md:w-1/2">
+            <label htmlFor="file-upload" className="block mb-2 text-sm font-medium text-gray-700">
+              alternate Image
+            </label>
+            <input
+              type="file"
+              className="file-input file-input-bordered w-full"
+              onChange={(e: any) => {
+                uploadFile(e.target.files[0]);
+                setProduct({ ...product, alternateImage2: e.target.files[0].name });
+              }}
+            />
+            {product?.alternateImage2 && (
+              <Image
+                src={`/` + product?.alternateImage2}
+                alt={product?.title}
+                className="w-auto h-auto"
+                width={20}
+                height={20}
+              />
+            )}
+          </div>
+        <div className="md:w-1/2">
+            <label htmlFor="file-upload" className="block mb-2 text-sm font-medium text-gray-700">
+              alternate Image
+            </label>
+            <input
+              type="file"
+              className="file-input file-input-bordered w-full"
+              onChange={(e: any) => {
+                uploadFile(e.target.files[0]);
+                setProduct({ ...product, alternateImage3: e.target.files[0].name });
+              }}
+            />
+            {product?.alternateImage2 && (
+              <Image
+                src={`/` + product?.alternateImage2}
+                alt={product?.title}
+                className="w-auto h-auto"
+                width={20}
+                height={20}
+              />
+            )}
+          </div>
+        <div className="md:w-1/2">
+            <label htmlFor="file-upload" className="block mb-2 text-sm font-medium text-gray-700">
+              alternate Image
+            </label>
+            <input
+              type="file"
+              className="file-input file-input-bordered w-full"
+              onChange={(e: any) => {
+                uploadFile(e.target.files[0]);
+                setProduct({ ...product, alternateImage4: e.target.files[0].name });
+              }}
+            />
+            {product?.alternateImage2 && (
+              <Image
+                src={`/` + product?.alternateImage2}
+                alt={product?.title}
+                className="w-auto h-auto"
+                width={20}
+                height={20}
+              />
+            )}
+          </div>
+        <div className="md:w-1/2">
+            <label htmlFor="file-upload" className="block mb-2 text-sm font-medium text-gray-700">
+              alternate Image
+            </label>
+            <input
+              type="file"
+              className="file-input file-input-bordered w-full"
+              onChange={(e: any) => {
+                uploadFile(e.target.files[0]);
+                setProduct({ ...product, alternateImage5: e.target.files[0].name });
+              }}
+            />
+            {product?.alternateImage2 && (
+              <Image
+                src={`/` + product?.alternateImage2}
+                alt={product?.title}
+                className="w-auto h-auto"
+                width={20}
+                height={20}
+              />
+            )}
+          </div> */}
+     
+
+
         {/* Other images file upload div - end */}
         {/* Product description div - start */}
         <div>

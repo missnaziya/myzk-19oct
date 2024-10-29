@@ -16,8 +16,8 @@ import ENDPOINT from '@/config/appConfig';
 const Products =  ({ slug }: any) => {
   const [products, setProducts] = useState([]);
 
-
-  const category =slug.params.slug[0]
+ 
+  const category =slug.params.slug[0] 
   useEffect(() => {
   //  const url = `${ENDPOINT.BASE_URL}/api/products?filters[category][$equals]=new-products`
    const url = `${ENDPOINT.BASE_URL}/api/products?filters[category][$equals]=${category}`
