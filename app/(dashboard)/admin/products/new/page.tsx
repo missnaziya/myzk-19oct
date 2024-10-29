@@ -134,6 +134,19 @@ const AddNewProduct = () => {
   useEffect(() => {
     fetchCategories();
   }, []);
+
+  // Helper function to convert text to a slug format
+const convertToSlug = (text: string) => {
+  return text.toLowerCase().replace(/\s+/g, "-");
+};
+
+
+
+  const handleTitleChange = (e:any) => {
+    const title = e.target.value;
+    const slug = convertToSlug(title);
+    setProduct({ ...product, title, slug });
+  };
   return (
     <div className="bg-white flex justify-start max-w-screen-2xl mx-auto xl:h-full max-xl:flex-col max-xl:gap-y-5">
       <DashboardSidebar />
@@ -142,7 +155,7 @@ const AddNewProduct = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Product Name */}
-          <div className="form-control md:w-1/2">
+          {/* <div className="form-control md:w-1/2">
             <label className="label">
               <span className="label-text">Product name:</span>
             </label>
@@ -152,10 +165,22 @@ const AddNewProduct = () => {
               value={product?.title}
               onChange={(e) => setProduct({ ...product, title: e.target.value })}
             />
-          </div>
+          </div> */}
+               <div className="form-control md:w-1/2">
+        <label className="label">
+          <span className="label-text">Product name:</span>
+        </label>
+        <input
+          type="text"
+          className="input input-bordered w-full"
+          value={product.title}
+          onChange={handleTitleChange}
+          placeholder="Product Name"
+        />
+      </div>
 
           {/* Product Slug */}
-          <div className="form-control md:w-1/2">
+          {/* <div className="form-control md:w-1/2">
             <label className="label">
               <span className="label-text">Product slug:</span>
             </label>
@@ -170,7 +195,19 @@ const AddNewProduct = () => {
                 })
               }
             />
-          </div>
+          </div> */}
+             <div className="form-control md:w-1/2">
+        <label className="label">
+          <span className="label-text">Product slug:</span>
+        </label>
+        <input
+          type="text"
+          className="input input-bordered w-full"
+          value={product.slug}
+          placeholder="product-slug"
+          readOnly
+        />
+      </div>
 
           {/* Category */}
           <div className="form-control md:w-1/2">

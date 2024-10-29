@@ -145,7 +145,7 @@ const Header = () => {
                   </Box>
                   <Button
                     component={Link}
-                    href="/new-arrivals"
+                    href="/shop/new-arrivals"
                     color="inherit"
                     sx={{ fontSize: "14px", padding: "5px 8px" }}
                   >
