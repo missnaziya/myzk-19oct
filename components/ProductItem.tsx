@@ -57,64 +57,84 @@ const ProductItem = ({
             </Box>
 
             {/* Icons overlay */}
-            <CardActions sx={{ position: 'absolute', bottom: 5, left: 260, zIndex: 1 }}>
-              {/* <IconButton aria-label="view"
-                sx={{
-                  backgroundColor: '#f37321',
-                  color: 'black',
-                  borderRadius: '50%',
-                  '&:hover': { color: 'white', backgroundColor: '#e5621d' }  // Slightly darker on hover
-                }}>
-                <Visibility />
-               
-              </IconButton> */}
-              {/* <Link href={`/product/${product.slug}`} passHref>
-               
-              </Link> */}
 
-              <IconButton aria-label="add to wishlist"
-                sx={{
-                  backgroundColor: '#f37321',
-                  color: 'black',
-                  borderRadius: '50%',
-                  '&:hover': { color: 'white', backgroundColor: 'black' }  // Slightly darker on hover
-                }}>
-                <Favorite />
-              </IconButton>
-              <IconButton aria-label="add to cart"
-                sx={{
-                  backgroundColor: '#f37321',
-                  color: 'black',
-                  borderRadius: '50%',
-                  '&:hover': { color: 'white', backgroundColor: 'black' }  // Slightly darker on hover
-                }}>
-                <ShoppingCart />
-              </IconButton>
-            </CardActions>
-
-            {/* Product details */}
             <CardContent
               sx={{
                 backgroundColor: '#f37321',
-              }}>
+              }}
+            >
               <Link href={`/product/${product.slug}`} passHref>
-                <Typography variant="h6" component="a" sx={{ textDecoration: 'none', color: 'black', textAlign: 'center', fontWeight: 'bold' }}>
+                <Typography
+                  variant="h6"
+                  component="a"
+                  sx={{
+                    textDecoration: 'none',
+                    color: 'black',
+                    textAlign: 'center',
+                    fontWeight: 'bold',
+                  }}
+                >
                   {product.title}
                 </Typography>
               </Link>
-              <Box sx={{ marginTop: 1 }}>
 
-                <Typography variant="body2" color="textSecondary" component="del" sx={{ marginRight: 2 }}>
-                  ₹{product.price}
+              {/* Flex container for price and icons */}
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between', // Space between price and icons
+                  alignItems: 'center', // Vertically align them
+                  mt: 1, // Margin top for spacing
+                }}
+              >
+                {/* Price Section */}
+                <Box>
+                  <Typography variant="body2" color="textSecondary" component="del" sx={{ marginRight: 2 }}>
+                    ₹{product.price}
+                  </Typography>
+                  <Typography variant="body1" color="textPrimary" component="span">
+                    ₹{product.salePrice}
+                  </Typography>
+                </Box>
 
-                </Typography>
-                <Typography variant="body1" color="textPrimary" component="span" >
-                  ₹{product.salePrice}
+                {/* Icons Section */}
+                <Box>
+                  <IconButton
+                    aria-label="add to wishlist"
+                    sx={{
+                      backgroundColor: '#f37321',
+                      color: 'black',
+                      borderRadius: '50%',
+                      '&:hover': {
+                        color: 'white',
+                        backgroundColor: 'black',
+                      },
+                      mr: 1, // Margin-right for spacing between icons
+                    }}
+                  >
+                    <Favorite />
+                  </IconButton>
 
-
-                </Typography>
+                  <IconButton
+                    aria-label="add to cart"
+                    sx={{
+                      backgroundColor: '#f37321',
+                      color: 'black',
+                      borderRadius: '50%',
+                      '&:hover': {
+                        color: 'white',
+                        backgroundColor: 'black',
+                      },
+                    }}
+                  >
+                    <ShoppingCart />
+                  </IconButton>
+                </Box>
               </Box>
             </CardContent>
+
+            {/* Product details */}
+       
           </Card>
         </Link>
       </Box>

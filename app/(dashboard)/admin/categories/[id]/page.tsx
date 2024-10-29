@@ -14,9 +14,10 @@ interface DashboardSingleCategoryProps {
 const DashboardSingleCategory = ({
   params: { id },
 }: DashboardSingleCategoryProps) => {
-  const [categoryInput, setCategoryInput] = useState<{ name: string,displayName:string }>({
+  const [categoryInput, setCategoryInput] = useState<{ name: string,displayName:string, href:string }>({
     name: "",
     displayName: "",
+    href: "",
   });
   const router = useRouter();
 
@@ -79,6 +80,7 @@ const DashboardSingleCategory = ({
         setCategoryInput({
           name: data?.name,
           displayName: data?.displayName,
+          href: data?.href,
         });
       });
   }, [id]);
@@ -103,6 +105,47 @@ const DashboardSingleCategory = ({
             />
           </label>
         </div>
+
+{/* new */}
+<div>
+          <label className="form-control w-full max-w-xs">
+            <div className="label">
+              <span className="label-text">Display name:</span>
+            </div>
+            <input
+              type="text"
+              className="input input-bordered w-full max-w-xs"
+              placeholder="Display Name"
+              value={categoryInput.displayName}
+              onChange={(e) =>
+                setCategoryInput({ ...categoryInput, displayName: e.target.value })
+              }
+            />
+          </label>
+        </div>
+
+
+        <div>
+          <label className="form-control w-full max-w-xs">
+            <div className="label">
+              <span className="label-text">HREF:</span>
+            </div>
+            <input
+              readOnly
+              type="text"
+              className="input input-bordered w-full max-w-xs"
+              placeholder="/categoryName"
+              // placeholder="/shop/categoryName"
+              // value={categoryInput.href}
+              value={`/${categoryInput.name}`}
+              onChange={(e) =>
+                setCategoryInput({ ...categoryInput, href: e.target.value })
+              }
+            />
+          </label>
+        </div>
+
+
 
         <div className="flex gap-x-2 max-sm:flex-col">
           <button
