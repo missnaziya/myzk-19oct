@@ -46,7 +46,7 @@ const DashboardSidebar = () => {
         </div>
       </Link>
       <Link href="/admin/tickets">
-        <div className="flex gap-x-2 w-full hover:bg-blue-600 cursor-pointer items-center py-6 pl-5 text-xl text-white">
+        <div className="flex gap-x-2 w-full hover:bg-orange-600 cursor-pointer items-center py-6 pl-5 text-xl text-white">
           <FaRegUser className="text-2xl" />{" "}
           <span className="font-normal">Support Tickets</span>
         </div>
