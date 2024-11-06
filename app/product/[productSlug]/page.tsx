@@ -21,6 +21,8 @@ interface ImageItem {
   image: string;
 }
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
 const SingleProductPage = async ({ params }: SingleProductPageProps) => {
   // sending API request for a single product with a given product slug
   const data = await fetch(
