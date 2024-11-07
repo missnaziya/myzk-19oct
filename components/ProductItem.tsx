@@ -38,7 +38,7 @@ const ProductItem = ({
               <CardMedia
                 component="img"
                 height="300"
-                image="1.webp"
+                 image= {product.alternateImage1 ? `/${product.alternateImage1}` : "/product_placeholder.jpg"}
                 alt="Secondary Image 1"
                 sx={{
                   position: 'absolute',

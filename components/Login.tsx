@@ -155,7 +155,7 @@ const Login = () => {
           </div>
         </div>
 
-        <div className="mt-6 grid grid-cols-2 gap-4">
+        <div className="mt-6 grid grid-cols-1 gap-4">
           <button
             className="flex w-full items-center border border-gray-300 justify-center gap-3 rounded-md bg-white px-3 py-1.5 text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             onClick={() => {
@@ -168,7 +168,7 @@ const Login = () => {
             </span>
           </button>
 
-          <button
+          {/* <button
             className="flex w-full items-center justify-center gap-3 rounded-md bg-[#24292F] px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#24292F]"
             onClick={() => {
               signIn("github");
@@ -187,9 +187,9 @@ const Login = () => {
               />
             </svg>
             <span className="text-sm font-semibold leading-6">
-              GitHub
+              GitHub.
             </span>
-          </button>
+          </button> */}
         </div>
         <p className="text-red-600 text-center text-[16px] my-4">
           {error && error}
