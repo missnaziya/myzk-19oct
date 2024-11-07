@@ -17,20 +17,35 @@ const Products =  ({ slug }: any) => {
   const [products, setProducts] = useState([]);
 
  
-  const category =slug.params.slug[0] 
-  useEffect(() => {
-  //  const url = `${ENDPOINT.BASE_URL}/api/products?filters[category][$equals]=new-products`
-   const url = `${ENDPOINT.BASE_URL}/api/products?filters[category][$equals]=${category}`
-    fetch(url)
-      .then((res) => {
-        console.log("Category List" , res);
-        return res.json();
-      })
-      .then((data) => {
-        console.log("Category List data" , data);
-        setProducts(data);
-      });
-  }, []);
+  // const category =slug?.params?.slug[0] || "*"
+    // Ensure `slug` is defined and in the expected format
+    useEffect(() => {
+      let url;
+    
+      // Check if slug.params.slug is an array and contains elements
+      if (Array.isArray(slug?.params?.slug) && slug.params.slug.length > 0) {
+        const category = slug.params.slug[0]; // Get the first category if it exists
+        url = `${ENDPOINT.BASE_URL}/api/products?filters[category][$equals]=${category}`;
+      } else {
+        // If no category is provided, use a default API call (e.g., fetching all products)
+        url = `${ENDPOINT.BASE_URL}/api/products`;
+      }
+    
+      // Fetch the data from the API
+      fetch(url)
+        .then((res) => {
+          console.log("Category List", res);
+          return res.json();
+        })
+        .then((data) => {
+          console.log("Category List data", data);
+          setProducts(data); // Set the fetched data to state
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error); // Handle errors
+        });
+    }, [slug]); // Add slug as a dependency to re-run when it changes
+    
 
 //   // getting all data from URL slug and preparing everything for sending GET request
 //   const inStockNum = slug?.searchParams?.inStock === "true" ? 1 : 0;

@@ -27,6 +27,12 @@ import {
 } from '@mui/material'
 import CategoryMenu from './CategoryMenu' // assuming this component lists the products
 
+
+
+
+
+
+
 const Header = () => {
   const { data: session } = useSession()
   const pathname = usePathname()
@@ -40,8 +46,9 @@ const Header = () => {
   }
 
   const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget)
-  }
+    setAnchorEl(event.currentTarget);
+  
+  };
 
   const handleMenuClose = () => {
     setAnchorEl(null)
@@ -102,8 +109,46 @@ const Header = () => {
 
   // Hide category list when product is selected
   const handleProductSelection = () => {
-    setShowCategoryList(false) // hide the category list
-  }
+    setShowCategoryList(false); // hide the category list
+    
+  };
+  type Category = {
+    name: string;
+  };
+  
+  type Product = {
+    id: string;
+    slug: string;
+    title: string;
+    mainImage: string;
+    alternateImage1: string;
+    alternateImage2: string;
+    alternateImage3: string;
+    alternateImage4: string;
+    price: number;
+    salePrice: number;
+    rating: number;
+    description: string;
+    manufacturer: string;
+    inStock: number;
+    categoryId: string;
+    testcol: string | null;
+    warrantyDuration: string | null;
+    category: Category;
+  };
+
+
+  
+  // Type `categoryMenuList2` as an array of Product objects
+  const [categoryMenuList2, setCategoryMenuList2] = useState<Product[]>([]);
+
+  useEffect(() => {
+    fetch(ENDPOINT.BASE_URL + "/api/categories/", { cache: "no-store" })
+      .then((res) => res.json())
+      .then((data) => {
+        setCategoryMenuList2(data);
+      });
+  }, []);
 
   return (
     <AppBar position='static' color='default'>
@@ -213,9 +258,9 @@ const Header = () => {
               }} // Position and stacking
             >
               <CategoryMenu
-                onProductSelect={handleProductSelection}
-                handleMouseEnter={handleMouseEnter}
-                handleMouseLeave={handleMouseLeave}
+
+onProductSelect={handleProductSelection} handleMouseEnter={handleMouseEnter} handleMouseLeave={handleMouseLeave}
+categoryMenuList={categoryMenuList2}
               />
             </Box>
           )}
