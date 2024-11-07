@@ -110,8 +110,8 @@
 // };
 
 // export default Footer;
-"use client";
-import React, { useState } from "react";
+'use client'
+import React, { useState } from 'react'
 import {
   Container,
   Grid,
@@ -119,119 +119,122 @@ import {
   Button,
   TextField,
   Box,
-  IconButton,
-} from "@mui/material";
+  IconButton
+} from '@mui/material'
 import {
   Facebook,
   Twitter,
   Instagram,
   YouTube,
-  Pinterest,
-} from "@mui/icons-material";
-import Link from "next/link";
+  Pinterest
+} from '@mui/icons-material'
+import Link from 'next/link'
 
 const Footer = () => {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('')
 
   const handleSubscribe = () => {
-    console.log(`Subscribed with: ${email}`);
-  };
+    console.log(`Subscribed with: ${email}`)
+  }
 
   return (
     <>
       <footer>
-        <Box
-          sx={{ backgroundColor: "black", width: "100%", padding: "50px" }}
-        >
-          <Container maxWidth={false} sx={{ width: "100%", padding: 0 }}>
+        <Box sx={{ backgroundColor: 'black', width: '100%', padding: '50px' }}>
+          <Container maxWidth={false} sx={{ width: '100%', padding: 0 }}>
             <Grid container spacing={4}>
               {/* Quick Links Section */}
               <Grid item xs={12} sm={6} md={3}>
                 <Typography
-                  variant="h6"
-                  sx={{ color: "#ffffff", marginBottom: "20px" }}
+                  variant='h6'
+                  sx={{
+                    color: '#ffffff',
+                    marginBottom: '20px',
+                    borderBottom: '2px solid #e0e0e0',
+                    display: 'inline-block' // Ensures the border only spans the text
+                  }}
                 >
                   Quick Links
                 </Typography>
-                <Box component="ul" sx={{ listStyleType: "none", padding: 0 }}>
-                  <Box component="li" sx={{ marginBottom: "10px" }}>
-                    <Link href="/shop" passHref>
+                <Box component='ul' sx={{ listStyleType: 'none', padding: 0 }}>
+                  <Box component='li' sx={{ marginBottom: '10px' }}>
+                    <Link href='/shop' passHref>
                       <Typography
                         sx={{
-                          color: "#9a9b9c",
-                          "&:hover": { color: "#f37321" },
-                          textDecoration: "none",
-                          fontSize: "0.875rem",
+                          color: '#9a9b9c',
+                          '&:hover': { color: '#f37321' },
+                          textDecoration: 'none',
+                          fontSize: '0.875rem'
                         }}
                       >
                         Category
                       </Typography>
                     </Link>
                   </Box>
-                  <Box component="li" sx={{ marginBottom: "10px" }}>
-                    <Link href="/policy/privacy-policy" passHref>
+                  <Box component='li' sx={{ marginBottom: '10px' }}>
+                    <Link href='/policy/privacy-policy' passHref>
                       <Typography
                         sx={{
-                          color: "#9a9b9c",
-                          "&:hover": { color: "#f37321" },
-                          textDecoration: "none",
-                          fontSize: "0.875rem",
+                          color: '#9a9b9c',
+                          '&:hover': { color: '#f37321' },
+                          textDecoration: 'none',
+                          fontSize: '0.875rem'
                         }}
                       >
                         Privacy Policy
                       </Typography>
                     </Link>
                   </Box>
-                  <Box component="li" sx={{ marginBottom: "10px" }}>
-                    <Link href="/policy/refund-return" passHref>
+                  <Box component='li' sx={{ marginBottom: '10px' }}>
+                    <Link href='/policy/refund-return' passHref>
                       <Typography
                         sx={{
-                          color: "#9a9b9c",
-                          "&:hover": { color: "#f37321" },
-                          textDecoration: "none",
-                          fontSize: "0.875rem",
+                          color: '#9a9b9c',
+                          '&:hover': { color: '#f37321' },
+                          textDecoration: 'none',
+                          fontSize: '0.875rem'
                         }}
                       >
                         Returns & Refund Policies
                       </Typography>
                     </Link>
                   </Box>
-                  <Box component="li" sx={{ marginBottom: "10px" }}>
-                    <Link href="/policy/shipping-delivery" passHref>
+                  <Box component='li' sx={{ marginBottom: '10px' }}>
+                    <Link href='/policy/shipping-delivery' passHref>
                       <Typography
                         sx={{
-                          color: "#9a9b9c",
-                          "&:hover": { color: "#f37321" },
-                          textDecoration: "none",
-                          fontSize: "0.875rem",
+                          color: '#9a9b9c',
+                          '&:hover': { color: '#f37321' },
+                          textDecoration: 'none',
+                          fontSize: '0.875rem'
                         }}
                       >
                         Shipping and Delivery Policies
                       </Typography>
                     </Link>
                   </Box>
-                  <Box component="li" sx={{ marginBottom: "10px" }}>
-                    <Link href="/policy/term-condition" passHref>
+                  <Box component='li' sx={{ marginBottom: '10px' }}>
+                    <Link href='/policy/term-condition' passHref>
                       <Typography
                         sx={{
-                          color: "#9a9b9c",
-                          "&:hover": { color: "#f37321" },
-                          textDecoration: "none",
-                          fontSize: "0.875rem",
+                          color: '#9a9b9c',
+                          '&:hover': { color: '#f37321' },
+                          textDecoration: 'none',
+                          fontSize: '0.875rem'
                         }}
                       >
                         Terms of Service
                       </Typography>
                     </Link>
                   </Box>
-                  <Box component="li" sx={{ marginBottom: "10px" }}>
-                    <Link href="/faq" passHref>
+                  <Box component='li' sx={{ marginBottom: '10px' }}>
+                    <Link href='/faq' passHref>
                       <Typography
                         sx={{
-                          color: "#9a9b9c",
-                          "&:hover": { color: "#f37321" },
-                          textDecoration: "none",
-                          fontSize: "0.875rem",
+                          color: '#9a9b9c',
+                          '&:hover': { color: '#f37321' },
+                          textDecoration: 'none',
+                          fontSize: '0.875rem'
                         }}
                       >
                         Help & FAQ
@@ -244,76 +247,81 @@ const Footer = () => {
               {/* Support Links Section */}
               <Grid item xs={12} sm={6} md={3}>
                 <Typography
-                  variant="h6"
-                  sx={{ color: "#ffffff", marginBottom: "20px" }}
+                  variant='h6'
+                  sx={{
+                    color: '#ffffff',
+                    marginBottom: '20px',
+                    borderBottom: '2px solid #e0e0e0',
+                    display: 'inline-block' // Ensures the border only spans the text
+                  }}
                 >
                   Support Links
                 </Typography>
-                <Box component="ul" sx={{ listStyleType: "none", padding: 0 }}>
-                  <Box component="li" sx={{ marginBottom: "10px" }}>
-                    <Link href="/tracking" passHref>
+                <Box component='ul' sx={{ listStyleType: 'none', padding: 0 }}>
+                  <Box component='li' sx={{ marginBottom: '10px' }}>
+                    <Link href='/tracking' passHref>
                       <Typography
                         sx={{
-                          color: "#9a9b9c",
-                          "&:hover": { color: "#f37321" },
-                          textDecoration: "none",
-                          fontSize: "0.875rem",
+                          color: '#9a9b9c',
+                          '&:hover': { color: '#f37321' },
+                          textDecoration: 'none',
+                          fontSize: '0.875rem'
                         }}
                       >
                         Track Order
                       </Typography>
                     </Link>
                   </Box>
-                  <Box component="li" sx={{ marginBottom: "10px" }}>
-                    <Link href="/ticket" passHref>
+                  <Box component='li' sx={{ marginBottom: '10px' }}>
+                    <Link href='/ticket' passHref>
                       <Typography
                         sx={{
-                          color: "#9a9b9c",
-                          "&:hover": { color: "#f37321" },
-                          textDecoration: "none",
-                          fontSize: "0.875rem",
+                          color: '#9a9b9c',
+                          '&:hover': { color: '#f37321' },
+                          textDecoration: 'none',
+                          fontSize: '0.875rem'
                         }}
                       >
                         Ticket Raise
                       </Typography>
                     </Link>
                   </Box>
-                  <Box component="li" sx={{ marginBottom: "10px" }}>
-                    <Link href="/return" passHref>
+                  <Box component='li' sx={{ marginBottom: '10px' }}>
+                    <Link href='/return' passHref>
                       <Typography
                         sx={{
-                          color: "#9a9b9c",
-                          "&:hover": { color: "#f37321" },
-                          textDecoration: "none",
-                          fontSize: "0.875rem",
+                          color: '#9a9b9c',
+                          '&:hover': { color: '#f37321' },
+                          textDecoration: 'none',
+                          fontSize: '0.875rem'
                         }}
                       >
                         Return
                       </Typography>
                     </Link>
                   </Box>
-                  <Box component="li" sx={{ marginBottom: "10px" }}>
-                    <Link href="/support/warranty-registration" passHref>
+                  <Box component='li' sx={{ marginBottom: '10px' }}>
+                    <Link href='/support/warranty-registration' passHref>
                       <Typography
                         sx={{
-                          color: "#9a9b9c",
-                          "&:hover": { color: "#f37321" },
-                          textDecoration: "none",
-                          fontSize: "0.875rem",
+                          color: '#9a9b9c',
+                          '&:hover': { color: '#f37321' },
+                          textDecoration: 'none',
+                          fontSize: '0.875rem'
                         }}
                       >
                         Warranty Registration
                       </Typography>
                     </Link>
                   </Box>
-                  <Box component="li" sx={{ marginBottom: "10px" }}>
-                    <Link href="/support/contact-us" passHref>
+                  <Box component='li' sx={{ marginBottom: '10px' }}>
+                    <Link href='/support/contact-us' passHref>
                       <Typography
                         sx={{
-                          color: "#9a9b9c",
-                          "&:hover": { color: "#f37321" },
-                          textDecoration: "none",
-                          fontSize: "0.875rem",
+                          color: '#9a9b9c',
+                          '&:hover': { color: '#f37321' },
+                          textDecoration: 'none',
+                          fontSize: '0.875rem'
                         }}
                       >
                         Contact
@@ -340,15 +348,21 @@ const Footer = () => {
               {/* Get in Touch Section */}
               <Grid item xs={12} sm={6} md={3}>
                 <Typography
-                  variant="h6"
-                  sx={{ color: "#ffffff", marginBottom: "20px" }}
+                  variant='h6'
+                  sx={{
+                    color: '#ffffff',
+                    marginBottom: '20px',
+                    borderBottom: '2px solid #e0e0e0',
+                    display: 'inline-block' // Ensures the border only spans the text
+                  }}
                 >
                   Get In Touch
                 </Typography>
-                <Typography variant="body2" sx={{ color: "#9a9b9c" }}>
+
+                <Typography variant='body2' sx={{ color: '#9a9b9c' }}>
                   Have questions? Visit at:
                   <Link
-                    href="https://maps.app.goo.gl/hZgUhCbYwkugGsHx8"
+                    href='https://maps.app.goo.gl/hZgUhCbYwkugGsHx8'
                     passHref
                   >
                     Digital Telemedia Technology Pvt. Ltd., E-169, E Block,
@@ -360,33 +374,43 @@ const Footer = () => {
               {/* Newsletter Section */}
               <Grid item xs={12} sm={6} md={3}>
                 <Typography
-                  variant="h6"
-                  sx={{ color: "#ffffff", marginBottom: "20px" }}
+                  variant='h6'
+                  sx={{
+                    color: '#ffffff',
+                    marginBottom: '20px',
+                    borderBottom: '2px solid #e0e0e0',
+                    display: 'inline-block' // Ensures the border only spans the text
+                  }}
                 >
                   Newsletter
+                </Typography>
+              
+                <Typography variant='body2' sx={{ color: '#9a9b9c' }}>
+                   Sign up to get updates & news about us.
+                  Get the latest deals directly in your inbox.
                 </Typography>
                 <Box>
                   <TextField
                     fullWidth
-                    variant="outlined"
-                    placeholder="email@example.com"
+                    variant='outlined'
+                    placeholder='email@example.com'
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={e => setEmail(e.target.value)}
                     sx={{
-                      backgroundColor: "#9a9b9c",
-                      color: "#fff",
-                      "::placeholder": { color: "white" },
+                      backgroundColor: '#9a9b9c',
+                      color: '#fff',
+                      '::placeholder': { color: 'white' }
                     }}
                   />
                   <Button
-                    variant="contained"
-                    color="primary"
+                    variant='contained'
+                    color='primary'
                     onClick={handleSubscribe}
                     fullWidth
                     sx={{
-                      marginTop: "10px",
-                      backgroundColor: "#f37321",
-                      color: "white",
+                      marginTop: '10px',
+                      backgroundColor: '#f37321 !important',
+                      color: 'white'
                     }}
                   >
                     Subscribe
@@ -398,35 +422,35 @@ const Footer = () => {
             {/* Footer Bottom Section */}
             <Grid
               container
-              justifyContent="center"
-              sx={{ marginTop: "30px", paddingTop: "20px", color: "white" }}
+              justifyContent='center'
+              sx={{ marginTop: '30px', paddingTop: '20px', color: 'white' }}
             >
-              <Grid item xs={12} textAlign="center">
-                <Typography variant="body2">
-                  Contact us at:{" "}
+              <Grid item xs={12} textAlign='center'>
+                <Typography variant='body2'>
+                  Contact us at:{' '}
                   <Link
-                    href="mailto:operations@myzk.in"
-                    style={{ color: "#9a9b9c", textDecoration: "none" }}
+                    href='mailto:operations@myzk.in'
+                    style={{ color: '#9a9b9c', textDecoration: 'none' }}
                   >
                     operations@myzk.in
                   </Link>
                 </Typography>
 
                 {/* Social Media Icons */}
-                <Box sx={{ marginTop: "10px" }}>
-                  <IconButton href="#" color="inherit">
+                <Box sx={{ marginTop: '10px' }}>
+                  <IconButton href='#' color='inherit'>
                     <Facebook />
                   </IconButton>
-                  <IconButton href="#" color="inherit">
+                  <IconButton href='#' color='inherit'>
                     <Twitter />
                   </IconButton>
-                  <IconButton href="#" color="inherit">
+                  <IconButton href='#' color='inherit'>
                     <Instagram />
                   </IconButton>
-                  <IconButton href="#" color="inherit">
+                  <IconButton href='#' color='inherit'>
                     <YouTube />
                   </IconButton>
-                  <IconButton href="#" color="inherit">
+                  <IconButton href='#' color='inherit'>
                     <Pinterest />
                   </IconButton>
                 </Box>
@@ -438,17 +462,17 @@ const Footer = () => {
         {/* Copyright Section */}
         <Grid
           container
-          justifyContent="center"
-          sx={{ backgroundColor: "white", padding: "20px 0", width: "100%" }}
+          justifyContent='center'
+          sx={{ backgroundColor: 'white', padding: '20px 0', width: '100%' }}
         >
-          <Grid item xs={12} textAlign="center">
-            <Typography variant="body2" component="div">
-              Copyright &copy; {new Date().getFullYear()} All rights reserved by{" "}
+          <Grid item xs={12} textAlign='center'>
+            <Typography variant='body2' component='div'>
+              Copyright &copy; {new Date().getFullYear()} All rights reserved by{' '}
               <Box
-                component="span"
-                sx={{ display: "inline-block", verticalAlign: "middle" }}
+                component='span'
+                sx={{ display: 'inline-block', verticalAlign: 'middle' }}
               >
-                <img src="/img/myzk logo.png" width="100px" alt="Myzk" />
+                <img src='/img/myzk logo.png' width='100px' alt='Myzk' />
               </Box>
             </Typography>
           </Grid>
@@ -463,7 +487,7 @@ const Footer = () => {
         </Grid>
       </footer>
     </>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer
