@@ -26,9 +26,9 @@ const Hero = () => {
   const slides = [
     {
       id: 1,
-      image: "/img/Artboard3.png",
-      captionLine1: "Power Your World with",
-      captionLine2: "Innovation",
+      image: "/homebanner.jpg",
+      // captionLine1: "Power Your World with",
+      // captionLine2: "Innovation",
     },
     {
       id: 2,
