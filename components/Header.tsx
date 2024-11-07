@@ -236,7 +236,7 @@ const Header = () => {
                     src='/myzk logo.png'
                     width={130}
                     height={130}
-                    alt='myzk logo'
+                    alt='logo'
                   />
                 </Box>
               </Link>
