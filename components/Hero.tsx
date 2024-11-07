@@ -106,14 +106,14 @@ const Hero = () => {
               </Typography>
 
               {/* Shop Now Button */}
-              <Button
+              {/* <Button
                 href="/shop"
                 variant="contained"
                 color="primary"
                 sx={{ mt: 4 }}
               >
                 Shop Now
-              </Button>
+              </Button> */}
             </Box>
           </Box>
         ))}
