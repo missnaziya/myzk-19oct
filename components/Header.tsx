@@ -137,19 +137,14 @@ const Header = () => {
                 </Link>
               </Grid>
 
-              {/* <Grid item> */}
-              <Grid
-                item
-                sx={{
-                  paddingLeft: '55px',
-                }}
-              >
+              <Grid item>
+             
                 <Box display='flex' alignItems='center'>
                   <Button
                     component={Link}
                     href='/'
                     color='inherit'
-                    sx={{ fontSize: '14px', padding: '5px 15px' ,
+                    sx={{ fontSize: '14px', padding: '5px 8px' ,
                       '&:hover': {
                         borderBottom: '2px solid #ea580c'
                       }
@@ -162,7 +157,7 @@ const Header = () => {
                   <Box
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
-                    sx={{ fontSize: '14px', padding: '5px 15px' }}
+                    sx={{ fontSize: '14px', padding: '5px 8px' }}
                   >
                     <Button color='inherit'>Category</Button>
                   </Box>
@@ -170,7 +165,7 @@ const Header = () => {
                     component={Link}
                     href='/shop/new-arrivals'
                     color='inherit'
-                    sx={{ fontSize: '14px', padding: '5px 15px',
+                    sx={{ fontSize: '14px', padding: '5px 8px',
                       '&:hover': {
                         borderBottom: '2px solid #ea580c'
                       }
@@ -182,7 +177,7 @@ const Header = () => {
                     component={Link}
                     href='/support'
                     color='inherit'
-                    sx={{ fontSize: '14px', padding: '5px 15px',
+                    sx={{ fontSize: '14px', padding: '5px 8px',
                       '&:hover': {
                         borderBottom: '2px solid #ea580c'
                       }
@@ -201,7 +196,7 @@ const Header = () => {
                 display='flex'
                 justifyContent='flex-end'
                 gap={3}
-                sx={{ marginTop: { xs: '-125px', sm: '0px' } }} // Apply margin-top only on mobile
+                sx={{ marginTop: { xs: '-140px', sm: '0px' } }} // Apply margin-top only on mobile
               >
                 <HeartElement wishQuantity={wishQuantity} />
                 <CartElement />
