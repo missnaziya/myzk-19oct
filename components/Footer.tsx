@@ -259,7 +259,7 @@ const Footer = () => {
                 </Typography>
                 <Box component='ul' sx={{ listStyleType: 'none', padding: 0 }}>
                   <Box component='li' sx={{ marginBottom: '10px' }}>
-                    <Link href='/tracking' passHref>
+                    <Link href='/support/track-order' passHref>
                       <Typography
                         sx={{
                           color: '#9a9b9c',
@@ -273,7 +273,7 @@ const Footer = () => {
                     </Link>
                   </Box>
                   <Box component='li' sx={{ marginBottom: '10px' }}>
-                    <Link href='/ticket' passHref>
+                    <Link href='/support/support-ticket' passHref>
                       <Typography
                         sx={{
                           color: '#9a9b9c',
