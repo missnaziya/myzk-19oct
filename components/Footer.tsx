@@ -141,7 +141,7 @@ const Footer = () => {
     <>
       <footer>
         <Box
-          sx={{ backgroundColor: "black", width: "100%", padding: "50px 0" }}
+          sx={{ backgroundColor: "black", width: "100%", padding: "50px" }}
         >
           <Container maxWidth={false} sx={{ width: "100%", padding: 0 }}>
             <Grid container spacing={4}>
