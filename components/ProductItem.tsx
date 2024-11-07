@@ -60,7 +60,7 @@ const ProductItem = ({
 
             <CardContent
               sx={{
-                backgroundColor: '#f37321',
+                backgroundColor: '#eee7f2',
               }}
             >
               <Link href={`/product/${product.slug}`} passHref>
