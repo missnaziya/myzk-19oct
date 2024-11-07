@@ -149,320 +149,316 @@ const DashboardProductDetails = ({
   };
 
   return (
-    <div className="bg-white flex justify-start max-w-screen-2xl mx-auto xl:h-full max-xl:flex-col max-xl:gap-y-5">
+    <div className='bg-white flex justify-start max-w-screen-2xl mx-auto xl:h-full max-xl:flex-col max-xl:gap-y-5'>
       <DashboardSidebar />
-      <div className="flex flex-col gap-y-7 xl:ml-5 w-full max-xl:px-5">
-        <h1 className="text-3xl font-semibold">Product details</h1>
+      <div className='flex flex-col gap-y-7 xl:ml-5 max-xl:px-5 w-full'>
+        <h1 className='text-3xl font-semibold'>Product details</h1>
         {/* Product name input div - start */}
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+          <div className='md:w-1/2'>
+            <label className='form-control w-full max-w-xs'>
+              <div className='label'>
+                <span className='label-text'>Product Name:</span>
+              </div>
+              <input
+                type='text'
+                className='input input-bordered w-full'
+                value={product?.title}
+                onChange={handleTitleChange}
+                placeholder='Product Name'
+              />
+            </label>
+          </div>
 
-        <div className="form-control md:w-1/2">
-          <label className="label">
-            <span className="label-text">Product name:</span>
-          </label>
-          <input
-            type="text"
-            className="input input-bordered w-full"
-            value={product?.title}
-            onChange={handleTitleChange}
-            placeholder="Product Name"
-          />
-        </div>
-
-        {/* Product manufacturer input div - end */}
-        {/* Product slug input div - start */}
-
-        <div className="form-control md:w-1/2">
-          <label className="label">
-            <span className="label-text">Product slug:</span>
-          </label>
-          <input
-            type="text"
-            className="input input-bordered w-full"
-            value={product?.slug}
-            placeholder="product-slug"
-            readOnly
-          />
-        </div>
-
-        {/* Product name input div - end */}
-        {/* Product price input div - start */}
-
-        <div>
-          <label className="form-control w-full max-w-xs">
-            <div className="label">
-              <span className="label-text">Product price:</span>
-            </div>
+          <div className='md:w-1/2'>
+            <label
+              htmlFor='file-upload'
+              className='block mb-2 text-sm font-medium text-gray-700'
+            >
+              Main Image
+            </label>
             <input
-              type="text"
-              className="input input-bordered w-full max-w-xs"
-              value={product?.price}
-              onChange={(e) =>
-                setProduct({ ...product!, price: Number(e.target.value) })
-              }
+              type='file'
+              className='file-input file-input-bordered w-full'
+              onChange={e => {
+                const files = e.target.files
+                if (files && files[0]) {
+                  const selectedFile = files[0]
+                  uploadFile(selectedFile)
+                  setProduct({ ...product!, mainImage: selectedFile.name })
+                }
+              }}
             />
-          </label>
+            {product?.mainImage && (
+              <Image
+                src={`/` + product?.mainImage}
+                alt={product?.title}
+                className='w-auto h-auto mt-0'
+                width={20}
+                height={20}
+              />
+            )}
+          </div>
+          <div className='md:w-1/2'>
+            <label className='form-control w-full max-w-xs'>
+              <div className='label'>
+                <span className='label-text'>Product Slug:</span>
+              </div>
+              <input
+                type='text'
+                className='input input-bordered w-full'
+                value={product?.slug}
+                placeholder='product-slug'
+                readOnly
+              />
+            </label>
+          </div>
+
+          <div className='md:w-1/2'>
+            <label
+              htmlFor='file-upload'
+              className='block mb-2 text-sm font-medium text-gray-700'
+            >
+              alternate Image
+            </label>
+            <input
+              type='file'
+              className='file-input file-input-bordered w-full'
+              onChange={(e: any) => {
+                uploadFile(e.target.files[0])
+                setProduct({
+                  ...product,
+                  alternateImage4: e.target.files[0].name
+                } as Product)
+              }}
+            />
+            {product?.alternateImage4 && (
+              <Image
+                src={`/` + product?.alternateImage4}
+                alt={product?.title}
+                className='w-auto h-auto'
+                width={20}
+                height={20}
+              />
+            )}
+          </div>
+
+          <div className='md:w-1/2'>
+            <label className='form-control w-full max-w-xs'>
+              <div className='label'>
+                <span className='label-text'>Product price:</span>
+              </div>
+              <input
+                type='text'
+                className='input input-bordered w-full max-w-xs'
+                value={product?.price}
+                onChange={e =>
+                  setProduct({ ...product!, price: Number(e.target.value) })
+                }
+              />
+            </label>
+          </div>
+
+          <div className='md:w-1/2'>
+            <label
+              htmlFor='file-upload'
+              className='block mb-2 text-sm font-medium text-gray-700'
+            >
+              alternate Image
+            </label>
+            <input
+              type='file'
+              className='file-input file-input-bordered w-full'
+              onChange={(e: any) => {
+                uploadFile(e.target.files[0])
+                setProduct({
+                  ...product,
+                  alternateImage1: e.target.files[0].name
+                } as Product)
+              }}
+            />
+            {product?.alternateImage1 && (
+              <Image
+                src={`/` + product?.alternateImage1}
+                alt={product?.title}
+                className='w-auto h-auto'
+                width={20}
+                height={20}
+              />
+            )}
+          </div>
+
+          <div className='md:w-1/2'>
+            <label className='form-control w-full max-w-xs'>
+              <div className='label'>
+                <span className='label-text'>Is product in stock?</span>
+              </div>
+              <select
+                className='select select-bordered'
+                value={product?.inStock}
+                onChange={e => {
+                  setProduct({ ...product!, inStock: Number(e.target.value) })
+                }}
+              >
+                <option value={1}>Yes</option>
+                <option value={0}>No</option>
+              </select>
+            </label>
+          </div>
+
+          <div className='md:w-1/2'>
+            <label
+              htmlFor='file-upload'
+              className='block mb-2 text-sm font-medium text-gray-700'
+            >
+              alternate Image
+            </label>
+            <input
+              type='file'
+              className='file-input file-input-bordered w-full'
+              onChange={(e: any) => {
+                uploadFile(e.target.files[0])
+                setProduct({
+                  ...product,
+                  alternateImage2: e.target.files[0].name
+                } as Product)
+              }}
+            />
+            {product?.alternateImage2 && (
+              <Image
+                src={`/` + product?.alternateImage2}
+                alt={product?.title}
+                className='w-auto h-auto'
+                width={20}
+                height={20}
+              />
+            )}
+          </div>
+
+          <div className='md:w-1/2'>
+            <label className='form-control w-full max-w-xs'>
+              <div className='label'>
+                <span className='label-text'>Category:</span>
+              </div>
+              <select
+                className='select select-bordered'
+                value={product?.categoryId}
+                onChange={e =>
+                  setProduct({
+                    ...product!,
+                    categoryId: e.target.value
+                  })
+                }
+              >
+                {categories &&
+                  categories.map((category: Category) => (
+                    <option key={category?.id} value={category?.id}>
+                      {formatCategoryName(category?.name)}
+                    </option>
+                  ))}
+              </select>
+            </label>
+          </div>
+
+          <div className='md:w-1/2'>
+            <label
+              htmlFor='file-upload'
+              className='block mb-2 text-sm font-medium text-gray-700'
+            >
+              alternate Image
+            </label>
+            <input
+              type='file'
+              className='file-input file-input-bordered w-full'
+              onChange={(e: any) => {
+                uploadFile(e.target.files[0])
+                setProduct({
+                  ...product,
+                  alternateImage3: e.target.files[0].name
+                } as Product)
+              }}
+            />
+            {product?.alternateImage3 && (
+              <Image
+                src={`/` + product?.alternateImage3}
+                alt={product?.title}
+                className='w-auto h-auto'
+                width={20}
+                height={20}
+              />
+            )}
+          </div>
+
+          <div className='flex gap-x-1'>
+            {otherImages &&
+              otherImages.map(image => (
+                <Image
+                  src={`/${image.image}`}
+                  key={nanoid()}
+                  alt='product image'
+                  width={20}
+                  height={20}
+                  className='w-auto h-auto'
+                />
+              ))}
+          </div>
         </div>
-        {/* Product price input div - end */}
-        {/* Product manufacturer input div - start */}
-        <div>
-          <label className="form-control w-full max-w-xs">
-            <div className="label">
-              <span className="label-text">Manufacturer:</span>
+        <div className='md:w-1/2'>
+          <label className='form-control w-full max-w-xs'>
+            <div className='label'>
+              <span className='label-text'>Manufacturer:</span>
             </div>
             <input
-              type="text"
-              className="input input-bordered w-full max-w-xs"
+              type='text'
+              className='input input-bordered w-full max-w-xs'
               value={product?.manufacturer}
-              onChange={(e) =>
+              onChange={e =>
                 setProduct({ ...product!, manufacturer: e.target.value })
               }
             />
           </label>
         </div>
 
-        {/* Product slug input div - end */}
-        {/* Product inStock select input div - start */}
-
         <div>
-          <label className="form-control w-full max-w-xs">
-            <div className="label">
-              <span className="label-text">Is product in stock?</span>
-            </div>
-            <select
-              className="select select-bordered"
-              value={product?.inStock}
-              onChange={(e) => {
-                setProduct({ ...product!, inStock: Number(e.target.value) });
-              }}
-            >
-              <option value={1}>Yes</option>
-              <option value={0}>No</option>
-            </select>
-          </label>
-        </div>
-        {/* Product inStock select input div - end */}
-        {/* Product category select input div - start */}
-        <div>
-          <label className="form-control w-full max-w-xs">
-            <div className="label">
-              <span className="label-text">Category:</span>
-            </div>
-            <select
-              className="select select-bordered"
-              value={product?.categoryId}
-              onChange={(e) =>
-                setProduct({
-                  ...product!,
-                  categoryId: e.target.value,
-                })
-              }
-            >
-              {categories &&
-                categories.map((category: Category) => (
-                  <option key={category?.id} value={category?.id}>
-                    {formatCategoryName(category?.name)}
-                  </option>
-                ))}
-            </select>
-          </label>
-        </div>
-        {/* Product category select input div - end */}
-
-        {/* Main image file upload div - start */}
-        <div>
-          <input
-            type="file"
-            className="file-input file-input-bordered file-input-lg w-full max-w-sm"
-            onChange={(e) => {
-              const files = e.target.files;
-              if (files && files[0]) {
-                const selectedFile = files[0];
-                uploadFile(selectedFile);
-                setProduct({ ...product!, mainImage: selectedFile.name });
-              }
-            }}
-          />
-          {product?.mainImage && (
-            <Image
-              src={`/` + product?.mainImage}
-              alt={product?.title}
-              className="w-auto h-auto mt-2"
-              width={100}
-              height={100}
-            />
-          )}
-        </div>
-        {/* Main image file upload div - end */}
-        {/* Other images file upload div - start */}
-        <div className="flex gap-x-1">
-          {otherImages &&
-            otherImages.map((image) => (
-              <Image
-                src={`/${image.image}`}
-                key={nanoid()}
-                alt="product image"
-                width={100}
-                height={100}
-                className="w-auto h-auto"
-              />
-            ))}
-        </div>
-
-        <div className="md:w-1/2">
-          <label
-            htmlFor="file-upload"
-            className="block mb-2 text-sm font-medium text-gray-700"
-          >
-            alternate Image
-          </label>
-          <input
-            type="file"
-            className="file-input file-input-bordered w-full"
-            onChange={(e: any) => {
-              uploadFile(e.target.files[0]);
-              setProduct({
-                ...product,
-                alternateImage1: e.target.files[0].name,
-              } as Product);
-            }}
-          />
-          {product?.alternateImage1 && (
-            <Image
-              src={`/` + product?.alternateImage1}
-              alt={product?.title}
-              className="w-auto h-auto"
-              width={20}
-              height={20}
-            />
-          )}
-        </div>
-        <div className="md:w-1/2">
-          <label
-            htmlFor="file-upload"
-            className="block mb-2 text-sm font-medium text-gray-700"
-          >
-            alternate Image
-          </label>
-          <input
-            type="file"
-            className="file-input file-input-bordered w-full"
-            onChange={(e: any) => {
-              uploadFile(e.target.files[0]);
-              setProduct({
-                ...product,
-                alternateImage2: e.target.files[0].name,
-              } as Product);
-            }}
-          />
-          {product?.alternateImage2 && (
-            <Image
-              src={`/` + product?.alternateImage2}
-              alt={product?.title}
-              className="w-auto h-auto"
-              width={20}
-              height={20}
-            />
-          )}
-        </div>
-        <div className="md:w-1/2">
-          <label
-            htmlFor="file-upload"
-            className="block mb-2 text-sm font-medium text-gray-700"
-          >
-            alternate Image
-          </label>
-          <input
-            type="file"
-            className="file-input file-input-bordered w-full"
-            onChange={(e: any) => {
-              uploadFile(e.target.files[0]);
-              setProduct({
-                ...product,
-                alternateImage3: e.target.files[0].name,
-              } as Product);
-            }}
-          />
-          {product?.alternateImage3 && (
-            <Image
-              src={`/` + product?.alternateImage3}
-              alt={product?.title}
-              className="w-auto h-auto"
-              width={20}
-              height={20}
-            />
-          )}
-        </div>
-        <div className="md:w-1/2">
-          <label
-            htmlFor="file-upload"
-            className="block mb-2 text-sm font-medium text-gray-700"
-          >
-            alternate Image
-          </label>
-          <input
-            type="file"
-            className="file-input file-input-bordered w-full"
-            onChange={(e: any) => {
-              uploadFile(e.target.files[0]);
-              setProduct({
-                ...product,
-                alternateImage4: e.target.files[0].name,
-              } as Product);
-            }}
-          />
-          {product?.alternateImage4 && (
-            <Image
-              src={`/` + product?.alternateImage4}
-              alt={product?.title}
-              className="w-auto h-auto"
-              width={20}
-              height={20}
-            />
-          )}
-        </div>
-
-        {/* Other images file upload div - end */}
-        {/* Product description div - start */}
-        <div>
-          <label className="form-control">
-            <div className="label">
-              <span className="label-text">Product description:</span>
+          <label className='form-control'>
+            <div className='label'>
+              <span className='label-text'>Product description:</span>
             </div>
             <textarea
-              className="textarea textarea-bordered h-24"
+              className='textarea textarea-bordered h-24'
               value={product?.description}
-              onChange={(e) =>
+              onChange={e =>
                 setProduct({ ...product!, description: e.target.value })
               }
             ></textarea>
           </label>
         </div>
-        {/* Product description div - end */}
-        {/* Action buttons div - start */}
-        <div className="flex gap-x-2 max-sm:flex-col">
+
+        <div className='flex gap-x-2 max-sm:flex-col'>
           <button
-            type="button"
+            type='button'
             onClick={updateProduct}
-            className="uppercase bg-black px-10 py-5 text-lg border border-black border-gray-300 font-bold text-white shadow-sm hover:bg-blue-600 hover:text-white focus:outline-none focus:ring-2"
+            className='uppercase bg-black px-10 py-5 text-lg border border-black border-gray-300 font-bold text-white shadow-sm hover:bg-blue-600 hover:text-white focus:outline-none focus:ring-2'
           >
             Update product
           </button>
           <button
-            type="button"
-            className="uppercase bg-red-600 px-10 py-5 text-lg border border-black border-gray-300 font-bold text-white shadow-sm hover:bg-red-700 hover:text-white focus:outline-none focus:ring-2"
+            type='button'
+            className='uppercase bg-red-600 px-10 py-5 text-lg border border-black border-gray-300 font-bold text-white shadow-sm hover:bg-red-700 hover:text-white focus:outline-none focus:ring-2'
             onClick={deleteProduct}
           >
             Delete product
           </button>
         </div>
         {/* Action buttons div - end */}
-        <p className="text-xl max-sm:text-lg text-error">
+        <p className='text-xl max-sm:text-lg text-error'>
           To delete the product you first need to delete all its records in
           orders (customer_order_product table).
         </p>
       </div>
     </div>
   );
+
 };
 
 export default DashboardProductDetails;

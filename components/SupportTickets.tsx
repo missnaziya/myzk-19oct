@@ -1,30 +1,30 @@
-"use client";
-import { useState } from 'react';
+'use client'
+import { useState } from 'react'
 // import ENDPOINT from "../config/appConfig";
-import ENDPOINT from '@/config/appConfig';
+import ENDPOINT from '@/config/appConfig'
 
-import { Box, Typography, TextField, Button } from '@mui/material';
+import { Box, Typography, TextField, Button } from '@mui/material'
 
- function SupportTicket() {
+function SupportTicket () {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     orderNumber: '',
     description: ''
-  });
+  })
 
-  const [errorMessage, setErrorMessage] = useState(''); // State for error messages
-  const [successMessage, setSuccessMessage] = useState(''); // State for success messages
+  const [errorMessage, setErrorMessage] = useState('') // State for error messages
+  const [successMessage, setSuccessMessage] = useState('') // State for success messages
 
   const handleChange = (e: any) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+    const { name, value } = e.target
+    setFormData({ ...formData, [name]: value })
+  }
 
-  const handleSubmit = async (e :any) => {
-    e.preventDefault();
-    setErrorMessage(''); // Reset error message on new submission
-    setSuccessMessage(''); // Reset success message on new submission
+  const handleSubmit = async (e: any) => {
+    e.preventDefault()
+    setErrorMessage('') // Reset error message on new submission
+    setSuccessMessage('') // Reset success message on new submission
 
     const res = await fetch(ENDPOINT.BASE_URL + '/api/support-ticket', {
       method: 'POST',
@@ -32,27 +32,25 @@ import { Box, Typography, TextField, Button } from '@mui/material';
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(formData)
-    });
+    })
 
     if (res.ok) {
-      setSuccessMessage('Ticket submitted successfully!');
+      setSuccessMessage('Ticket submitted successfully!')
       setFormData({
         name: '',
         email: '',
         orderNumber: '',
         description: ''
-      });
-    
-      
+      })
     } else {
-      const errorData = await res.json();
-      setErrorMessage(errorData.message || 'Error submitting the ticket'); // Display server error if available
+      const errorData = await res.json()
+      setErrorMessage(errorData.message || 'Error submitting the ticket') // Display server error if available
     }
-  };
+  }
 
   return (
     <Box
-      component="form"
+      component='form'
       onSubmit={handleSubmit}
       sx={{
         maxWidth: 600,
@@ -64,84 +62,93 @@ import { Box, Typography, TextField, Button } from '@mui/material';
         backgroundColor: '#ffffff',
         transition: 'box-shadow 0.3s ease',
         '&:hover': {
-          boxShadow: '0 6px 25px rgba(0, 0, 0, 0.2)',
-        },
+          boxShadow: '0 6px 25px rgba(0, 0, 0, 0.2)'
+        }
       }}
     >
-      <Typography variant="h5" align="center" sx={{ marginBottom: '1.5rem', fontWeight: 'bold', color: '#f37321' }}>
+      <Typography
+        variant='h5'
+        align='center'
+        sx={{ marginBottom: '1.5rem', fontWeight: 'bold', color: '#f37321' }}
+      >
         Submit a Support Ticket
       </Typography>
       {successMessage && (
-        <Typography variant="body1" color="green" align="center" >
+        <Typography variant='body1' color='green' align='center'>
           {successMessage}
         </Typography>
       )}
       {errorMessage && (
-        <Typography variant="body1" color="red" align="center">
+        <Typography variant='body1' color='red' align='center'>
           {errorMessage}
         </Typography>
       )}
-      <Box sx={{ display: 'flex', flexDirection: 'column', border:'none'  }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', border: 'none' }}>
         <TextField
-          label="Name"
-          id="name"
-          name="name"
+          label='Name'
+          id='name'
+          name='name'
           value={formData.name}
           onChange={handleChange}
           required
-          variant="outlined"
+          variant='outlined'
           sx={{ marginBottom: '1rem' }}
         />
         <TextField
-          label="Email"
-          id="email"
-          name="email"
+          label='Email'
+          id='email'
+          name='email'
           value={formData.email}
           onChange={handleChange}
           required
-          variant="outlined"
+          variant='outlined'
           sx={{ marginBottom: '1rem' }}
         />
         <TextField
-          label="Order Number"
-          id="orderNumber"
-          name="orderNumber"
+          label='Order Number'
+          id='orderNumber'
+          name='orderNumber'
           value={formData.orderNumber}
           onChange={handleChange}
           required
-          variant="outlined"
+          variant='outlined'
           sx={{ marginBottom: '1rem' }}
         />
         <TextField
-          label="Description"
-          id="description"
-          name="description"
+          label='Description'
+          id='description'
+          name='description'
           value={formData.description}
           onChange={handleChange}
           required
           multiline
           minRows={4}
-          variant="outlined"
+          variant='outlined'
           sx={{ marginBottom: '1rem' }}
         />
       </Box>
-      <Button
-        type="submit"
-        variant="contained"
-        sx={{
-          padding: '0.8rem',
-          backgroundColor: '#f37321 !important',
-          color: 'black',
-          fontWeight: 'bold',
-          '&:hover': {
-            color: 'white',
-          },
-        }}
+      
+      <Box
+        sx={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}
       >
-        Submit Ticket
-      </Button>
+        <Button
+          type='submit'
+          variant='contained'
+          sx={{
+            padding: '0.8rem',
+            backgroundColor: '#f37321 !important',
+            color: 'black',
+            fontWeight: 'bold',
+            '&:hover': {
+              color: 'white'
+            }
+          }}
+        >
+          Submit Ticket
+        </Button>
+      </Box>
     </Box>
-  );
-};
+  )
+}
 
-export default SupportTicket;
+export default SupportTicket

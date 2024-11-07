@@ -63,109 +63,117 @@
 
 // export default WarrantyRegistration;
 
-
-
-"use client";
-import { useState } from 'react';
-import axios from 'axios';
-import { Box, Typography, TextField, Button, Snackbar } from '@mui/material';
+'use client'
+import { useState } from 'react'
+import axios from 'axios'
+import { Box, Typography, TextField, Button, Snackbar } from '@mui/material'
 // import ENDPOINT from "../config/appConfig";
-import ENDPOINT from '@/config/appConfig';
+import ENDPOINT from '@/config/appConfig'
 
-import toast from 'react-hot-toast';
+import toast from 'react-hot-toast'
 
 const WarrantyRegistration = () => {
   const [formData, setFormData] = useState({
     email: '',
     orderNumber: ''
-  });
-  const [message, setMessage] = useState('');  // For both success and error messages
-  const [openSnackbar, setOpenSnackbar] = useState(false);  // Snackbar visibility
+  })
+  const [message, setMessage] = useState('') // For both success and error messages
+  const [openSnackbar, setOpenSnackbar] = useState(false) // Snackbar visibility
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+    const { name, value } = e.target
+    setFormData({ ...formData, [name]: value })
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
-      const response = await axios.post(`${ENDPOINT.BASE_URL}/api/warranties`, formData);
-      toast.success("Warranty issued successfully!")
+      const response = await axios.post(
+        `${ENDPOINT.BASE_URL}/api/warranties`,
+        formData
+      )
+      toast.success('Warranty issued successfully!')
       // setMessage('Warranty issued successfully!');
-      setFormData({ email: '', orderNumber: '' });  // Reset form
+      setFormData({ email: '', orderNumber: '' }) // Reset form
     } catch (error: any) {
       toast.error(error?.response?.data?.error)
-      console.log(error);
-      
+      console.log(error)
 
-      setMessage(error?.response?.data?.error || 'An error occurred.');
-
+      setMessage(error?.response?.data?.error || 'An error occurred.')
     }
-    setOpenSnackbar(true);  // Show message after submission
-  };
+    setOpenSnackbar(true) // Show message after submission
+  }
 
   return (
     <>
       <Box
-        component="form"
+        component='form'
         onSubmit={handleSubmit}
         sx={{
           maxWidth: 600,
           margin: '0 auto',
-          padding: '2rem',
+          padding: '50px',
           border: '1px solid #ddd',
           borderRadius: '8px',
           boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)',
           backgroundColor: '#ffffff',
           transition: 'box-shadow 0.3s ease',
           '&:hover': {
-            boxShadow: '0 6px 25px rgba(0, 0, 0, 0.2)',
-          },
+            boxShadow: '0 6px 25px rgba(0, 0, 0, 0.2)'
+          }
         }}
       >
-        <Typography variant="h5" align="center" sx={{ marginBottom: '1.5rem', fontWeight: 'bold', color: '#f37321' }}>
+        <Typography
+          variant='h5'
+          align='center'
+          sx={{ marginBottom: '1.5rem', fontWeight: 'bold', color: '#f37321' }}
+        >
           Register Warranty
         </Typography>
         <Box sx={{ display: 'flex', flexDirection: 'column', border: 'none' }}>
           <TextField
-            label="Email"
-            id="email"
-            name="email"
+            label='Email'
+            id='email'
+            name='email'
             value={formData.email}
             onChange={handleChange}
             required
-            variant="outlined"
+            variant='outlined'
             sx={{ marginBottom: '1rem' }}
             fullWidth
           />
           <TextField
-            label="Order Number"
-            id="orderNumber"
-            name="orderNumber"
+            label='Order Number'
+            id='orderNumber'
+            name='orderNumber'
             value={formData.orderNumber}
             onChange={handleChange}
             required
-            variant="outlined"
+            variant='outlined'
             sx={{ marginBottom: '1rem' }}
             fullWidth
           />
         </Box>
-        <Button
-          type="submit"
-          variant="contained"
-          sx={{
-            padding: '0.8rem',
-            backgroundColor: '#f37321 !important',
-            color: 'black',
-            fontWeight: 'bold',
-            '&:hover': {
-              color: 'white',
-            },
-          }}
+
+        <Box
+          sx={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}
         >
-          Submit Warranty
-        </Button>
+          <Button
+            type='submit'
+            variant='contained'
+            sx={{
+              padding: '0.8rem',
+              backgroundColor: '#f37321 !important',
+              color: 'black',
+              fontWeight: 'bold',
+              '&:hover': {
+                color: 'white'
+              }
+            }}
+          >
+            Submit Warranty
+          </Button>
+        </Box>
       </Box>
 
       <Snackbar
@@ -175,8 +183,7 @@ const WarrantyRegistration = () => {
         message={message}
       />
     </>
-  );
-};
+  )
+}
 
-export default WarrantyRegistration;
-
+export default WarrantyRegistration
