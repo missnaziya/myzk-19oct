@@ -43,7 +43,7 @@ const SingleProductPage = async ({ params }: SingleProductPageProps) => {
   return (
  <div className="bg-white">
   <div className="max-w-screen-2xl mx-auto">
-    <div className="flex justify-center gap-x-16 pt-10 max-lg:flex-col items-center gap-y-5 px-5">
+    <div className="flex justify-center gap-x-4 pt-10 max-lg:flex-col items-center gap-y-5 px-5">
       
       {/* Left side: Alternate Images */}
       <div className="flex flex-col gap-y-2">
@@ -93,17 +93,18 @@ const SingleProductPage = async ({ params }: SingleProductPageProps) => {
           height={500}
           alt="main image"
           className="w-auto h-auto"
+          
         />
         
         {/* Thumbnail Images (Existing Mapping) */}
-        <div className="flex justify-around mt-5 flex-wrap gap-y-1 max-[500px]:justify-center max-[500px]:gap-x-1">
+        <div className="flex justify-around mt-0 flex-wrap gap-y-1 max-[500px]:justify-center max-[500px]:gap-x-1">
           {images?.map((imageItem: ImageItem) => (
             <Image
               key={imageItem.imageID}
               src={`/${imageItem.image}`}
               width={100}
               height={100}
-              alt="laptop image"
+              alt="not found"
               className="w-auto h-auto"
             />
           ))}
@@ -111,7 +112,7 @@ const SingleProductPage = async ({ params }: SingleProductPageProps) => {
       </div>
 
       {/* Product Details */}
-      <div className="flex flex-col gap-y-7 text-black max-[500px]:text-center">
+      <div className="flex flex-col gap-y-7 text-black max-[500px]:text-center px-5">
         <SingleProductRating rating={product?.rating} />
         <h1 className="text-3xl">{product?.title}</h1>
         <p className="text-xl font-semibold">${product?.price}</p>

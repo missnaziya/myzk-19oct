@@ -7,7 +7,7 @@ const demoProducts = [
   // charger section start
   {
     id: "bb8e0a4e-98d1-4c25-adfc-0c46113aec7a",
-    title: "5V-1A MOBILE CHARGER",
+    title: "5V 1A Mobile Charger",
     price: 499,
     salePrice: 149,
     rating: 5,
@@ -43,7 +43,7 @@ const demoProducts = [
   },
   {
     id: "0c77e50e-4e81-4038-b59d-024b0b70811f",
-    title: "20W PD CHARGER",
+    title: "20W PD Charger",
     price: 799,
     salePrice: 249,
     rating: 5,
@@ -61,7 +61,7 @@ const demoProducts = [
   },
   {
     id: "3b110cc4-d75f-4138-8f99-9b0d6a394aee",
-    title: "DUAL PORT USB CHARGER",
+    title: "Dual Port USB Charger",
     price: 199,
     salePrice: 99,
     rating: 5,
@@ -82,7 +82,7 @@ const demoProducts = [
   // Water Tank Alarm Section start
   {
     id: "56681bf5-dfc5-46cb-9486-6082ee845cda",
-    title: "WATER TANK ALARM",
+    title: "Water Tank Alarm",
     price: 799,
     salePrice: 249,
     rating: 5,
@@ -101,7 +101,7 @@ const demoProducts = [
 
   {
     id: "569694fa-bff9-4f3a-ae6a-6a64ba7420e1",
-    title: "WATER TANK ALARM",
+    title: "Water Tank Alarm",
     price: 799,
     salePrice: 299,
     rating: 5,
@@ -119,7 +119,7 @@ const demoProducts = [
   },
   {
     id: "569694fa-bff9-4f3a-ae6a-6a64ba742021",
-    title: "WATER TANK ALARM",
+    title: "Water Tank Alarm",
     price: 799,
     salePrice: 249,
     rating: 5,
@@ -140,7 +140,7 @@ const demoProducts = [
   // Socket Board Section start
   {
     id: "12f68197-a1ec-425f-970d-5fd5487b291t",
-    title: "EXTENSION BOARD",
+    title: "Extension Board",
     price: 799,
     salePrice: 349,
     rating: 5,
@@ -160,7 +160,7 @@ const demoProducts = [
   // Mini UPS Router Section start
   {
     id: "652b6de0-daec-4acd-8ede-c129cf80ffe3",
-    title: "MINI WIFI UPS",
+    title: "Mini UPS ",
     price: 1999,
     salePrice: 799,
     rating: 5,
@@ -180,7 +180,7 @@ const demoProducts = [
   // Data Cable Section start
   {
     id: "675218ea-83fe-4dd8-845c-f1e4cc05bfe4",
-    title: "MICRO USB BRAIDED DATA CABLE",
+    title: "Oydis USB-A to Micro USB",
     price: 499,
     salePrice: 99,
     rating: 5,
@@ -199,7 +199,7 @@ const demoProducts = [
 
   {
     id: "3f384f1d-a149-41e4-b1a6-eedc8f8218a4",
-    title: "MICRO USB BRAIDED DATA CABLE",
+    title: "USB-A to Micro USB",
     price: 499,
     salePrice: 99,
     rating: 5,
@@ -217,25 +217,25 @@ const demoProducts = [
   },
   {
     id: "01a0348e-9cfb-41df-8245-46f80116g9d3",
-    title: "MICRO USB PVC DATA CABLE",
+    title: "USB-A to Micro USB",
     price: 499,
     salePrice: 149,
     rating: 5,
     description:
-      "1M 3Amp MICRO USB PVC Data Cable. Compatible for Smartphones, Tablets, Laptops & other Micro USB devices, 480Mbps Data Sync. Quick Charge 3.0 Color: Black",
+      "1M 3Amp USB-A to Micro USB. Compatible for Smartphones, Tablets, Laptops & other Micro USB devices, 480Mbps Data Sync. Quick Charge 3.0 Color: Black",
     mainImage: "d-blackcable_primary.webp",
     alternateImage1: "d-blackcable_1.webp",
     alternateImage2: "d-blackcable_2.webp",
     alternateImage3: "d-blackcable_3.webp",
     alternateImage4: "d-blackcable_4.webp",
-    slug: "micro-usb-pvc-data-cable-second-three",
+    slug: "micro-usb-pvc-data-cable-first-micro-cable-three",
     manufacturer: "dtm",
     categoryId: "d59c9c3b-42fc-4258-a8ea-417659f084aa",
     inStock: 10,
   },
   {
     id: "24e0cd8c-c4c8-4dcb-a75d-2b76c2ebcaf6",
-    title: "MICRO USB PVC DATA CABLE",
+    title: "USB-A to Micro USB",
     price: 499,
     salePrice: 99,
     rating: 5,
@@ -253,7 +253,7 @@ const demoProducts = [
   },
   {
     id: "3c110c29-afc3-42e9-a040-1f3ababc0508",
-    title: "TYPE C BRAIDED DATA CABLE",
+    title: " USB to Type C",
     price: 499,
     salePrice: 119,
     rating: 5,
@@ -271,7 +271,7 @@ const demoProducts = [
   },
   {
     id: "71def91f-9bf7-43ef-97c9-5ff8b8ec54b5",
-    title: "TYPE C BRAIDED DATA CABLE",
+    title: " USB to Type C",
     price: 499,
     salePrice: 149,
     rating: 5,
@@ -289,7 +289,7 @@ const demoProducts = [
   },
   {
     id: "8a1fa7c2-c995-496f-9ddc-4289070096b2",
-    title: "TYPE C TYPE C PVC DATA CABLE",
+    title: "C to Type C ",
     price: 499,
     salePrice: 129,
     rating: 5,
@@ -307,7 +307,7 @@ const demoProducts = [
   },
   {
     id: "9fd0b36d-6c9b-4155-ac51-96003399da1c",
-    title: "USB TO TYPE C PVC CABLE",
+    title: " USB to Type C",
     price: 499,
     salePrice: 199,
     rating: 5,
@@ -325,7 +325,7 @@ const demoProducts = [
   },
   {
     id: "d375df73-3807-4f19-9673-6e45097d03bc",
-    title: "LIGHTING DATA CABLE",
+    title: " LightningCable",
     price: 499,
     salePrice: 129,
     rating: 5,
@@ -343,7 +343,7 @@ const demoProducts = [
   },
   {
     id: "d4cd83dd-c5c1-42df-9a04-f7965d20e66f",
-    title: "MICRO USB PVC DATA CABLE",
+    title: "USB-A to Micro USB",
     price: 499,
     salePrice: 99,
     rating: 5,
@@ -362,12 +362,12 @@ const demoProducts = [
 
   {
     id: "f3cd0bc6-210a-4cee-81bf-1c0386e4ab04",
-    title: "TYPE C PVC DATA CABLE",
+    title: " USB to Type C",
     price: 499,
     salePrice: 99,
     rating: 5,
     description:
-      "1M 3Amp MICRO USB PVC Data Cable. Compatible for Smartphones, Tablets, & other Micro USB devices, 480Mbps Data Sync. Quick Charge 3.0 Color: Black",
+      "1M 3Amp USB-A to Micro USB. Compatible for Smartphones, Tablets, & other Micro USB devices, 480Mbps Data Sync. Quick Charge 3.0 Color: Black",
     mainImage: "c-blackcable_primary.webp",
     alternateImage1: "c-blackcable_1.webp",
     alternateImage2: "c-blackcable_2.webp",
@@ -381,7 +381,7 @@ const demoProducts = [
 
   {
     id: "f54cdd5c-32c4-4106-943a-9084f0ad1611",
-    title: "TYPE C BRAIDED DATA CABLE",
+    title: " USB to Type C",
     price: 499,
     salePrice: 99,
     rating: 5,
@@ -401,7 +401,7 @@ const demoProducts = [
    // inspired-products
    {
     id: "3b110cc4-d75f-4138-8f99-9b0a6a394aee",
-    title: "DUAL PORT USB CHARGER",
+    title: "Dual Port USB Charger",
     price: 199,
     salePrice: 99,
     rating: 5,
@@ -412,14 +412,14 @@ const demoProducts = [
     alternateImage2: "dualcharger_2.webp",
     alternateImage3: "dualcharger_3.webp",
     alternateImage4: "dualcharger_4.webp",
-    slug: "dual-port-charger-new-inspired-a",
+    slug: "dual-port-charger-new-inspired-products",
     manufacturer: "dtm",
     categoryId: "04f1df32-c249-4d8e-8597-4439155ccded",
     inStock: 10,
   },
   {
     id: "675218ea-83fe-4dd8-845c-f1e4cc05b654",
-    title: "MICRO USB BRAIDED DATA CABLE",
+    title: " USB-A to Micro USB",
     price: 499,
     salePrice: 99,
     rating: 5,
@@ -430,14 +430,14 @@ const demoProducts = [
     alternateImage2: "redcable_2.webp",
     alternateImage3: "redcable_3.webp",
     alternateImage4: "redcable_4.webp",
-    slug: "micro-usb-a-braided-data-cable-inspired",
+    slug: "micro-usb-a-braided-data-cable-inspired-products",
     manufacturer: "dtm",
     categoryId: "04f1df32-c249-4d8e-8597-4439155ccded",
     inStock: 10,
   },
   {
     id: "56681bf5-dfc5-46cb-9486-6032ee837cca",
-    title: "WATER TANK ALARM",
+    title: "Water Tank Alarm",
     price: 799,
     salePrice: 249,
     rating: 5,
@@ -453,104 +453,9 @@ const demoProducts = [
     categoryId: "04f1df32-c249-4d8e-8597-4439155ccded",
     inStock: 10,
   },
- 
-
-  // new-products
   {
-    id: "652b6de0-daec-4acd-8ede-c129cf80ff23",
-    title: "MINI WIFI UPS",
-    price: 1999,
-    salePrice: 799,
-    rating: 5,
-    description:
-      "Mini UPS for 12V Wi-Fi Router Broadband Modem. UPS Power Backup During Power Cuts. Broadband Modem. Compatible with Routers, Set Top Box, Alexa, Mini Camera. Color: Black.",
-    mainImage: "router_primary.webp",
-    alternateImage1: "router_1.webp",
-    alternateImage2: "router_2.webp",
-    alternateImage3: "router_3.webp",
-    alternateImage4: "router_4.webp",
-    slug: "mini-wifi-ups-router-12v-new-products",
-    manufacturer: "dtm",
-    categoryId: "b035b863-5c5f-47c6-81b6-59f97ef87fb8",
-    inStock: 10,
-  },
-  {
-    id: "24e0cd8c-c4c8-4dcb-a75d-2b76c2e85af6",
-    title: "MICRO USB PVC DATA CABLE",
-    price: 499,
-    salePrice: 99,
-    rating: 5,
-    description:
-      "USB-A to Micro USB. 3A Fast Charging Cable. Compatible with Android Phones/Tablets, 480mbps Data Transfer Speed. Tangle-Free USB Cable. Round.",
-    mainImage: "v-whitecable_primary.webp",
-    alternateImage1: "v-whitecable_1.webp",
-    alternateImage2: "v-whitecable_2.webp",
-    alternateImage3: "v-whitecable_3.webp",
-    alternateImage4: "v-whitecable_4.webp",
-    slug: "micro-usb-pvc-data-cable-first-new-products",
-    manufacturer: "dtm",
-    categoryId: "b035b863-5c5f-47c6-81b6-59f97ef87fb8",
-    inStock: 10,
-  },
-  {
-    id: "0c77e50e-4e81-403h-b59d-024b0b79811f",
-    title: "20W PD CHARGER",
-    price: 799,
-    salePrice: 249,
-    rating: 5,
-    description:
-      "PD 20W CHARGER MATERIAL : ABS PLASTIC WEIGHT: 90G COLOUR: WHITE INPUT: 270V OUTPUT: 3A WATTAGE: 20W",
-    mainImage: "pdcharger-primary.webp",
-    alternateImage1: "pdcharger1.webp",
-    alternateImage2: "pdcharger2.webp",
-    alternateImage3: "pdcharger3.webp",
-    alternateImage4: "pdcharger4.webp",
-    slug: "pd-charger-new-products",
-    manufacturer: "dtm",
-    categoryId: "b035b863-5c5f-47c6-81b6-59f97ef87fb8",
-    inStock: 10,
-  },
-
-  // top-selling
-  {
-    id: "56681bf5-dfc5-46cb-9486-6082ee837cda",
-    title: "WATER TANK ALARM",
-    price: 799,
-    salePrice: 249,
-    rating: 5,
-    description:
-      "Type: Wired, Buzzer & LED Indicator Sensors: Float Switch Power Source: AC Power (Battery Backup Optional) Material: Weatherproof Plastic Casing",
-    mainImage: "wateralarm-primary.webp",
-    alternateImage1: "wateralarm_1.webp",
-    alternateImage2: "wateralarm_2.webp",
-    alternateImage3: "wateralarm_3.webp",
-    alternateImage4: "wateralarm_4.webp",
-    slug: "water-tank-alarm-topselling-products",
-    manufacturer: "dtm",
-    categoryId: "8fbe8ce6-5833-433b-9f6e-eecb2490508b",
-    inStock: 10,
-  },
-  {
-    id: "01a0348e-9cfb-41df-8245-46f801168cd3",
-    title: "MICRO USB PVC DATA CABLE",
-    price: 499,
-    salePrice: 149,
-    rating: 5,
-    description:
-      "1M 3Amp MICRO USB PVC Data Cable. Compatible for Smartphones, Tablets, Laptops & other Micro USB devices, 480Mbps Data Sync. Quick Charge 3.0 Color: Black",
-    mainImage: "d-blackcable_primary.webp",
-    alternateImage1: "d-blackcable_1.webp",
-    alternateImage2: "d-blackcable_2.webp",
-    alternateImage3: "d-blackcable_3.webp",
-    alternateImage4: "d-blackcable_4.webp",
-    slug: "micro-usb-pvc-data-cable-second-topselling-products",
-    manufacturer: "dtm",
-    categoryId: "8fbe8ce6-5833-433b-9f6e-eecb2490508b",
-    inStock: 10,
-  },
-  {
-    id: "12f68197-a1ec-425f-970d-5fd56b7b291t",
-    title: "EXTENSION BOARD",
+    id: "12f68197-a1ec-425f-970d-5fd5487b75",
+    title: "Extension Board",
     price: 799,
     salePrice: 349,
     rating: 5,
@@ -561,11 +466,163 @@ const demoProducts = [
     alternateImage2: "extension_2.webp",
     alternateImage3: "extension_3.webp",
     alternateImage4: "extension_4.webp",
-    slug: "socket-board-red-topselling-products",
+    slug: "socket-board-red-white-extension-inspired-products",
+    manufacturer: "dtm",
+    categoryId: "04f1df32-c249-4d8e-8597-4439155ccded",
+    inStock: 10,
+  },
+ 
+
+  // new-products
+  
+  {
+    id: "8a1fa7c2-c995-496f-9ddc-428907000099",
+    title: "C to Type C ",
+    price: 499,
+    salePrice: 129,
+    rating: 5,
+    description:
+      "5A FAST CHARGING, compatible with iPhones/iPads, 480 Mbps data transfer speed, tangle-free design, round shape, length: 1M, color:Red & Black.",
+    mainImage: "c-to-c-cable_primary.webp",
+    alternateImage1: "c-to-c-cable_1.webp",
+    alternateImage2: "c-to-c-cable_2.webp",
+    alternateImage3: "c-to-c-cable_3.webp",
+    alternateImage4: "c-to-c-cable_4.webp",
+    slug: "type-c-to-type-c-pvc-data-cable-new-products",
+    manufacturer: "dtm",
+    categoryId: "b035b863-5c5f-47c6-81b6-59f97ef87fb8",
+    inStock: 10,
+  },
+  {
+    id: "3dc9ab53-cc23-4932-9418-a4611dgdf8cg",
+    title: "5V-2.4A Mobile Charger",
+    price: 499,
+    salePrice: 199,
+    rating: 5,
+    description:
+      "The charger provides a 5V output with a current of 2.4A. This allows for faster charging than standard 1A chargers but is not as fast as some high-power chargers (like 18W or 30W fast chargers).",
+    mainImage: "5v_2.4_primarycharger.webp",
+    alternateImage1: "5v_2.4charger_1.webp",
+    alternateImage2: "5v_2.4charger_2.webp",
+    alternateImage3: "5v_2.4charger_3.webp",
+    alternateImage4: "5v_2.4charger_4.webp",
+    slug: "5V-2.4A-mobile-charger-first-new-products-5V-2.4A-mobile-charger",
+    manufacturer: "dtm",
+    categoryId: "b035b863-5c5f-47c6-81b6-59f97ef87fb8",
+    inStock: 10,
+  },
+  {
+    id: "f54cdd5c-32c4-4106-943a-9084f0ad567h",
+    title: "USB-A to Micro USB",
+    price: 499,
+    salePrice: 99,
+    rating: 5,
+    description:
+      "USB to Type C Fast Charging Data Cable. Length: 1m. 3A Braided Only. Type C Fast Charging Data Cable. Color: Gold & Black.",
+    mainImage: "yellowcable_primary.webp",
+    alternateImage1: "yellowcable_1.webp",
+    alternateImage2: "yellowcable_2.webp",
+    alternateImage3: "yellowcable_3.webp",
+    alternateImage4: "yellowcable_4.webp",
+    slug: "type-c-braided-data-cable-first-twelve-new-products",
+    manufacturer: "dtm",
+    categoryId: "b035b863-5c5f-47c6-81b6-59f97ef87fb8",
+    inStock: 10,
+  },
+  {
+    id: "652b6de0-daec-4acd-8ede-c129cf80ffk3",
+    title: "Mini UPS ",
+    price: 1999,
+    salePrice: 799,
+    rating: 5,
+    description:
+      "Mini UPS for 12V Wi-Fi Router Broadband Modem. UPS Power Backup During Power Cuts. Broadband Modem. Compatible with Routers, Set Top Box, Alexa, Mini Camera. Color: Black.",
+    mainImage: "router_primary.webp",
+    alternateImage1: "router_1.webp",
+    alternateImage2: "router_2.webp",
+    alternateImage3: "router_3.webp",
+    alternateImage4: "router_4.webp",
+    slug: "mini-wifi-ups-router-12v-wifi-new-products",
+    manufacturer: "dtm",
+    categoryId: "b035b863-5c5f-47c6-81b6-59f97ef87fb8",
+    inStock: 10,
+  },
+
+  // top-selling
+  {
+    id: "9fd0b36d-6c9b-4155-ac51-96003399dk9c",
+    title: " USB to Type C",
+    price: 499,
+    salePrice: 199,
+    rating: 5,
+    description:
+      "USB to Type C. Fast Charging. Data Cable 1m. 2.5A. PVC Round Cable. Color:White.",
+    mainImage: "usb-to-type-c-pvc_primary.webp",
+    alternateImage1: "usb-to-type-c-pvc_1.webp",
+    alternateImage2: "usb-to-type-c-pvc_2.webp",
+    alternateImage3: "usb-to-type-c-pvc_3.webp",
+    alternateImage4: "usb-to-type-c-pvc_4.webp",
+    slug: "usb-to-type-c-pvc-cable-tops-products",
     manufacturer: "dtm",
     categoryId: "8fbe8ce6-5833-433b-9f6e-eecb2490508b",
     inStock: 10,
   },
+  {
+    id: "12f68197-a1ec-425f-970d-5fd5487bj76t",
+    title: "Extension Board",
+    price: 799,
+    salePrice: 349,
+    rating: 5,
+    description:
+      "4 Way Strip with Individual Switch (240V Multipurpose). 6A 4 Way Extension Board. Length: 3M Cord Length. 4 Universal Sockets. Color: Red & White.",
+    mainImage: "extension_primary.webp",
+    alternateImage1: "extension_1.webp",
+    alternateImage2: "extension_2.webp",
+    alternateImage3: "extension_3.webp",
+    alternateImage4: "extension_4.webp",
+    slug: "socket-board-red-extension-tops-products-tops-products",
+    manufacturer: "dtm",
+    categoryId: "8fbe8ce6-5833-433b-9f6e-eecb2490508b",
+    inStock: 10,
+  },
+  {
+    id: "3dc9ab53-cc23-4932-9418-a4611d09bdm6",
+    title: "5V-2.4A Mobile Charger",
+    price: 499,
+    salePrice: 199,
+    rating: 5,
+    description:
+      "The charger provides a 5V output with a current of 2.4A. This allows for faster charging than standard 1A chargers but is not as fast as some high-power chargers (like 18W or 30W fast chargers).",
+    mainImage: "5v_2.4_primarycharger.webp",
+    alternateImage1: "5v_2.4charger_1.webp",
+    alternateImage2: "5v_2.4charger_2.webp",
+    alternateImage3: "5v_2.4charger_3.webp",
+    alternateImage4: "5v_2.4charger_4.webp",
+    slug: "5V-2.4A-mobile-charger-first-charger-tops-products",
+    manufacturer: "dtm",
+    categoryId: "8fbe8ce6-5833-433b-9f6e-eecb2490508b",
+    inStock: 10,
+  },
+  
+  {
+    id: "d375df73-3807-4f19-9673-6e45097d03bn",
+    title: " LightningCable",
+    price: 499,
+    salePrice: 129,
+    rating: 5,
+    description:
+      "features: fast charging support, tangle-resistant design, stable and efficient data transfer",
+    mainImage: "redlighting_primary.webp",
+    alternateImage1: "redlighting_1.webp",
+    alternateImage2: "redlighting_2.webp",
+    alternateImage3: "redlighting_3.webp",
+    alternateImage4: "redlighting_4.webp",
+    slug: "lighting-data-cable-nine-tops-products",
+    manufacturer: "dtm",
+    categoryId: "8fbe8ce6-5833-433b-9f6e-eecb2490508b",
+    inStock: 10,
+  },
+  
 
 ];
 

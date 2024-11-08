@@ -385,7 +385,7 @@ const Footer = () => {
                   Newsletter
                 </Typography>
               
-                <Typography variant='body2' sx={{ color: '#9a9b9c' }}>
+                <Typography variant='body2'   sx={{ color: '#9a9b9c', paddingBottom: '10px' }}>
                    Sign up to get updates & news about us.
                   Get the latest deals directly in your inbox.
                 </Typography>
