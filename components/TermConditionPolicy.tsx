@@ -54,7 +54,7 @@ const TermConditionPolicy = () => {
         >
           <Typography variant="h6"> Shipping and Delivery</Typography>
           <Typography paragraph>
-          Shipping costs and estimated delivery times are provided at checkout. Note that any additional import duties or taxes are the customer's responsibility. While we strive to meet delivery estimates, we are not liable for delays due to circumstances outside our control, such as weather, carrier issues, or customs. Once an order is shipped, the risk of loss transfers to you. If your order does not arrive, please reach out to our customer service team for assistance.   </Typography>
+          Shipping costs and estimated delivery times are provided at checkout. Note that any additional import duties or taxes are the customers responsibility. While we strive to meet delivery estimates, we are not liable for delays due to circumstances outside our control, such as weather, carrier issues, or customs. Once an order is shipped, the risk of loss transfers to you. If your order does not arrive, please reach out to our customer service team for assistance.   </Typography>
         </Box>
         <Box
           className="refund"
@@ -82,7 +82,7 @@ const TermConditionPolicy = () => {
         >
           <Typography variant="h6">Warranties</Typography>
           <Typography paragraph>
-          Many electronic products sold on our Site come with a manufacturer’s warranty. Please refer to product packaging or the manufacturer's website for details. To file a warranty claim, you may contact us or the manufacturer directly. We are not responsible for warranty claims unless explicitly stated. Except as specified, all products are sold “as is” without warranties, including but not limited to implied warranties of merchantability or fitness for a particular purpose.      </Typography>
+          Many electronic products sold on our Site come with a manufacturers warranty. Please refer to product packaging or the manufacturers website for details. To file a warranty claim, you may contact us or the manufacturer directly. We are not responsible for warranty claims unless explicitly stated. Except as specified, all products are sold as is without warranties, including but not limited to implied warranties of merchantability or fitness for a particular purpose.      </Typography>
         </Box>
   
 
