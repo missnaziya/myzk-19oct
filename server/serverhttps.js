@@ -22,11 +22,20 @@ var cors = require("cors");
 const app = express();
 
 app.use(express.json());
+
+
 app.use(cors());
 
+
 const options = {
-  key: fs.readFileSync(path.join(__dirname, '../cert/myzk.key')),
-  cert: fs.readFileSync(path.join(__dirname, '../cert/myzk.crt')),
+  //key: fs.readFileSync('/home/myzk/myzk/cert/myzk.key'),
+  //cert: fs.readFileSync('/home/myzk/myzk/cert/myzk.crt'),
+
+  key: fs.readFileSync('/etc/letsencrypt/live/myzk.in/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/myzk.in/fullchain.pem')
+//  ca: fs.readFileSync('/home/myzk/myzk/cert/gd_bundle-g2-g1.crt'),
+  //secureProtocol: 'TLS_method',  // Enforce modern TLS versions
+ // honorCipherOrder: true,
 };
 
 // Create an HTTPS server
@@ -47,10 +56,10 @@ app.use("/api/wishlist", wishlistRouter);
 app.use('/api/warranties', warrantiesRouter);
 app.use('/api/support-ticket', supportTicketRouter);
 app.use('/api/contact', contactRouter);
- 
+
 
 const PORT = process.env.PORT || 3001;
- 
-server.listen(PORT, () => {
+
+server.listen(PORT,  () => {
   console.log(`Server running on port ${PORT}`);
 });
