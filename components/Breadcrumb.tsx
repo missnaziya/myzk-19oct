@@ -1,18 +1,13 @@
-// *********************
-// Role of the component: Component that displays current page location in the application 
-// Name of the component: Breadcrumb.tsx
-// Developer: Aleksandar Kuzmanovic
-// Version: 1.0
-// Component call: <Breadcrumb />
-// Input parameters: No input parameters
-// Output: Page location in the application
-// *********************
-
+"use client"
 import Link from "next/link";
 import React from "react";
 import { FaHouse } from "react-icons/fa6";
+import { usePathname } from "next/navigation";
 
 const Breadcrumb = () => {
+  const pathname = usePathname();
+  const pathSegments = pathname.split("/").filter((segment) => segment);
+  
   return (
     <div className="text-lg breadcrumbs pb-10 py-5 max-sm:text-base">
       <ul>
@@ -25,9 +20,13 @@ const Breadcrumb = () => {
         <li>
           <Link href="/shop">Shop</Link>
         </li>
-        <li>
-          <Link href="/shop">All products</Link>
-        </li>
+        {pathSegments[1] && (
+          <li>
+            <span className="text-gray-600">
+              {pathSegments[1].replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase())}
+            </span>
+          </li>
+        )}
       </ul>
     </div>
   );

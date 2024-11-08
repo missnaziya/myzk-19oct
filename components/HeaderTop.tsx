@@ -26,6 +26,10 @@ const HeaderTop = () => {
 
   const toggleDropdown = () => {
     setDropdownOpen((prev) => !prev); // Toggle dropdown state
+
+    setTimeout(()=>{
+      setDropdownOpen(false); 
+    },5000)
   };
 
   return (

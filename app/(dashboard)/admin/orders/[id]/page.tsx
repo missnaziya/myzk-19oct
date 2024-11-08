@@ -57,7 +57,8 @@ const AdminSingleOrder = () => {
   const params = useParams<{ id: string }>();
 
   const router = useRouter();
-
+  
+  
   useEffect(() => {
     const fetchOrderData = async () => {
       const response = await fetch(
@@ -66,7 +67,7 @@ const AdminSingleOrder = () => {
       const data: Order = await response.json();
       setOrder(data);
     };
-
+    
     const fetchOrderProducts = async () => {
       const response = await fetch(
         `${ENDPOINT.BASE_URL}/api/order-product/${params?.id}`
@@ -371,7 +372,7 @@ const AdminSingleOrder = () => {
                   {product?.product?.title}
                 </Link>
                 <p>
-                  ${product?.product?.price} * {product?.quantity} items
+                ₹{product?.product?.price} * {product?.quantity} items
                 </p>
               </div>
             </div>
