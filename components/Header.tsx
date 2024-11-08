@@ -172,7 +172,7 @@ const Header = () => {
                       cursor: 'pointer'
                     }}
                   >
-                    <Image
+                    <img
                       src='/myzk logo.png'
                       width={150}
                       height={50}
