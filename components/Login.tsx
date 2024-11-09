@@ -9,7 +9,13 @@ import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
  // login
 
-const Login = () => {
+ interface LoginProps {
+  onLogin: () => void;
+  onRegister: () => void;
+  setIsRegistered: React.Dispatch<React.SetStateAction<boolean>>;
+
+}
+const Login: React.FC<LoginProps> = ({ onLogin,onRegister,setIsRegistered }) => {
     
  const router = useRouter();
  const [error, setError] = useState("");
@@ -150,12 +156,12 @@ const Login = () => {
           </div>
           <div className="relative flex justify-center text-sm font-medium leading-6">
             <span className="bg-white px-6 text-gray-900">
-              Dont have an account ? <Link className="text-blue-500" href={"/register"}>Register Now</Link>
+              Dont have an account ? <span className="text-blue-500 cursor-pointer" onClick={()=>setIsRegistered(false)}>Register Now</span>
             </span>
           </div>
         </div>
 
-        <div className="mt-6 grid grid-cols-1 gap-4">
+        {/* <div className="mt-6 grid grid-cols-1 gap-4">
           <button
             className="flex w-full items-center border border-gray-300 justify-center gap-3 rounded-md bg-white px-3 py-1.5 text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             onClick={() => {
@@ -168,7 +174,7 @@ const Login = () => {
             </span>
           </button>
 
-          {/* <button
+          <button
             className="flex w-full items-center justify-center gap-3 rounded-md bg-[#24292F] px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#24292F]"
             onClick={() => {
               signIn("github");
@@ -189,8 +195,8 @@ const Login = () => {
             <span className="text-sm font-semibold leading-6">
               GitHub.
             </span>
-          </button> */}
-        </div>
+          </button>
+        </div> */}
         <p className="text-red-600 text-center text-[16px] my-4">
           {error && error}
         </p>

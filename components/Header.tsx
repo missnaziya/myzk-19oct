@@ -41,7 +41,8 @@ const Header = () => {
   const [showCategoryList, setShowCategoryList] = useState(false)
 
   const handleLogout = () => {
-    setTimeout(() => signOut(), 1000)
+    // setTimeout(() => signOut(), 1000)
+    setTimeout(() =>  signOut({ callbackUrl: "/login" }), 1000)
     toast.success('Logout successful!')
   }
 
@@ -208,7 +209,7 @@ const Header = () => {
                   </Box>
                   <Button
                     component={Link}
-                    href='/shop/new-arrivals'
+                    href='/shop/new-products'
                     color='inherit'
                     sx={{ fontSize: '14px', padding: '5px 8px',
                       '&:hover': {

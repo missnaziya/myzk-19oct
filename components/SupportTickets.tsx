@@ -115,6 +115,7 @@ function SupportTicket () {
           sx={{ marginBottom: '1rem' }}
         />
         <TextField
+        placeholder='Describe your issue in ateast 20 word.'
           label='Description'
           id='description'
           name='description'

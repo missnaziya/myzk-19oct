@@ -19,7 +19,7 @@ const SingleProductDynamicFields = ({ product }: { product: Product }) => {
   return (
     <>
       <QuantityInput
-        quantityCount={quantityCount}
+        quantityCount= {quantityCount}
         setQuantityCount={setQuantityCount}
       />
       {Boolean(product.inStock) && (

@@ -20,7 +20,8 @@ const HeaderTop = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false); // State for dropdown visibility
 
   const handleLogout = () => {
-    setTimeout(() => signOut(), 1000);
+    setTimeout(() =>  signOut({ callbackUrl: "/login" }), 1000);
+    
     toast.success("Logout successful!");
   };
 
