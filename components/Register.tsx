@@ -7,7 +7,13 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-const RegisterPage = () => {
+interface RegisterProps {
+    onLogin: () => void;
+    onRegister: () => void;
+    setIsRegistered: React.Dispatch<React.SetStateAction<boolean>>;
+  }
+  const Register: React.FC<RegisterProps> = ({ onLogin,onRegister,setIsRegistered }) => {
+      
   const [error, setError] = useState("");
   const router = useRouter();
   const { data: session, status: sessionStatus } = useSession();
@@ -68,7 +74,8 @@ const RegisterPage = () => {
         setError("");
         toast.success("Registration successful");
         // to do if   props.return url
-        router.push("/login");
+        // router.push("/login");
+        setIsRegistered(true)
       }
     } catch (error) {
       toast.error("Error, try again");
@@ -81,14 +88,7 @@ const RegisterPage = () => {
     return <h1>Loading...</h1>;
   }
   return (
-    <div className="bg-white">
-      <SectionTitle title="Register" path="Home | Register" />
-      <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8 bg-white">
-        <div className="flex justify-center flex-col items-center">
-          <h2 className="mt-6 text-center text-2xl leading-9 tracking-tight text-gray-900">
-            Sign up on our website
-          </h2>
-        </div>
+  
 
         <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-[480px]">
           <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
@@ -218,9 +218,9 @@ const RegisterPage = () => {
 
                 <div className="relative flex justify-center text-sm  mt-4 font-medium leading-6">
                   <span className="bg-white px-6 text-gray-900">
-                 Already have an account <Link className=" text-blue-500" href="/login">
+                 Already have an account <span className=" text-blue-500 cursor-pointer " onClick={()=>setIsRegistered(true)}>
                  login here 
-                 </Link>
+                 </span>
                   </span>
                 </div>
                 <p className="text-red-600 text-center text-[16px] my-4">
@@ -230,9 +230,8 @@ const RegisterPage = () => {
             </form>
           </div>
         </div>
-      </div>
-    </div>
+    
   );
 };
 
-export default RegisterPage;
+export default Register;

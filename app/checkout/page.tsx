@@ -19,6 +19,7 @@ import { signIn, useSession } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 import Login from "@/components/Login";
+import Register from "@/components/Register";
 
 const CheckoutPage = () => {
   const { data: session, status: sessionStatus } = useSession();
@@ -181,7 +182,8 @@ const CheckoutPage = () => {
       router.push("/cart");
     }
   }, []);
-  
+  const [isRegistered, setIsRegistered] = useState<boolean>(true);
+
 
   return (
     <div className="bg-white">
@@ -233,7 +235,7 @@ const CheckoutPage = () => {
                     <p className="text-gray-500">x{product?.amount}</p>
                   </div>
                   <p className="flex-none text-base font-medium">
-                  ₹{product?.price}
+                    ₹{product?.price}
                   </p>
                   <p></p>
                 </li>
@@ -259,7 +261,7 @@ const CheckoutPage = () => {
               <div className="flex items-center justify-between border-t border-gray-200 pt-6">
                 <dt className="text-base">Total</dt>
                 <dd className="text-base">
-                ₹{total === 0 ? 0 : Math.round(total + total / 5 + 5)}
+                  ₹{total === 0 ? 0 : Math.round(total + total / 5 + 5)}
                 </dd>
               </div>
             </dl>
@@ -686,8 +688,10 @@ const CheckoutPage = () => {
               </div>
             </div>
           </form>
+        ) : isRegistered ? (
+          <Login onLogin={()=>{setIsRegistered(false)}} onRegister={()=>{setIsRegistered(true)}} setIsRegistered={setIsRegistered} />
         ) : (
-         <Login/>
+          <Register onRegister={()=>{setIsRegistered(true)}} onLogin={()=>{setIsRegistered(false)}} setIsRegistered={setIsRegistered}  />
         )}
       </main>
     </div>
@@ -695,4 +699,3 @@ const CheckoutPage = () => {
 };
 
 export default CheckoutPage;
-

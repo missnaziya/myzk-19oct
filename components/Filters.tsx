@@ -132,7 +132,7 @@ interface InputCategory {
       </div>
 
       <div className="divider"></div>
-      <div className="flex flex-col gap-y-1 ">
+      {/* <div className="flex flex-col gap-y-1 ">
         <h3 className="text-xl mb-2">Price</h3>
         <div>
           <input
@@ -182,7 +182,7 @@ interface InputCategory {
           <span>4</span>
           <span>5</span>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

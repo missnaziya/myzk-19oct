@@ -72,7 +72,7 @@ const Header2 = () => {
               <MenuItem onClick={handleMenuClose}>WiFi Stability UPS</MenuItem>
             </Menu>
 
-            <Button href="/new-arrivals" color="inherit">
+            <Button href="/new-products" color="inherit">
               New Arrivals
             </Button>
             <Button href="/support" color="inherit">
@@ -113,7 +113,7 @@ const Header2 = () => {
             >
               <MenuItem href="/">Home</MenuItem>
               <MenuItem onClick={handleMenuClick}>Category</MenuItem>
-              <MenuItem href="/new-arrivals">New Arrivals</MenuItem>
+              <MenuItem href="/new-products">New Arrivals</MenuItem>
               <MenuItem href="/support">Support</MenuItem>
             </Menu>
           </Box>
