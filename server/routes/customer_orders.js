@@ -10,9 +10,14 @@ const {
   getAllOrders,
   getCustomerOrderByEmail,
   cancelCustomerOrder,
+  updateCustomerOrderStatus,
 } = require("../controllers/customer_orders");
 
-router.route("/").get(getAllOrders).post(createCustomerOrder);
+router
+  .route("/")
+  .get(getAllOrders)
+  .post(createCustomerOrder)
+  .patch(updateCustomerOrderStatus);
 
 router
   .route("/:id")

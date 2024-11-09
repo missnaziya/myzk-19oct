@@ -38,7 +38,7 @@ async function createCustomerOrder(request, response) {
       },
     });
     // customer_order
-    console.log("recived###########",corder);
+    console.log("recived###########", corder);
     // const from = "tesmist"
     // await sendEmail(
     //   from,
@@ -111,12 +111,44 @@ async function updateCustomerOrder(request, response) {
     return response.status(500).json({ error: "Error updating order" });
   }
 }
+async function updateCustomerOrderStatus(request, response) {
+  try {
+    console.log("updateCustomerOrderStatus");
+    // const { id } = request.params;
+    const { status,id } = request.body;
+    console.log("updateCustomerOrderStatus",id);
+    console.log("updateCustomerOrderStatus",status);
+
+    const existingOrder = await prisma.customer_order.findUnique({
+      where: {
+        id: id,
+      },
+    });
+
+    if (!existingOrder) {
+      return response.status(404).json({ error: "Order not found" });
+    }
+
+    const updatedOrder = await prisma.customer_order.update({
+      where: {
+        id: existingOrder.id,
+      },
+      data: {
+        status,
+      },
+    });
+
+    return response.status(200).json(updatedOrder);
+  } catch (error) {
+    return response.status(500).json({ error: "Error updating order" });
+  }
+}
 async function cancelCustomerOrder(request, response) {
   console.log("cancel");
-  
+
   try {
     const { id } = request.params;
-  console.log(id,"id....");
+    console.log(id, "id....");
 
     // const {
     //   name,
@@ -145,24 +177,26 @@ async function cancelCustomerOrder(request, response) {
       return response.status(404).json({ error: "Order not found" });
     }
 
-      // If the order is already cancelled or shipped, return an error
-      if (existingOrder.status === 'cancelled' || existingOrder.status === 'shipped') {
-        return response.status(400).json({
-          message: "Order cannot be cancelled because it is already processed or shipped",
-        });
-      }
+    // If the order is already cancelled or shipped, return an error
+    if (
+      existingOrder.status === "cancelled" ||
+      existingOrder.status === "shipped"
+    ) {
+      return response.status(400).json({
+        message:
+          "Order cannot be cancelled because it is already processed or shipped",
+      });
+    }
     const updatedOrder = await prisma.customer_order.update({
       where: {
         id: existingOrder.id,
       },
       data: {
-    
-        status:"cancelled"
-       
+        status: "cancelled",
       },
     });
 
-    return response.status(200).json({message:"order cancelled."});
+    return response.status(200).json({ message: "order cancelled." });
   } catch (error) {
     return response.status(500).json({ error: "Error cancelling order" });
   }
@@ -187,7 +221,7 @@ async function cancelCustomerOrder(request, response) {
 //   }catch(error){
 //     console.log(error);
 //     return response.status(500).json({error:"Error canceling order"})
-    
+
 //   }
 
 // }
@@ -207,9 +241,9 @@ async function deleteCustomerOrder(request, response) {
 }
 
 async function getCustomerOrder(request, response) {
-  console.log("******getCustomerOrder request",request.params)
+  console.log("******getCustomerOrder request", request.params);
   const { id } = request.params;
-  console.log("******getCustomerOrder id",id)
+  console.log("******getCustomerOrder id", id);
   const order = await prisma.customer_order.findUnique({
     where: {
       id: id,
@@ -232,7 +266,7 @@ async function getAllOrders(request, response) {
 }
 
 async function getCustomerOrderByEmail(request, response) {
-  console.log("request.params is ",request.params)
+  console.log("request.params is ", request.params);
   const { email } = request.params;
   const orders = await prisma.customer_order.findMany({
     where: {
@@ -253,4 +287,5 @@ module.exports = {
   getAllOrders,
   getCustomerOrderByEmail,
   cancelCustomerOrder,
+  updateCustomerOrderStatus,
 };

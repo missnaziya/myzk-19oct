@@ -20,6 +20,30 @@ import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 import Login from "@/components/Login";
 import Register from "@/components/Register";
+import sha256 from "crypto-js/sha256";
+import axios from "axios";
+import { v4 as uuidv4 } from 'uuid';
+
+interface PayProps {
+  name: string;
+  amount: number;
+  mobile: string;
+}
+
+interface PaymentPayload {
+  merchantId: string;
+  merchantTransactionId: string;
+  merchantUserId: string;
+  amount: number;
+  redirectUrl: string;
+  redirectMode: string;
+  callbackUrl: string;
+  mobileNumber: string;
+  paymentInstrument: {
+    type: string;
+  };
+}
+
 
 const CheckoutPage = () => {
   const { data: session, status: sessionStatus } = useSession();
@@ -43,7 +67,73 @@ const CheckoutPage = () => {
   const { products, total, clearCart } = useProductStore();
   const router = useRouter();
 
-  const makePurchase = async () => {
+  const makePayment = async (mobile:string,total:number,orderId:string) => {
+
+    // const transactionId = "Tr-" + uuidv4().toString(36).slice(-6);
+    const transactionId = orderId;
+//transaction id will be order id for us
+    const payload: PaymentPayload = {
+      merchantId: process.env.NEXT_PUBLIC_MERCHANT_ID || '',
+      merchantTransactionId: transactionId,
+      // merchantUserId: 'MUID-' + uuidv4().toString(36).slice(-6),
+      merchantUserId: 'MUID-' + uuidv4().slice(-6),
+      amount: total,
+      redirectUrl: `http://localhost:3000/api/status/${transactionId}`,
+      redirectMode: "POST",
+      callbackUrl: `http://localhost:3000/api/status/${transactionId}`,
+      mobileNumber: mobile,
+      paymentInstrument: { type: "PAY_PAGE" },
+    };
+
+    const dataPayload = JSON.stringify(payload);
+    const dataBase64 = Buffer.from(dataPayload).toString("base64");
+
+    const fullURL = dataBase64 + "/pg/v1/pay" + process.env.NEXT_PUBLIC_SALT_KEY;
+    const dataSha256 = sha256(fullURL);
+    const checksum = dataSha256 + "###" + process.env.NEXT_PUBLIC_SALT_INDEX;
+
+    const UAT_PAY_API_URL = "https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/pay";
+
+    try {
+      const response = await axios.post(
+        UAT_PAY_API_URL,
+        { request: dataBase64 },
+        {
+          headers: {
+            accept: "application/json",
+            "Content-Type": "application/json",
+            "X-VERIFY": checksum,
+          },
+        }
+      );
+
+      const redirectUrl = response.data.data.instrumentResponse.redirectInfo.url;
+      router.push(redirectUrl);
+    } catch (error) {
+      console.error("Payment error:", error);
+    }
+  };
+  const addOrderProduct = async (
+    orderId: string,
+    productId: string,
+    productQuantity: number
+  ) => {
+    try {
+      const response = await fetch(`${ENDPOINT.BASE_URL}/api/order-product`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          customerOrderId: orderId,
+          productId,
+          quantity: productQuantity,
+        }),
+      });
+      if (!response.ok) throw new Error("Failed to add order product");
+    } catch (error) {
+      console.error("Error adding order product:", error);
+    }
+  };
+  const createOrder = async () => {
     if (
       checkoutForm.name.length > 0 &&
       checkoutForm.lastname.length > 0 &&
@@ -97,6 +187,8 @@ const CheckoutPage = () => {
       // }
 
       // sending API request for creating a order
+       
+
 
       const response = fetch(ENDPOINT.BASE_URL + "/api/orders", {
         method: "POST",
@@ -112,7 +204,7 @@ const CheckoutPage = () => {
           adress: checkoutForm.adress,
           apartment: checkoutForm.apartment,
           postalCode: checkoutForm.postalCode,
-          status: "processing",
+          status: "order initiated payment pending",
           total: total,
           city: checkoutForm.city,
           country: checkoutForm.country,
@@ -123,12 +215,18 @@ const CheckoutPage = () => {
         .then((data) => {
           const orderId: string = data.id;
           // for every product in the order we are calling addOrderProduct function that adds fields to the customer_order_product table
+          //  naziya to call below on payment success 
           for (let i = 0; i < products.length; i++) {
             let productId: string = products[i].id;
             addOrderProduct(orderId, products[i].id, products[i].amount);
           }
+          return data
+
         })
-        .then(() => {
+        .then((data) => {
+          const orderId: string = data.id;
+          console.log("Trying to make payment for order id",orderId);
+          
           setCheckoutForm({
             name: "",
             lastname: "",
@@ -147,34 +245,20 @@ const CheckoutPage = () => {
             orderNotice: "",
           });
           clearCart();
-          toast.success("Order created successfuly");
-          setTimeout(() => {
-            router.push("/");
-          }, 1000);
+          makePayment(checkoutForm.phone,Number(total*100),orderId)
+
+          // toast.success("Order created successfuly");
+          
+          // setTimeout(() => {
+          //   router.push("/");
+          // }, 1000);
         });
     } else {
       toast.error("You need to enter values in the input fields");
     }
   };
 
-  const addOrderProduct = async (
-    orderId: string,
-    productId: string,
-    productQuantity: number
-  ) => {
-    // sending API POST request for the table customer_order_product that does many to many relatioship for order and product
-    const response = await fetch(ENDPOINT.BASE_URL + "/api/order-product", {
-      method: "POST", // or 'PUT'
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        customerOrderId: orderId,
-        productId: productId,
-        quantity: productQuantity,
-      }),
-    });
-  };
+
 
   useEffect(() => {
     if (products.length === 0) {
@@ -680,7 +764,7 @@ const CheckoutPage = () => {
               <div className="mt-1  pt-6 ml-0">
                 <button
                   type="button"
-                  onClick={makePurchase}
+                  onClick={createOrder}
                   className="w-full rounded-md border border-transparent bg-orange-600 px-20 py-2 text-lg font-medium text-black shadow-sm hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-gray-50 sm:order-last"
                 >
                   Pay Now
