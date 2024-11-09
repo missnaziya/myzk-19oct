@@ -61,8 +61,8 @@ const CartPage = () => {
                             <h3 className="text-sm">
                               <Link
                                 href={`#`}
-                                className="text-2xl font-bold text-gray-700 hover:text-[#f37321] transition-colors duration-300">
-                              
+                                className="text-2xl font-bold text-gray-700 hover:text-[#f37321] transition-colors duration-300"
+                              >
                                 {product.title}
                               </Link>
                             </h3>
@@ -73,9 +73,14 @@ const CartPage = () => {
                           <p className="ml-4 border-l border-gray-200 pl-4 text-gray-500">{product.size}</p>
                         ) : null}
                       </div> */}
-                          <p className="mt-1 text-sm font-medium text-gray-900">
-                          ₹{product.price}
+                          <p className="text-xl font-semibold line-through">₹{product?.price}</p>
+                          <p className="text-xl font-semibold">₹{product?.salePrice}</p>
+                          {/* <p className="mt-1 text-sm font-medium text-gray-900">
+                            ₹{product.price}
                           </p>
+                          <p className="mt-1 text-sm font-medium text-gray-900">
+                            ₹{product.salePrice}
+                          </p> */}
                         </div>
 
                         <div className="mt-4 sm:mt-0 sm:pr-9">
@@ -130,7 +135,7 @@ const CartPage = () => {
                 <div className="flex items-center justify-between">
                   <dt className="text-sm text-gray-600">Subtotal</dt>
                   <dd className="text-sm font-medium text-gray-900">
-                  ₹{total}
+                    ₹{total}
                   </dd>
                 </div>
                 <div className="flex items-center justify-between border-t border-gray-200 pt-4">
@@ -168,7 +173,7 @@ const CartPage = () => {
                     </a>
                   </dt>
                   <dd className="text-sm font-medium text-gray-900">
-                  ₹{total / 5}
+                    ₹{total / 5}
                   </dd>
                 </div>
                 <div className="flex items-center justify-between border-t border-gray-200 pt-4">
@@ -176,7 +181,7 @@ const CartPage = () => {
                     Order total
                   </dt>
                   <dd className="text-base font-medium text-gray-900">
-                  ₹{total === 0 ? 0 : Math.round(total + total / 5 + 5)}
+                    ₹{total === 0 ? 0 : Math.round(total + total / 5 + 5)}
                   </dd>
                 </div>
               </dl>
