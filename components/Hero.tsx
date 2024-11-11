@@ -26,33 +26,29 @@ const Hero = () => {
   const slides = [
     {
       id: 1,
-      image: "/homebanner.jpg",
-      // captionLine1: "Power Your World with",
-      // captionLine2: "Innovation",
+      image: "/homebanner1.jpg",
+    
     },
     {
       id: 2,
-      image: "/img/Banner-3.jpg",
-      captionLine1: "Smart Solutions for a",
-      captionLine2: "Connected Life",
+      image: "/homebanner2.jpg ",
+     
     },
     {
       id: 3,
       image: "/img/banner.jpg",
-      captionLine1: "Next-Gen Tech for a",
-      captionLine2: "Modern World",
     },
   ];
 
   return (
-    <Box sx={{ position: "relative", maxWidth: "100%", margin: "auto" }}>
+    <Box sx={{ position: "relative", maxWidth: "100%", margin: "auto", height:"auto" }}>
       <Slider {...settings} ref={sliderRef}>
         {slides.map((slide) => (
           <Box key={slide.id} sx={{ position: "relative" }}>
             <img
               src={slide.image}
               alt={`slide-${slide.id}`}
-              style={{ width: "100%", height: "600px", objectFit: "cover" }}
+              style={{ width: "100%", height: "auto", objectFit: "cover" }}
             />
             <Box
               sx={{

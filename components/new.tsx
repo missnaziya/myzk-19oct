@@ -1,3 +1,4 @@
+
 'use client'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
@@ -29,17 +30,15 @@ import {
   ListItem,
   ListItemText
 } from '@mui/material'
-
-import CategoryMenu from './CategoryMenu'
+import CategoryMenu from './CategoryMenu' // assuming this component lists the products
 
 const Header = () => {
   const { data: session } = useSession()
   const pathname = usePathname()
   const { setWishlist, wishQuantity } = useWishlistStore()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
-  const [drawerOpen, setDrawerOpen] = useState(false)
   const [showCategoryList, setShowCategoryList] = useState(false)
-  const [categoryMenuList2, setCategoryMenuList2] = useState<Product[]>([])
+  const [drawerOpen, setDrawerOpen] = useState(false)
 
   const handleLogout = () => {
     setTimeout(() => signOut({ callbackUrl: '/login' }), 1000)
@@ -54,6 +53,7 @@ const Header = () => {
     setAnchorEl(null)
   }
 
+  // Getting all wishlist items by user id
   const getWishlistByUserId = async (id: string) => {
     try {
       const response = await fetch(`${ENDPOINT.BASE_URL}/api/wishlist/${id}`, {
@@ -68,18 +68,22 @@ const Header = () => {
         slug: item?.product?.slug,
         stockAvailabillity: item?.product?.inStock
       }))
+
       setWishlist(productArray)
     } catch (error) {
       console.error('Error fetching wishlist:', error)
     }
   }
 
+  // Getting user by email to get user id
   const getUserByEmail = async () => {
     if (session?.user?.email) {
       try {
         const response = await fetch(
           `${ENDPOINT.BASE_URL}/api/users/email/${session.user.email}`,
-          { cache: 'no-store' }
+          {
+            cache: 'no-store'
+          }
         )
         const data = await response.json()
         getWishlistByUserId(data?.id)
@@ -93,25 +97,64 @@ const Header = () => {
     getUserByEmail()
   }, [session?.user?.email])
 
-  const handleMouseEnter = () => setShowCategoryList(true)
-  const handleMouseLeave = () => setShowCategoryList(false)
-  const handleProductSelection = () => setShowCategoryList(false)
+  // Toggle product list visibility
+  const handleMouseEnter = () => {
+    setShowCategoryList(true) // Show category list on hover
+  }
+
+  const handleMouseLeave = () => {
+    setShowCategoryList(false) // Hide category list when not hovering
+  }
+
+  // Hide category list when product is selected
+  const handleProductSelection = () => {
+    setShowCategoryList(false) // hide the category list
+  }
+
+  type Category = {
+    name: string
+  }
+
+  type Product = {
+    id: string
+    slug: string
+    title: string
+    mainImage: string
+    alternateImage1: string
+    alternateImage2: string
+    alternateImage3: string
+    alternateImage4: string
+    price: number
+    salePrice: number
+    rating: number
+    description: string
+    manufacturer: string
+    inStock: number
+    categoryId: string
+    testcol: string | null
+    warrantyDuration: string | null
+    category: Category
+  }
+
+  // Type `categoryMenuList2` as an array of Product objects
+  const [categoryMenuList2, setCategoryMenuList2] = useState<Product[]>([])
 
   useEffect(() => {
     fetch(ENDPOINT.BASE_URL + '/api/categories/', { cache: 'no-store' })
       .then(res => res.json())
-      .then(data => setCategoryMenuList2(data))
+      .then(data => {
+        setCategoryMenuList2(data)
+      })
   }, [])
 
-  const toggleDrawer = (open: boolean) => setDrawerOpen(open)
+  // Handle Drawer toggle
+  const toggleDrawer = (open: boolean) => {
+    setDrawerOpen(open)
+  }
 
   const list = () => (
     <Box
-      sx={{
-        width: 250,
-        backgroundColor: 'background.paper', // Optional, to make the background consistent
-        zIndex: 1300 // Ensures it's above other elements (if needed)
-      }}
+      sx={{ width: 250 }}
       role='presentation'
       onClick={() => toggleDrawer(false)}
       onKeyDown={() => toggleDrawer(false)}
@@ -139,22 +182,14 @@ const Header = () => {
 
       {!pathname.startsWith('/admin') ? (
         <>
-          <Toolbar>
+          {/* <Toolbar>
             <Grid
               container
               alignItems='center'
               justifyContent='space-between'
               padding={2}
             >
-              <Grid
-                item
-                xs={12}
-                md={2}
-                sx={{
-                  display: 'flex',
-                  justifyContent: { xs: 'center', md: 'flex-start' }
-                }}
-              >
+              <Grid item xs={3} md={3}>
                 <Link href='/' passHref>
                   <Box
                     sx={{
@@ -173,7 +208,95 @@ const Header = () => {
                 </Link>
               </Grid>
 
-              <Grid item display={{ xs: 'none', md: 'block' }}>
+              <Grid item md={6} sx={{ display: { xs: 'none', md: 'flex' } }}>
+                <Box display='flex' alignItems='center' justifyContent='center'>
+                  <Button
+                    component={Link}
+                    href='/'
+                    color='inherit'
+                    sx={{ fontSize: '18px', padding: '5px 10px' }}
+                  >
+                    Home
+                  </Button>
+                  <Box
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                    sx={{ display: { xs: 'none', md: 'block' } }} // Hide on mobile, show on medium screens and above
+                  >
+                    <Button
+                      color='inherit'
+                      sx={{ fontSize: '18px', padding: '5px 10px' }}
+                    >
+                      Category
+                    </Button>
+                  </Box>
+
+                  <Button
+                    component={Link}
+                    href='/shop/new-products'
+                    color='inherit'
+                    sx={{ fontSize: '18px', padding: '5px 10px' }}
+                  >
+                    New Arrivals
+                  </Button>
+                  <Button
+                    component={Link}
+                    href='/support'
+                    color='inherit'
+                    sx={{ fontSize: '18px', padding: '5px 10px' }}
+                  >
+                    Support
+                  </Button>
+                </Box>
+              </Grid>
+
+              <Grid
+                item
+                xs={2}
+                md={3}
+                display='flex'
+                justifyContent='flex-end'
+                gap={3}
+              >
+                <HeartElement wishQuantity={wishQuantity} />
+                <CartElement />
+              </Grid>
+
+            
+              <Grid item xs={2} display={{ xs: 'block', md: 'none' }}>
+                <IconButton onClick={() => toggleDrawer(true)}>
+                  <FaBars className='text-xl' />
+                </IconButton>
+              </Grid>
+            </Grid>
+          </Toolbar> */}
+          <Toolbar>
+            <Grid
+              container
+              alignItems='center'
+              justifyContent='space-between'
+              padding={2}
+            >
+              <Grid item xs={12} md={3}>
+                <Link href='/' passHref>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    <img
+                      src='/myzk logo.png'
+                      width={150}
+                      height={50}
+                      alt='Myzk logo'
+                    />
+                  </Box>
+                </Link>
+              </Grid>
+
+              <Grid item>
                 <Box display='flex' alignItems='center'>
                   <Button
                     component={Link}
@@ -182,7 +305,9 @@ const Header = () => {
                     sx={{
                       fontSize: '14px',
                       padding: '5px 8px',
-                      '&:hover': { borderBottom: '2px solid #ea580c' }
+                      '&:hover': {
+                        borderBottom: '2px solid #ea580c'
+                      }
                     }}
                   >
                     Home
@@ -190,10 +315,7 @@ const Header = () => {
                   <Box
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
-                    sx={{
-                      fontSize: '14px',
-                      padding: '5px 8px'
-                    }}
+                    sx={{ fontSize: '14px', padding: '5px 8px' }}
                   >
                     <Button color='inherit'>Category</Button>
                   </Box>
@@ -204,7 +326,9 @@ const Header = () => {
                     sx={{
                       fontSize: '14px',
                       padding: '5px 8px',
-                      '&:hover': { borderBottom: '2px solid #ea580c' }
+                      '&:hover': {
+                        borderBottom: '2px solid #ea580c'
+                      }
                     }}
                   >
                     New Arrivals
@@ -216,7 +340,9 @@ const Header = () => {
                     sx={{
                       fontSize: '14px',
                       padding: '5px 8px',
-                      '&:hover': { borderBottom: '2px solid #ea580c' }
+                      '&:hover': {
+                        borderBottom: '2px solid #ea580c'
+                      }
                     }}
                   >
                     Support
@@ -224,6 +350,7 @@ const Header = () => {
                 </Box>
               </Grid>
 
+              {/* Right Section (Icons) */}
               <Grid
                 item
                 xs={12}
@@ -231,38 +358,19 @@ const Header = () => {
                 display='flex'
                 justifyContent='flex-end'
                 gap={3}
-                sx={{ marginTop: { xs: '-40px', sm: '0px' } }}
+                sx={{ marginTop: { xs: '-140px', sm: '0px' } }} // Apply margin-top only on mobile
               >
                 <HeartElement wishQuantity={wishQuantity} />
                 <CartElement />
               </Grid>
-
-              {/* <Grid item xs={2} display={{ xs: 'block', md: 'none' }}>
+              <Grid item xs={2} display={{ xs: 'block', md: 'none' }}>
                 <IconButton onClick={() => toggleDrawer(true)}>
-                  <FaBars className='text-xl' />
-                </IconButton>
-              </Grid> */}
-              <Grid
-                item
-                xs={2}
-                display={{ xs: 'block', md: 'none' }}
-                sx={{ position: 'relative' }}
-              >
-                <IconButton
-                  onClick={() => toggleDrawer(true)}
-                  sx={{
-                    position: 'absolute', // Absolute positioning
-                    top: -40, // 20px from the top
-                    left: 0, // Aligns to the left
-                    zIndex: 1000 // Ensures the icon stays on top of other elements
-                  }}
-                >
                   <FaBars className='text-xl' />
                 </IconButton>
               </Grid>
             </Grid>
           </Toolbar>
-
+          {/* Category List on Hover */}
           {showCategoryList && (
             <Box
               sx={{
@@ -274,13 +382,12 @@ const Header = () => {
             >
               <CategoryMenu
                 onProductSelect={handleProductSelection}
-                handleMouseEnter={handleMouseEnter}
-                handleMouseLeave={handleMouseLeave}
                 categoryMenuList={categoryMenuList2}
               />
             </Box>
           )}
 
+          {/* Drawer (Hamburger menu for mobile) */}
           <Drawer
             anchor='left'
             open={drawerOpen}
