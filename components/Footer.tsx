@@ -17,6 +17,7 @@ import {
   Pinterest
 } from '@mui/icons-material'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const Footer = () => {
   const [email, setEmail] = useState('')
@@ -247,62 +248,37 @@ const Footer = () => {
                   Get In Touch
                 </Typography>
 
-                <Typography variant='body2' sx={{ color: '#9a9b9c' }}>
+                <Typography variant='body2' sx={{ color: '#9a9b9c', paddingRight:'10px' }}>
                   Have questions? Visit at:
                   <Link
                     href='https://maps.app.goo.gl/hZgUhCbYwkugGsHx8'
                     passHref
                   >
-                    Digital Telemedia Technology Pvt. Ltd., E-169, E Block,
-                    Sector 63, Noida, Uttar Pradesh 201301.
+                    Digital Telemedia Technology Pvt. Ltd., 
+                    E-169, E Block,
+                    Sector 63, Noida,
+                    Uttar Pradesh 201301.
                   </Link>
                 </Typography>
               </Grid>
 
               {/* Newsletter Section */}
               <Grid item xs={12} sm={6} md={3}>
-                <Typography
-                  variant='h6'
+                <Box
+                  mt={1}
                   sx={{
-                    color: '#ffffff',
-                    marginBottom: '20px',
-                    borderBottom: '2px solid #e0e0e0',
-                    display: 'inline-block' // Ensures the border only spans the text
+                    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)', // Light shadow effect
+                    borderRadius: '8px', // Keep border radius for a smooth look
+                    overflow: 'hidden' // Ensures rounded corners are applied to iframe
                   }}
                 >
-                  Newsletter
-                </Typography>
-              
-                <Typography variant='body2'   sx={{ color: '#9a9b9c', paddingBottom: '10px' }}>
-                   Sign up to get updates & news about us.
-                  Get the latest deals directly in your inbox.
-                </Typography>
-                <Box>
-                  <TextField
-                    fullWidth
-                    variant='outlined'
-                    placeholder='email@example.com'
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    sx={{
-                      backgroundColor: '#9a9b9c',
-                      color: '#fff',
-                      '::placeholder': { color: 'white' }
-                    }}
-                  />
-                  <Button
-                    variant='contained'
-                    color='primary'
-                    onClick={handleSubscribe}
-                    fullWidth
-                    sx={{
-                      marginTop: '10px',
-                      backgroundColor: '#f37321 !important',
-                      color: 'white'
-                    }}
-                  >
-                    Subscribe
-                  </Button>
+                  <iframe
+                    src='https://www.google.com/maps/embed?pb=!1m19!1m8!1m3!1d7004.450094540938!2d77.3867099!3d28.6230165!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x390ce5539e0d42b7%3A0x682b86960f5749cc!2sDigital%20Telemedia%20Technology%20Pvt.%20Ltd.%20E-169%20E%20Block%2C%20Sector%2063%20Noida%2C%20Hazratpur%20Wajidpur%2C%20Uttar%20Pradesh%20201301!3m2!1d28.623015199999998!2d77.3867281!5e0!3m2!1sen!2sin!4v1723628516193!5m2!1sen!2sin'
+                    width='100%'
+                    height='auto'
+                    style={{ border: 0 }}
+                    loading='lazy'
+                  ></iframe>
                 </Box>
               </Grid>
             </Grid>
@@ -368,7 +344,7 @@ const Footer = () => {
             <Typography variant="body2">
               Copyright &copy; {new Date().getFullYear()} All rights reserved by{" "}
               <span>
-                <img src="/img/myzklogo.png" width="100px" alt="Myzk" />
+                <image src="/img/myzklogo.png" width="100px" alt="Myzk" />
               </span>
             </Typography>
           </Grid> */}
