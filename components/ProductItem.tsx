@@ -128,7 +128,7 @@ const ProductItem = ({
                 {/* Icons Section */}
                 <Box>
                   <IconButton
-                    aria-label='add to wishlist'
+                    aria-label='add to wishlist...'
                     sx={{
                       backgroundColor: '#f37321',
                       color: 'black',
@@ -140,7 +140,7 @@ const ProductItem = ({
                       mr: 1 // Margin-right for spacing between icons
                     }}
                   >
-                    <Favorite />
+                    <Favorite    />..
                   </IconButton>
 
                   <IconButton

@@ -1,6 +1,8 @@
 "use client";
 import { CustomButton, SectionTitle } from "@/components";
+import ENDPOINT from "@/config/appConfig";
 import { isValidEmailAddressFormat } from "@/lib/utils";
+import axios from "axios";
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -11,6 +13,7 @@ import { FcGoogle } from "react-icons/fc";
 const LoginPage = () => {
   const router = useRouter();
   const [error, setError] = useState("");
+  const [showForgot, setShowForgot] = useState(false);
   // const session = useSession();
   const { data: session, status: sessionStatus } = useSession();
 
@@ -54,9 +57,41 @@ const LoginPage = () => {
     }
   };
 
+  const handleForgotPassword = async (e: any) => {
+    e.preventDefault();
+
+    
+    const email = e.target[0].value;
+    const newPassword = e.target[1].value;
+
+ 
+    if (!newPassword || newPassword.length < 8) {
+      toast.error("Password length should be 8");
+      return;
+    }
+    const url = `${ENDPOINT.BASE_URL}/api/users`;
+    const data = { email, new_password: newPassword };
+  
+    try {
+      const response = await axios.patch(url, data);
+  
+      if (response.status === 200) {
+        toast.success(response.data.message);
+        (e.target as HTMLFormElement).reset();
+        setShowForgot(false);
+      } else {
+        toast.error(response.data.error || 'An error occurred. Please try again.');
+      }
+    } catch (error: any) {
+      toast.error(error.response?.data?.error || 'An unexpected error occurred');
+    }
+  };
+  
+
   if (sessionStatus === "loading") {
     return <h1>Loading...</h1>;
   }
+
   return (
     <div className="bg-white">
       <SectionTitle title="Login" path="Home | Login" />
@@ -69,7 +104,8 @@ const LoginPage = () => {
 
         <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-[480px]">
           <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
-            <form className="space-y-6" onSubmit={handleSubmit}>
+        {  !showForgot? 
+         <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label
                   htmlFor="email"
@@ -125,12 +161,12 @@ const LoginPage = () => {
                 </div>
 
                 <div className="text-sm leading-6">
-                  <a
-                    href="#"
-                    className="font-semibold text-black hover:text-black"
+                  <span
+                    onClick={()=>{setShowForgot(true)}}
+                    className="font-semibold text-black hover:text-black cursor-pointer"
                   >
                     Forgot password?
-                  </a>
+                  </span>
                 </div>
               </div>
 
@@ -144,8 +180,68 @@ const LoginPage = () => {
                   textSize="sm"
                 />
               </div>
-            </form>
+            </form>:
+             <form className="space-y-6" onSubmit={handleForgotPassword}>
+             <div>
+               <label
+                 htmlFor="email"
+                 className="block text-sm font-medium leading-6 text-gray-900"
+               >
+                 Email address
+               </label>
+               <div className="mt-2">
+                 <input
+                   id="email"
+                   name="email"
+                   type="email"
+                   autoComplete="email"
+                   required
+                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                 />
+               </div>
+             </div>
 
+             <div>
+               <label
+                 htmlFor="new_password"
+                 className="block text-sm font-medium leading-6 text-gray-900"
+               >
+               New  Password
+               </label>
+               <div className="mt-2">
+                 <input
+                   id="new_password"
+                   name="new_password"
+                   type="password"
+                   autoComplete="current-password"
+                   required
+                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                 />
+               </div>
+             </div>
+
+          
+
+             <div>
+               <CustomButton
+                 buttonType="submit"
+                 text="Update"
+                 paddingX={3}
+                 paddingY={1.5}
+                 customWidth="full"
+                 textSize="sm"
+               />
+             </div>
+                <div className="relative flex justify-center text-sm font-medium leading-6">
+                  <span className="bg-white px-6 text-gray-900">
+                   
+                    <span className=" text-blue-500 cursor-pointer"    onClick={()=>{setShowForgot(false)}}>
+                    Go Back
+                    </span>
+                  </span>
+                </div>
+           </form>
+}
             <div>
               <div className="relative mt-10">
                 <div
@@ -156,9 +252,10 @@ const LoginPage = () => {
                 </div>
                 <div className="relative flex justify-center text-sm font-medium leading-6">
                   <span className="bg-white px-6 text-gray-900">
-                 Don't have an account <Link className=" text-blue-500" href="/register">
-                 register here 
-                 </Link>
+                    Dont have an account{" "}
+                    <Link className=" text-blue-500" href="/register">
+                      register here
+                    </Link>
                   </span>
                 </div>
               </div>

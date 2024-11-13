@@ -71,31 +71,7 @@ const RefundReturnPolicy = () => {
           </Typography>
         </Box>
 
-        <Box
-          className="refund"
-          sx={{
-            marginBottom: 3,
-            padding: 2,
-            borderRadius: 1,
-            boxShadow: 1,
-            backgroundColor: "#fff",
-          }}
-        >
-          <Typography variant="h6">
-            Exceptions / Non-Returnable Items
-          </Typography>
-          <Typography paragraph>
-            Certain types of items cannot be returned, such as perishable goods
-            (e.g., food, flowers, or plants), custom products (e.g., special
-            orders or personalized items), and personal care goods (e.g., beauty
-            products). We also do not accept returns for hazardous materials,
-            flammable liquids, or gases. Please get in touch if you have
-            questions or concerns about your specific item.
-          </Typography>
-          <Typography paragraph>
-            Unfortunately, we cannot accept returns on sale items or gift cards.
-          </Typography>
-        </Box>
+      
 
         <Box
           className="refund"
