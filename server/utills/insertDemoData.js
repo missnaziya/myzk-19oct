@@ -648,13 +648,7 @@ const demoCategories = [
     image: "124.webp",
     href: "/new-products",
   },
-  {
-    id: "0d1be367-75ac-4078-b363-2ba6c057eeb2",
-    name: "extensionboard",
-    displayName: "Extensionboard",
-    image: "board.webp",
-    href: "/extensionboard",
-  },
+
   {
     id: "17daa71c-28a2-4a03-a421-49f87ba5ee21",
     name: "charger",
@@ -663,18 +657,26 @@ const demoCategories = [
     href: "/charger",
   },
   {
+    id: "d59c9c3b-42fc-4258-a8ea-417659f084aa",
+    name: "datacable",
+    displayName: "Datacable",
+    image: "cable.webp",
+    href: "/datacable",
+  },
+  {
     id: "a21e4162-eaed-4e48-93a7-130b9a45bc34",
     name: "wateralarm",
     displayName: "Wateralarm",
     image: "alarm.webp",
     href: "/wateralarm",
   },
+
   {
-    id: "d59c9c3b-42fc-4258-a8ea-417659f084aa",
-    name: "datacable",
-    displayName: "Datacable",
-    image: "cable.webp",
-    href: "/datacable",
+    id: "0d1be367-75ac-4078-b363-2ba6c057eeb2",
+    name: "extensionboard",
+    displayName: "Extensionboard",
+    image: "board.webp",
+    href: "/extensionboard",
   },
   {
     id: "e59984e3-7ec2-445d-a5e0-1e6c001205a9",

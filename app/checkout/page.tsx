@@ -22,7 +22,7 @@ import Login from "@/components/Login";
 import Register from "@/components/Register";
 import sha256 from "crypto-js/sha256";
 import axios from "axios";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 interface PayProps {
   name: string;
@@ -43,7 +43,6 @@ interface PaymentPayload {
     type: string;
   };
 }
-
 
 const CheckoutPage = () => {
   const { data: session, status: sessionStatus } = useSession();
@@ -67,16 +66,19 @@ const CheckoutPage = () => {
   const { products, total, clearCart } = useProductStore();
   const router = useRouter();
 
-  const makePayment = async (mobile:string,total:number,orderId:string) => {
-
+  const makePayment = async (
+    mobile: string,
+    total: number,
+    orderId: string
+  ) => {
     // const transactionId = "Tr-" + uuidv4().toString(36).slice(-6);
     const transactionId = orderId;
-//transaction id will be order id for us
+    //transaction id will be order id for us
     const payload: PaymentPayload = {
-      merchantId: process.env.NEXT_PUBLIC_MERCHANT_ID || '',
+      merchantId: process.env.NEXT_PUBLIC_MERCHANT_ID || "",
       merchantTransactionId: transactionId,
       // merchantUserId: 'MUID-' + uuidv4().toString(36).slice(-6),
-      merchantUserId: 'MUID-' + uuidv4().slice(-6),
+      merchantUserId: "MUID-" + uuidv4().slice(-6),
       amount: total,
       redirectUrl: `http://localhost:3000/api/status/${transactionId}`,
       redirectMode: "POST",
@@ -88,11 +90,13 @@ const CheckoutPage = () => {
     const dataPayload = JSON.stringify(payload);
     const dataBase64 = Buffer.from(dataPayload).toString("base64");
 
-    const fullURL = dataBase64 + "/pg/v1/pay" + process.env.NEXT_PUBLIC_SALT_KEY;
+    const fullURL =
+      dataBase64 + "/pg/v1/pay" + process.env.NEXT_PUBLIC_SALT_KEY;
     const dataSha256 = sha256(fullURL);
     const checksum = dataSha256 + "###" + process.env.NEXT_PUBLIC_SALT_INDEX;
 
-    const UAT_PAY_API_URL = "https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/pay";
+    const UAT_PAY_API_URL =
+      "https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/pay";
 
     try {
       const response = await axios.post(
@@ -107,7 +111,8 @@ const CheckoutPage = () => {
         }
       );
 
-      const redirectUrl = response.data.data.instrumentResponse.redirectInfo.url;
+      const redirectUrl =
+        response.data.data.instrumentResponse.redirectInfo.url;
       router.push(redirectUrl);
     } catch (error) {
       console.error("Payment error:", error);
@@ -187,8 +192,6 @@ const CheckoutPage = () => {
       // }
 
       // sending API request for creating a order
-       
-
 
       const response = fetch(ENDPOINT.BASE_URL + "/api/orders", {
         method: "POST",
@@ -215,18 +218,17 @@ const CheckoutPage = () => {
         .then((data) => {
           const orderId: string = data.id;
           // for every product in the order we are calling addOrderProduct function that adds fields to the customer_order_product table
-          //  naziya to call below on payment success 
+          //  naziya to call below on payment success
           for (let i = 0; i < products.length; i++) {
             let productId: string = products[i].id;
             addOrderProduct(orderId, products[i].id, products[i].amount);
           }
-          return data
-
+          return data;
         })
         .then((data) => {
           const orderId: string = data.id;
-          console.log("Trying to make payment for order id",orderId);
-          
+          console.log("Trying to make payment for order id", orderId);
+
           setCheckoutForm({
             name: "",
             lastname: "",
@@ -245,10 +247,10 @@ const CheckoutPage = () => {
             orderNotice: "",
           });
           clearCart();
-          makePayment(checkoutForm.phone,Number(total*100),orderId)
+          makePayment(checkoutForm.phone, Number((Math.round(total + total / 5 + 5)) * 100), orderId);
 
           // toast.success("Order created successfuly");
-          
+
           // setTimeout(() => {
           //   router.push("/");
           // }, 1000);
@@ -258,8 +260,6 @@ const CheckoutPage = () => {
     }
   };
 
-
-
   useEffect(() => {
     if (products.length === 0) {
       toast.error("You don't have items in your cart");
@@ -267,7 +267,6 @@ const CheckoutPage = () => {
     }
   }, []);
   const [isRegistered, setIsRegistered] = useState<boolean>(true);
-
 
   return (
     <div className="bg-white">
@@ -316,10 +315,13 @@ const CheckoutPage = () => {
                   />
                   <div className="flex-auto space-y-1">
                     <h3>{product?.title}</h3>
-                    <p className="text-gray-500">x{product?.amount}</p>
+                    <p className="text-gray-500">
+                      <strong>Quantity :</strong>
+                      {product?.amount}
+                    </p>
                   </div>
                   <p className="flex-none text-base font-medium">
-                    ₹{product?.price}
+                    ₹{product?.salePrice} X {product?.amount}
                   </p>
                   <p></p>
                 </li>
@@ -773,9 +775,25 @@ const CheckoutPage = () => {
             </div>
           </form>
         ) : isRegistered ? (
-          <Login onLogin={()=>{setIsRegistered(false)}} onRegister={()=>{setIsRegistered(true)}} setIsRegistered={setIsRegistered} />
+          <Login
+            onLogin={() => {
+              setIsRegistered(false);
+            }}
+            onRegister={() => {
+              setIsRegistered(true);
+            }}
+            setIsRegistered={setIsRegistered}
+          />
         ) : (
-          <Register onRegister={()=>{setIsRegistered(true)}} onLogin={()=>{setIsRegistered(false)}} setIsRegistered={setIsRegistered}  />
+          <Register
+            onRegister={() => {
+              setIsRegistered(true);
+            }}
+            onLogin={() => {
+              setIsRegistered(false);
+            }}
+            setIsRegistered={setIsRegistered}
+          />
         )}
       </main>
     </div>

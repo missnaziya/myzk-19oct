@@ -70,10 +70,11 @@ export const useProductStore = create<State & Actions>()(
       calculateTotals: () => {
         set((state) => {
           let amount = 0;
-          let total = 0;
+          let total  = 0;
           state.products.forEach((item) => {
             amount += item.amount;
             total += item.amount * item.salePrice;
+
           });
 
           return {

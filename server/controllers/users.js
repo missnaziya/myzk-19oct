@@ -63,6 +63,39 @@ async function updateUser(request, response) {
   }
 }
 
+async function updateUserPassword(request, response) {
+  console.log("updateUserPassword");
+  
+  try {
+    const { email, new_password } = request.body;
+    const hashedPassword = await bcrypt.hash(new_password, 5);
+    const existingUser = await prisma.user.findUnique({
+      where: {
+        email: email,
+      },
+    });
+
+    if (!existingUser) {
+      return response.status(404).json({ error: "User not found" });
+    }
+
+    const updatedUser = await prisma.user.update({
+      where: {
+        id: existingUser.id,
+      },
+      data: {
+        email,
+        password: hashedPassword, 
+      },
+    });
+
+    return response.status(200).json({message:"Password updated successfully"});
+    // return response.status(200).json(updatedUser);
+  } catch (error) {
+    return response.status(500).json({ error: "Error updating user" });
+  }
+}
+
 async function deleteUser(request, response) {
   try {
     const { id } = request.params;
@@ -111,4 +144,5 @@ module.exports = {
   getUser,
   getAllUsers,
   getUserByEmail,
+  updateUserPassword
 };
