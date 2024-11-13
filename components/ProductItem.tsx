@@ -15,6 +15,8 @@ import {
   CardMedia
 } from '@mui/material'
 import { Favorite, ShoppingCart, Visibility } from '@mui/icons-material'
+import AddToWishlistBtn from './AddToWishlistBtn'
+import AddToWishlistIcon from './AddToWishlistIcon'
 
 const ProductItem = ({
   product,
@@ -34,8 +36,9 @@ const ProductItem = ({
           boxShadow: 2
         }}
       >
-        <Link href={`/product/${product.slug}`} passHref>
           <Card sx={{ maxWidth: '100%', position: 'relative' }}>
+        {/* <Link href={`/support`} passHref> */}
+        <Link href={`/product/${product.slug}`} passHref>
             {/* Primary product image */}
             <Box sx={{ position: 'relative' }}>
               <CardMedia
@@ -75,6 +78,7 @@ const ProductItem = ({
                 }}
               />
             </Box>
+            </Link>
 
             {/* Icons overlay */}
 
@@ -120,15 +124,16 @@ const ProductItem = ({
                     variant='body1'
                     color='textPrimary'
                     component='span'
-                  >
+                    >
                     ₹{product.salePrice}
                   </Typography>
                 </Box>
 
                 {/* Icons Section */}
                 <Box>
+                  {/* add here wish */}
                   <IconButton
-                    aria-label='add to wishlist...'
+                    aria-label='add to wishlist'
                     sx={{
                       backgroundColor: '#f37321',
                       color: 'black',
@@ -140,7 +145,8 @@ const ProductItem = ({
                       mr: 1 // Margin-right for spacing between icons
                     }}
                   >
-                    <Favorite    />..
+                    {/* <Favorite    /> */}
+                    <AddToWishlistIcon product={product} slug={product.slug} />
                   </IconButton>
 
                   <IconButton
@@ -163,7 +169,6 @@ const ProductItem = ({
 
             {/* Product details */}
           </Card>
-        </Link>
       </Box>
     </>
   )
