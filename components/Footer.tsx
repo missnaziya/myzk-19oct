@@ -302,19 +302,19 @@ const Footer = () => {
 
                 {/* Social Media Icons */}
                 <Box sx={{ marginTop: '10px' }}>
-                  <IconButton href='#' color='inherit'>
+                  <IconButton href='https://www.facebook.com/profile.php?id=61558117619997' color='inherit'>
                     <Facebook />
                   </IconButton>
-                  <IconButton href='#' color='inherit'>
+                  {/* <IconButton href='#' color='inherit'>
                     <Twitter />
-                  </IconButton>
-                  <IconButton href='#' color='inherit'>
+                  </IconButton> */}
+                  <IconButton href='https://www.instagram.com/myzk.india/' color='inherit'>
                     <Instagram />
                   </IconButton>
-                  <IconButton href='#' color='inherit'>
+                  <IconButton href='https://youtube.com/@digitaltelemedia?si=FiQuIkBPbpcbhxVI' color='inherit'>
                     <YouTube />
                   </IconButton>
-                  <IconButton href='#' color='inherit'>
+                  <IconButton href='https://pin.it/21nc7Xf1a' color='inherit'>
                     <Pinterest />
                   </IconButton>
                 </Box>

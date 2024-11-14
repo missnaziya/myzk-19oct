@@ -5,12 +5,9 @@ import { Footer, Header } from "@/components";
 import SessionProvider from "@/utils/SessionProvider";
 import Providers from "@/Providers";
 import { getServerSession } from "next-auth";
-import 'svgmap/dist/svgMap.min.css';
+import "svgmap/dist/svgMap.min.css";
 import Header2 from "@/components/Header2";
 import Head from "next/head";
-
-
-
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,24 +21,39 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   const session = await getServerSession();
   console.log("from main layout", session);
-  return ( 
+  return (
     <html lang="en" data-theme="light">
-       <Head>
+      <Head>
         <link rel="icon" href="/favicon.ico" />
+        {/* <!-- Google tag (gtag.js) --> */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-84EDRJ28XX"
+        ></script>
+        <script>
+          {`
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments) }
+  gtag('js', new Date());
+
+  gtag('config', 'G-84EDRJ28XX');
+  `}
+        </script>
       </Head>
       <body className={inter.className}>
-      <SessionProvider session={session}>
-        {/* <Header2 /> */}
-        <Header />
-        <Providers>
-        {children}
-        </Providers>
-        <Footer />
-      </SessionProvider>
-        </body>
+        <SessionProvider session={session}>
+          {/* <Header2 /> */}
+          <Header />
+          <Providers>{children}</Providers>
+          <Footer />
+        </SessionProvider>
+      </body>
     </html>
   );
 }
+
+
+
+

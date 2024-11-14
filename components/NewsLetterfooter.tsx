@@ -6,7 +6,7 @@ import Heading from './Heading'
 const NewsLetterfooter = () => {
   const [email, setEmail] = useState('')
 
-  const handleSubscribe = e => {
+  const handleSubscribe = (e:any) => {
     e.preventDefault()
     console.log(`Subscribed with email: ${email}`)
     setEmail('') // Clear input after subscribing

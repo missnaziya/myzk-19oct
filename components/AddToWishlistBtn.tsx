@@ -130,7 +130,7 @@ const AddToWishlistBtn = ({ product, slug }: AddToWishlistBtnProps) => {
           onClick={addToWishlistFun}
         >
           <FaHeart className="text-xl text-custom-black" />
-          <span className="text-lg">ADD TO WISHLIST...</span>
+          <span className="text-lg">ADD TO WISHLIST</span>
         </p>
       )}
     </>

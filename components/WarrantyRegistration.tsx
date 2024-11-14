@@ -162,7 +162,7 @@ const WarrantyRegistration = () => {
             type='submit'
             variant='contained'
             sx={{
-              padding: '0.8rem',
+              padding: '0.5rem 0.8rem',
               backgroundColor: '#f37321 !important',
               color: 'black',
               fontWeight: 'bold',
@@ -171,7 +171,7 @@ const WarrantyRegistration = () => {
               }
             }}
           >
-            Submit Warranty
+            Submit
           </Button>
         </Box>
       </Box>

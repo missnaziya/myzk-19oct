@@ -37,7 +37,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "utils/insertDemoData.js"
-  ],
+, "server/utills/email.js"  ],
   "exclude": [
     "node_modules"
   ]
