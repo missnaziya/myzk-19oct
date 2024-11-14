@@ -10,7 +10,7 @@ import {
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { FaSquareFacebook, FaSquareXTwitter, FaSquarePinterest } from "react-icons/fa6";
+import { FaSquareFacebook, FaSquareXTwitter, FaSquarePinterest, FaSquareWhatsapp } from "react-icons/fa6";
 import ENDPOINT from '@/config/appConfig';
 
 interface ImageItem {
@@ -33,6 +33,13 @@ const SingleProductPage = ({ params }: SingleProductPageProps) => {
   const [product, setProduct] = useState<any>(null);
   const [images, setImages] = useState<ImageItem[]>([]);
   const [mainImage, setMainImage] = useState<string>("");
+
+  const shareUrl = encodeURIComponent("https://myzk.in/product/"); // Replace with the URL you want to share
+  const message = encodeURIComponent("Check this out: "); // Add a message if desired
+  const whatsappLink = `https://api.whatsapp.com/send?text=${message}${shareUrl}`;
+
+  
+
 
   useEffect(() => {
     const loadData = async () => {
@@ -136,7 +143,7 @@ const SingleProductPage = ({ params }: SingleProductPageProps) => {
 
           {/* Product Details */}
           <div className="flex flex-col gap-y-7 text-black max-[500px]:text-center px-5">
-            <SingleProductRating rating={product?.rating} />
+            {/* <SingleProductRating rating={product?.rating} /> */}
             <h1 className="text-3xl">{product?.title}</h1>
             <p className="text-xl font-semibold line-through">₹{product?.price}</p>
             <p className="text-xl font-semibold">₹{product?.salePrice}</p>
@@ -151,11 +158,17 @@ const SingleProductPage = ({ params }: SingleProductPageProps) => {
               </p>
               <div className="text-lg flex gap-x-2">
                 <span>Share:</span>
-                <div className="flex items-center gap-x-1 text-2xl">
-                  <FaSquareFacebook />
+                {/* <div className="flex items-center gap-x-1 text-2xl">
+                   <FaSquareFacebook />
                   <FaSquareXTwitter />
-                  <FaSquarePinterest />
-                </div>
+                  <FaSquarePinterest /> 
+                  <FaSquareWhatsapp />
+                </div> */}
+            <div className="flex items-center gap-x-1 text-2xl">
+      <a href={`${whatsappLink}${params.productSlug}`} target="_blank" rel="noopener noreferrer">
+        <FaSquareWhatsapp />
+      </a>
+    </div>
               </div>
               <div className="flex gap-x-2">
                 <Image src="/visa.svg" width={50} height={50} alt="visa icon" className="w-auto h-auto" />

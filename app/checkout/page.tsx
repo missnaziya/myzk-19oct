@@ -259,7 +259,14 @@ const CheckoutPage = () => {
       toast.error("You need to enter values in the input fields");
     }
   };
-
+  useEffect(() => {
+    if (session?.user?.email && !checkoutForm.email) {
+      setCheckoutForm((prevForm:any) => ({
+        ...prevForm,
+        email: session?.user?.email,
+      }));
+    }
+  }, [session, checkoutForm.email]);
   useEffect(() => {
     if (products.length === 0) {
       toast.error("You don't have items in your cart");
@@ -362,7 +369,7 @@ const CheckoutPage = () => {
                   id="contact-info-heading"
                   className="text-lg font-medium text-gray-900"
                 >
-                  Contact information
+                  Contact information 
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
@@ -450,6 +457,7 @@ const CheckoutPage = () => {
                     </label>
                     <div className="mt-1">
                       <input
+                      readOnly
                         value={checkoutForm.email}
                         onChange={(e) =>
                           setCheckoutForm({

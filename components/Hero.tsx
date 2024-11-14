@@ -83,7 +83,7 @@ const Hero = () => {
             >
               {/* Line 1 of Caption */}
               <Typography variant="h6" sx={{ fontSize: "40px" }}>
-                {slide.captionLine1}
+                {/* {slide.captionLine1} */}
               </Typography>
 
               {/* Line 2 of Caption */}
@@ -98,7 +98,7 @@ const Hero = () => {
                   WebkitTextFillColor: "transparent",
                 }}
               >
-                {slide.captionLine2}
+                {/* {slide.captionLine2} */}
               </Typography>
 
               {/* Shop Now Button */}

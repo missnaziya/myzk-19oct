@@ -110,6 +110,7 @@ interface InputCategory {
                   variant="contained"
                   className="cursor-pointer"
                   sx={{
+                    width:"200px",
                     color: isActive ? 'white' : 'black',
                     backgroundColor: isActive ? "#f37321 !important" : 'transparent',
                     borderColor: isActive ? 'black !important' : 'white',

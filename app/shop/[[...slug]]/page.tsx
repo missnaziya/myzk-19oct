@@ -37,7 +37,7 @@ const ShopPage = (slug: any) => {
                   ? improveCategoryText(slug?.params?.slug[0])
                   : "All products"}
               </h2>
-              <Pagination />
+              {/* <Pagination /> */}
               <SortBy />
             </div>
             <div className="divider"></div>

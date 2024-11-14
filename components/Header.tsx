@@ -32,6 +32,30 @@ import {
 
 import CategoryMenu from './CategoryMenu'
 
+type Category = {
+  name: string;
+};
+
+type Product = {
+  id: string;
+  slug: string;
+  title: string;
+  mainImage: string;
+  alternateImage1: string;
+  alternateImage2: string;
+  alternateImage3: string;
+  alternateImage4: string;
+  price: number;
+  salePrice: number;
+  rating: number;
+  description: string;
+  manufacturer: string;
+  inStock: number;
+  categoryId: string;
+  testcol: string | null;
+  warrantyDuration: string | null;
+  category: Category;
+};
 const Header = () => {
   const { data: session } = useSession()
   const pathname = usePathname()
@@ -117,18 +141,19 @@ const Header = () => {
       onKeyDown={() => toggleDrawer(false)}
     >
       <List>
-        <ListItem button component={Link} href='/'>
-          <ListItemText primary='Home' />
+        <ListItem  component={Link} href='/'>
+          <ListItemText primary='Home.' />
         </ListItem>
-        <ListItem button component={Link} href='/shop/'>
+        <ListItem  component={Link} href='/shop/'>
           <ListItemText primary='Category' />
         </ListItem>
-        <ListItem button component={Link} href='/shop/new-products'>
+        <ListItem  component={Link} href='/shop/new-products'>
           <ListItemText primary='New Arrivals' />
         </ListItem>
-        <ListItem button component={Link} href='/support'>
+        <ListItem  component={Link} href='/support'>
           <ListItemText primary='Support' />
         </ListItem>
+       
       </List>
     </Box>
   )
@@ -221,6 +246,18 @@ const Header = () => {
                   >
                     Support
                   </Button>
+                  <Button
+                    component={Link}
+                    href='/warranty'
+                    color='inherit'
+                    sx={{
+                      fontSize: '14px',
+                      padding: '5px 8px',
+                      '&:hover': { borderBottom: '2px solid #ea580c' }
+                    }}
+                  >
+                    Warranty
+                  </Button>
                 </Box>
               </Grid>
 
@@ -276,7 +313,7 @@ const Header = () => {
                 onProductSelect={handleProductSelection}
                 handleMouseEnter={handleMouseEnter}
                 handleMouseLeave={handleMouseLeave}
-                categoryMenuList={categoryMenuList2}
+                categoryMenuList={categoryMenuList2 as Product[]}
               />
             </Box>
           )}

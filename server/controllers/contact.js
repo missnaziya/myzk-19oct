@@ -1,42 +1,66 @@
 const { PrismaClient } = require('@prisma/client');
+const { sendEmail } = require('../utills/email');
 const prisma = new PrismaClient();
 
 // Create a contact form submission
 exports.createContactForm = async (req, res) => {
-    console.log("contact.....client");
+  console.log("Contact form submission initiated...");
 
-    console.log("request contact",req.body);
-    
   try {
-    const { name, email, message ,subject} = req.body;
-    console.log("request contact data>>>>>>>>>>",name,email,message,subject);
+    const { name, email, message, subject } = req.body;
+    console.log("Request data:", name, email, message, subject);
 
     // Validate required fields
     if (!name || !email || !message || !subject) {
       return res.status(400).json({ message: 'All fields are required' });
     }
-    const to="missnaziya24@gmail.com";
-    await sendEmail(
-        email, // Customer email
-        to,
-        ' Confirmation', // Email subject
-        `Thank you for your order! Your order ID is ${corder.id}` // Email body
-      )
+
+    // Send an email notification
+    const to = "missnaziya24@gmail.com";
+    await sendEmail({
+      from: to,         // Customer email
+      to: to,              // Admin email
+      subject: subject,    // Email subject
+      text: message ,   // Email body
+      html:   `<html>
+      <body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4;">
+        <table align="center" width="100%" cellpadding="0" cellspacing="0" style="max-width: 600px; margin: 20px auto; background-color: #ffffff; border-radius: 8px; padding: 20px;">
+          <tr>
+            <td style="text-align: center; padding: 20px;">
+              <h1 style="color: #333333;">Contact Submission from Myzk</h1>
+              <p style="font-size: 16px; color: #555555;">You have a new message from a customer!</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 20px; font-size: 16px; color: #333333;">
+              <p><strong>Customer Name:</strong> ${name}</p>
+              <p><strong>Email Address:</strong> ${email}</p>
+              <p><strong>Subject:</strong> ${subject}</p>
+              <p><strong>Message:</strong></p>
+              <p style="border-left: 4px solid #4CAF50; padding-left: 10px; color: #555555;">${message}</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 20px; text-align: center;">
+              <a href="https://myzk.in" style="display: inline-block; padding: 10px 20px; font-size: 16px; color: #ffffff; background-color: #4CAF50; border-radius: 5px; text-decoration: none;">Visit Myzk Site</a>
+            </td>
+          </tr>
+        </table>
+      </body>
+    </html>`
+    });
+
     // Create new contact form entry using Prisma
     const newContactForm = await prisma.contact.create({
-      data: {
-        name,
-        email,
-        message,
-        subject
-      }
+      data: { name, email, message, subject }
     });
 
     return res.status(201).json({
-      message: 'Thankyou for contacting will get back to you shortly.',
+      message: 'Thank you for contacting us! We will get back to you shortly.',
       data: newContactForm
     });
   } catch (error) {
+    console.error("Error submitting contact form:", error.message);
     return res.status(500).json({
       message: 'Error submitting the contact form',
       error: error.message
