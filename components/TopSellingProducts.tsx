@@ -14,7 +14,7 @@ import ProductItem from "./ProductItem";
 import ENDPOINT from '@/config/appConfig';
 
 import Heading from "./Heading";
-const TopSellingProducts =  ({ props }: any) => {
+const  TopSellingProducts =  ({ props }: any) => {
   const [products, setProducts] = useState([]);
   const fetchEvents =  () => {
     try {
