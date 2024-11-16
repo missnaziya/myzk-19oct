@@ -69,7 +69,8 @@ const LoginPage = () => {
       toast.error("Password length should be 8");
       return;
     }
-    const url = `${ENDPOINT.BASE_URL}/api/users`;
+    const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/users`;
+    // const url = `${ENDPOINT.BASE_URL}/api/users`;
     const data = { email, new_password: newPassword };
   
     try {
