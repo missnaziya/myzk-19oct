@@ -14,6 +14,7 @@ const wishlistRouter = require('./routes/wishlist');
 const warrantiesRouter = require('./routes/warranties');
 const supportTicketRouter = require('./routes/support_ticket');
 const contactRouter = require('./routes/contact');
+const deliverRouter = require('./routes/delivery');
 var cors = require("cors");
 
 const app = express();
@@ -48,6 +49,7 @@ app.use("/api/wishlist", wishlistRouter);
 app.use('/api/warranties', warrantiesRouter);
 app.use('/api/support-ticket', supportTicketRouter);
 app.use('/api/contact', contactRouter);
+app.use('/api/delivery', deliverRouter);
  
 
 const PORT = process.env.PORT || 3001;
