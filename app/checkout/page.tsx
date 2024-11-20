@@ -24,6 +24,7 @@ import sha256 from "crypto-js/sha256";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { checkPostalCodeService } from "@/utils/deliveryDtdc";
+import { StartOutlined } from "@mui/icons-material";
 
 interface PayProps {
   name: string;
@@ -125,7 +126,8 @@ const CheckoutPage = () => {
     productQuantity: number
   ) => {
     try {
-      const response = await fetch(`${ENDPOINT.BASE_URL}/api/order-product`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/order-product`, {
+      // const response = await fetch(`${ENDPOINT.BASE_URL}/api/order-product`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -194,7 +196,8 @@ const CheckoutPage = () => {
 
       // sending API request for creating a order
 
-      const response = fetch(ENDPOINT.BASE_URL + "/api/orders", {
+      const response = fetch(process.env.NEXT_PUBLIC_BASE_URL + "/api/orders", {
+      // const response = fetch(ENDPOINT.BASE_URL + "/api/orders", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -280,10 +283,12 @@ const CheckoutPage = () => {
   }, []);
   const [isRegistered, setIsRegistered] = useState<boolean>(true);
 
-  const [serviceStatus, setServiceStatus] = useState<null | {
-    status: string;
-    message: string;
-  }>(null);
+  // const [serviceStatus, setServiceStatus] = useState<null | {
+  //   status: string;
+  //   // message: string;
+  // }>(null);
+  const [serviceStatus, setServiceStatus] = useState<string | null>(null);
+
 
   const handlePostalCodeChange = async (
     e: React.ChangeEvent<HTMLInputElement>
@@ -295,18 +300,15 @@ const CheckoutPage = () => {
       postalCode,
     });
 
-    if (postalCode.length >= 5) {
+    if (postalCode.length >= 6) {
       // Replace with the desired pin codes
       const orgPincode = "160036";
-      const desPincode = "110001";
+      const desPincode = checkoutForm.postalCode;
 
-      // Run the function
-      // checkPostalCodeService(orgPincode, desPincode);
-
-      // Test postal code service
-      // let orgPincode = "160036"
+      
       const result = await checkPostalCodeService(orgPincode, postalCode); // Replace "160036" with orgPincode
-      // setServiceStatus(result);
+      console.log("result?.data?.ZIPCODE_RESP[0]?.MESSAGE",result.ZIPCODE_RESP?.[0]?.MESSAGE);
+      setServiceStatus(result.ZIPCODE_RESP?.[0]?.MESSAGE);
     } else {
       setServiceStatus(null);
     }
@@ -799,36 +801,22 @@ const CheckoutPage = () => {
                         value={checkoutForm.postalCode}
                         onChange={handlePostalCodeChange}
                       />
+                      
                     </div>
-                    {serviceStatus && (
-                      <div className="mt-2 flex items-center">
-                        {serviceStatus.status === "success" ? (
-                          <>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="w-6 h-6 text-green-500"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                              strokeWidth="2"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M9 12l2 2 4-4m5 4a9 9 0 11-18 0 9 9 0 0118 0z"
-                              />
-                            </svg>
-                            <span className="ml-2 text-green-600">
-                              {serviceStatus.message}
-                            </span>
-                          </>
-                        ) : (
-                          <span className="ml-2 text-red-600">
-                            {serviceStatus.message}
-                          </span>
-                        )}
-                      </div>
-                    )}
+                    {serviceStatus=="SUCCESS" ?<>
+                   
+                    <span className="ml-2 text-green-600 text-sm">
+                    *Service Available
+                  </span>
+                      
+                       </>
+                   :
+                    <span className="ml-2 text-red-600 text-sm">
+                    {serviceStatus}
+                  </span>
+                   }
+                    
+              
                   </div>
 
                   <div className="sm:col-span-3">

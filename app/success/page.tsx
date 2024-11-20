@@ -10,7 +10,8 @@ const Page = () => {
   const transactionid = searchParams.get("transactionid");
 
   const updateCustomerOrderStatus = async (orderId: string) => {
-    const url = `${ENDPOINT.BASE_URL}/api/orders`;
+    const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/orders`;
+    // const url = `${ENDPOINT.BASE_URL}/api/orders`;
     const response = await axios.patch(url, {
       id: orderId,
       status: "payment received",

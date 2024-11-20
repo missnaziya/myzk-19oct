@@ -16,6 +16,7 @@ const supportTicketRouter = require('./routes/support_ticket');
 const contactRouter = require('./routes/contact');
 const deliverRouter = require('./routes/delivery');
 var cors = require("cors");
+require('dotenv').config();
 
 const app = express();
 

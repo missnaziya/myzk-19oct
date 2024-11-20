@@ -11,7 +11,8 @@ const Page = () => {
   const { products, clearCart } = useProductStore();
 
   const deleteCustomerOrder = async (orderId: string) => {
-    const url = `${ENDPOINT.BASE_URL}/api/order`;
+    const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/order`;
+    // const url = `${ENDPOINT.BASE_URL}/api/order`;
     const response = await axios.delete(url, {
       params: {
         id: orderId,
@@ -21,7 +22,8 @@ const Page = () => {
   };
   const deleteProductOrder = async (orderId: string) => {
     try {
-      const url = `${ENDPOINT.BASE_URL}/api/order-product?id=${orderId}`;
+      const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/order-product?id=${orderId}`;
+      // const url = `${ENDPOINT.BASE_URL}/api/order-product?id=${orderId}`;
       const response = await axios.delete(url);
       console.log("update api response:", response);
     } catch (error) {

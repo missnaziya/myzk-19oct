@@ -25,10 +25,12 @@ const Products =  ({ slug }: any) => {
       // Check if slug.params.slug is an array and contains elements
       if (Array.isArray(slug?.params?.slug) && slug.params.slug.length > 0) {
         const category = slug.params.slug[0]; // Get the first category if it exists
-        url = `${ENDPOINT.BASE_URL}/api/products?filters[category][$equals]=${category}`;
+        url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/products?filters[category][$equals]=${category}`;
+        // url = `${ENDPOINT.BASE_URL}/api/products?filters[category][$equals]=${category}`;
       } else {
         // If no category is provided, use a default API call (e.g., fetching all products)
-        url = `${ENDPOINT.BASE_URL}/api/products`;
+        url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/products`;
+        // url = `${ENDPOINT.BASE_URL}/api/products`;
       }
     
       // Fetch the data from the API

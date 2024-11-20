@@ -30,7 +30,8 @@ const CustomerOrders = () => {
     const customer_id = session?.user?.id;
 
     const fetchOrders = async () => {
-      const url = `${ENDPOINT.BASE_URL}/api/orders/email/${session?.user?.email}`;
+      const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/orders/email/${session?.user?.email}`;
+      // const url = `${ENDPOINT.BASE_URL}/api/orders/email/${session?.user?.email}`;
 
       const response = await fetch(url);
       const data = await response.json();
@@ -44,7 +45,8 @@ const CustomerOrders = () => {
   };
 
   const handleOrderCancel = async (id: any) => {
-    const url = `${ENDPOINT.BASE_URL}/api/orders/cancel/${id}`;
+    const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/orders/cancel/${id}`;
+    // const url = `${ENDPOINT.BASE_URL}/api/orders/cancel/${id}`;
     const response = await axios.put(url);
     toast.success(response.data.message);
 
