@@ -23,6 +23,7 @@ import Register from "@/components/Register";
 import sha256 from "crypto-js/sha256";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
+import { checkPostalCodeService } from "@/utils/deliveryDtdc";
 
 interface PayProps {
   name: string;
@@ -247,7 +248,11 @@ const CheckoutPage = () => {
             orderNotice: "",
           });
           clearCart();
-          makePayment(checkoutForm.phone, Number((Math.round(total + total / 5 + 5)) * 100), orderId);
+          makePayment(
+            checkoutForm.phone,
+            Number(Math.round(total + total / 5 + 5) * 100),
+            orderId
+          );
 
           // toast.success("Order created successfuly");
 
@@ -261,7 +266,7 @@ const CheckoutPage = () => {
   };
   useEffect(() => {
     if (session?.user?.email && !checkoutForm.email) {
-      setCheckoutForm((prevForm:any) => ({
+      setCheckoutForm((prevForm: any) => ({
         ...prevForm,
         email: session?.user?.email,
       }));
@@ -274,6 +279,38 @@ const CheckoutPage = () => {
     }
   }, []);
   const [isRegistered, setIsRegistered] = useState<boolean>(true);
+
+  const [serviceStatus, setServiceStatus] = useState<null | {
+    status: string;
+    message: string;
+  }>(null);
+
+  const handlePostalCodeChange = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const postalCode = e.target.value;
+
+    setCheckoutForm({
+      ...checkoutForm,
+      postalCode,
+    });
+
+    if (postalCode.length >= 5) {
+      // Replace with the desired pin codes
+      const orgPincode = "160036";
+      const desPincode = "110001";
+
+      // Run the function
+      // checkPostalCodeService(orgPincode, desPincode);
+
+      // Test postal code service
+      // let orgPincode = "160036"
+      const result = await checkPostalCodeService(orgPincode, postalCode); // Replace "160036" with orgPincode
+      // setServiceStatus(result);
+    } else {
+      setServiceStatus(null);
+    }
+  };
 
   return (
     <div className="bg-white">
@@ -369,7 +406,7 @@ const CheckoutPage = () => {
                   id="contact-info-heading"
                   className="text-lg font-medium text-gray-900"
                 >
-                  Contact information 
+                  Contact information
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
@@ -457,7 +494,7 @@ const CheckoutPage = () => {
                     </label>
                     <div className="mt-1">
                       <input
-                      readOnly
+                        readOnly
                         value={checkoutForm.email}
                         onChange={(e) =>
                           setCheckoutForm({
@@ -720,12 +757,12 @@ const CheckoutPage = () => {
                     </div>
                   </div>
 
-                  <div>
+                  {/* <div>
                     <label
                       htmlFor="postal-code"
                       className="block text-sm font-medium text-gray-700"
                     >
-                      Postal code
+                      Postal code.
                     </label>
                     <div className="mt-1">
                       <input
@@ -743,6 +780,55 @@ const CheckoutPage = () => {
                         }
                       />
                     </div>
+                  </div> */}
+
+                  <div>
+                    <label
+                      htmlFor="postal-code"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Postal Code
+                    </label>
+                    <div className="mt-1">
+                      <input
+                        type="text"
+                        id="postal-code"
+                        name="postal-code"
+                        autoComplete="postal-code"
+                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                        value={checkoutForm.postalCode}
+                        onChange={handlePostalCodeChange}
+                      />
+                    </div>
+                    {serviceStatus && (
+                      <div className="mt-2 flex items-center">
+                        {serviceStatus.status === "success" ? (
+                          <>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="w-6 h-6 text-green-500"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M9 12l2 2 4-4m5 4a9 9 0 11-18 0 9 9 0 0118 0z"
+                              />
+                            </svg>
+                            <span className="ml-2 text-green-600">
+                              {serviceStatus.message}
+                            </span>
+                          </>
+                        ) : (
+                          <span className="ml-2 text-red-600">
+                            {serviceStatus.message}
+                          </span>
+                        )}
+                      </div>
+                    )}
                   </div>
 
                   <div className="sm:col-span-3">
