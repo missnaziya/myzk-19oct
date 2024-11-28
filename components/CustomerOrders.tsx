@@ -25,7 +25,6 @@ const CustomerOrders = () => {
   const { data: session }: any = useSession();
   const [openSnackbar, setOpenSnackbar] = useState(false);
   useEffect(() => {
-    console.log("user data:", session);
 
     const customer_id = session?.user?.id;
 

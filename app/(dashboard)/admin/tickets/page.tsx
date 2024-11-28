@@ -28,7 +28,6 @@ const DashboardSupportTickets = () => {
         return res.json();
       })
       .then((data) => {
-        console.log("data recived from api ", data)
         setTickets(data);
       });
   }, []);

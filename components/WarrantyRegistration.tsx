@@ -98,7 +98,6 @@ const WarrantyRegistration = () => {
       setFormData({ email: '', orderNumber: '' }) // Reset form
     } catch (error: any) {
       toast.error(error?.response?.data?.error)
-      console.log(error)
 
       setMessage(error?.response?.data?.error || 'An error occurred.')
     }

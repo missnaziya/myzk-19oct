@@ -13,7 +13,6 @@ export default async function Layout({
   try {
     const session = await getServerSession();
 
-    console.log("getServerSession-------", session);
     if (!session) {
       redirect("/");
     }
@@ -31,7 +30,6 @@ export default async function Layout({
       redirect("/");
     }
   } catch (error) {
-    console.log("getServerSession error-------", error);
     redirect("/");
 
   }

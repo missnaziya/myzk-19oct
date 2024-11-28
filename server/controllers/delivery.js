@@ -5,7 +5,6 @@ const DELIVERY_PINCODE_VERIFY_URL="http://smarttrack.ctbsplus.dtdc.com/ratecalap
 const DELIVERY_BOOK_SHIPMENT_URL="https://demodashboardapi.shipsy.in/api/customer/integration/consignment/softdata"
 
 const verifyPincode = async (req, res) => {
-  console.log("hello naziya");
   
   const { orgPincode, desPincode } = req.body;
 
@@ -14,12 +13,10 @@ const verifyPincode = async (req, res) => {
     "Content-Type": "application/json",
     Cookie: 'GCLB="ce916d3ca633f33a"', // Replace with a valid cookie if required
   };
-  console.log("hello naziya",url, { orgPincode, desPincode }, { headers });
 
 
   try {
     const response = await axios.post(url, { orgPincode, desPincode }, { headers });
-    console.log("respose:::",response);
     
     res.status(200).json(response.data);
   } catch (error) {
@@ -33,6 +30,7 @@ const verifyPincode = async (req, res) => {
 
 
 const bookShipment = async(req, res) => {
+  console.log()
   const { consignments } = req.body; // The data sent from the frontend
 
   const url = DELIVERY_BOOK_SHIPMENT_URL

@@ -36,11 +36,9 @@ const Products =  ({ slug }: any) => {
       // Fetch the data from the API
       fetch(url)
         .then((res) => {
-          console.log("Category List", res);
           return res.json();
         })
         .then((data) => {
-          console.log("Category List data", data);
           setProducts(data); // Set the fetched data to state
         })
         .catch((error) => {

@@ -24,6 +24,7 @@ import sha256 from "crypto-js/sha256";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { checkPostalCodeService } from "@/utils/deliveryDtdc";
+import { makePayment } from "@/utils/payment";
 import { StartOutlined } from "@mui/icons-material";
 
 interface PayProps {
@@ -67,59 +68,60 @@ const CheckoutPage = () => {
   });
   const { products, total, clearCart } = useProductStore();
   const router = useRouter();
+  // const makePayment = async (
+  //   mobile: string,
+  //   total: number,
+  //   orderId: string
+  // ) => {
+  //   // const transactionId = "Tr-" + uuidv4().toString(36).slice(-6);
+  //   const transactionId = orderId;
+  //   //transaction id will be order id for us
+  //   const payload: PaymentPayload = {
+  //     merchantId: `${process.env.NEXT_PUBLIC_MERCHANT_ID }`,
+  //     merchantTransactionId: transactionId,
+  //     // merchantUserId: 'MUID-' + uuidv4().toString(36).slice(-6),
+  //     merchantUserId: "MUID-" + uuidv4().slice(-6),
+  //     amount: total,
+  //     redirectUrl: `${process.env.NEXT_PUBLIC_PAYMENT_REDIRECT_URL}/api/status/${transactionId}`,
+  //     redirectMode: "POST",
+  //     callbackUrl: `${process.env.NEXT_PUBLIC_PAYMENT_REDIRECT_URL}/api/status/${transactionId}`,
+  //     mobileNumber: mobile,
+  //     paymentInstrument: { type: "PAY_PAGE" },
+  //   };
 
-  const makePayment = async (
-    mobile: string,
-    total: number,
-    orderId: string
-  ) => {
-    // const transactionId = "Tr-" + uuidv4().toString(36).slice(-6);
-    const transactionId = orderId;
-    //transaction id will be order id for us
-    const payload: PaymentPayload = {
-      merchantId: process.env.NEXT_PUBLIC_MERCHANT_ID || "",
-      merchantTransactionId: transactionId,
-      // merchantUserId: 'MUID-' + uuidv4().toString(36).slice(-6),
-      merchantUserId: "MUID-" + uuidv4().slice(-6),
-      amount: total,
-      redirectUrl: `${process.env.NEXT_PUBLIC_PAYMENT_REDIRECT_URL}/api/status/${transactionId}`,
-      redirectMode: "POST",
-      callbackUrl: `${process.env.NEXT_PUBLIC_PAYMENT_REDIRECT_URL}/api/status/${transactionId}`,
-      mobileNumber: mobile,
-      paymentInstrument: { type: "PAY_PAGE" },
-    };
+  //   const dataPayload = JSON.stringify(payload);
+  //   const dataBase64 = Buffer.from(dataPayload).toString("base64");
 
-    const dataPayload = JSON.stringify(payload);
-    const dataBase64 = Buffer.from(dataPayload).toString("base64");
+  //   const fullURL =
+  //     dataBase64 + "/pg/v1/pay" + process.env.NEXT_PUBLIC_SALT_KEY;
+  //   const dataSha256 = sha256(fullURL);
+  //   const checksum = dataSha256 + "###" + process.env.NEXT_PUBLIC_SALT_INDEX;
 
-    const fullURL =
-      dataBase64 + "/pg/v1/pay" + process.env.NEXT_PUBLIC_SALT_KEY;
-    const dataSha256 = sha256(fullURL);
-    const checksum = dataSha256 + "###" + process.env.NEXT_PUBLIC_SALT_INDEX;
+  //   const UAT_PAY_API_URL = process.env.NEXT_PUBLIC_PAYMENT_BASE_URL +  "/pg/v1/pay";
 
-    const UAT_PAY_API_URL =
-      "https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/pay";
+  //   // const UAT_PAY_API_URL =
+  //   //   "https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/pay";
 
-    try {
-      const response = await axios.post(
-        UAT_PAY_API_URL,
-        { request: dataBase64 },
-        {
-          headers: {
-            accept: "application/json",
-            "Content-Type": "application/json",
-            "X-VERIFY": checksum,
-          },
-        }
-      );
+  //   try {
+  //     const response = await axios.post(
+  //       UAT_PAY_API_URL,
+  //       { request: dataBase64 },
+  //       {
+  //         headers: {
+  //           accept: "application/json",
+  //           "Content-Type": "application/json",
+  //           "X-VERIFY": checksum,
+  //         },
+  //       }
+  //     );
 
-      const redirectUrl =
-        response.data.data.instrumentResponse.redirectInfo.url;
-      router.push(redirectUrl);
-    } catch (error) {
-      console.error("Payment error:", error);
-    }
-  };
+  //     const redirectUrl =
+  //       response.data.data.instrumentResponse.redirectInfo.url;
+  //     router.push(redirectUrl);
+  //   } catch (error) {
+  //     console.error("Payment error:", error);
+  //   }
+  // };
   const addOrderProduct = async (
     orderId: string,
     productId: string,
@@ -157,6 +159,10 @@ const CheckoutPage = () => {
       checkoutForm.country.length > 0 &&
       checkoutForm.postalCode.length > 0
     ) {
+      if (checkoutForm.postalCode.length !== 6) {
+        toast.error("Please Enter 6 digit valid pin code.");
+        return;
+      }
       if (!isValidNameOrLastname(checkoutForm.name)) {
         toast.error("You entered invalid format for name");
         return;
@@ -231,7 +237,6 @@ const CheckoutPage = () => {
         })
         .then((data) => {
           const orderId: string = data.id;
-          console.log("Trying to make payment for order id", orderId);
 
           setCheckoutForm({
             name: "",
@@ -307,7 +312,6 @@ const CheckoutPage = () => {
 
       
       const result = await checkPostalCodeService(orgPincode, postalCode); // Replace "160036" with orgPincode
-      console.log("result?.data?.ZIPCODE_RESP[0]?.MESSAGE",result.ZIPCODE_RESP?.[0]?.MESSAGE);
       setServiceStatus(result.ZIPCODE_RESP?.[0]?.MESSAGE);
     } else {
       setServiceStatus(null);
