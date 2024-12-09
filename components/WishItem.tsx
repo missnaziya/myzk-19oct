@@ -20,6 +20,7 @@ import { deleteWishItem } from "@/app/actions";
 import { useSession } from "next-auth/react";
 // import ENDPOINT from "../config/appConfig";
 import ENDPOINT from '@/config/appConfig';
+import { useProductStore } from "@/app/_zustand/store";
 
 interface wishItemStateTrackers {
   isWishItemDeleted: boolean;
@@ -30,15 +31,17 @@ const WishItem = ({
   id,
   title,
   price,
+  salePrice,
   image,
   slug,
   stockAvailabillity,
 }: ProductInWishlist) => {
+  const { addToCart, calculateTotals } = useProductStore();
   const { data: session, status } = useSession();
   const { removeFromWishlist } = useWishlistStore();
   const router = useRouter();
   const [userId, setUserId] = useState<string>();
-
+  
   const openProduct = (slug: string): void => {
     router.push(`/product/${slug}`);
   };
@@ -73,6 +76,21 @@ const WishItem = ({
   useEffect(() => {
     getUserByEmail();
   }, [session?.user?.email]);
+
+
+  const handleAddToCart = () => {
+    addToCart({
+      id: id.toString(),
+      title: title,
+      price: price,
+      salePrice: salePrice,
+      image: image,
+      amount: 1,
+    });
+    calculateTotals();
+    toast.success("Product added to the cart");
+    router.push("/checkout");
+  };
 
   return (
     <tr className="hover:bg-gray-100 cursor-pointer">
@@ -119,6 +137,12 @@ const WishItem = ({
             remove from the wishlist
           </span>
         </button>
+        <button 
+        onClick={handleAddToCart}
+        className=" m-2 border  btn border-gray-300  bg-white text-black hover:bg-orange-600 hover:text-white hover:border-orange-900 hover:scale-110 transition-all uppercase ease-in">
+          Buy Now
+        </button>
+          
       </td>
     </tr>
   );

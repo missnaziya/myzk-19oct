@@ -645,7 +645,7 @@ const CheckoutPage = () => {
                       htmlFor="company"
                       className="block text-sm font-medium text-gray-700"
                     >
-                      Company
+                      State/Company
                     </label>
                     <div className="mt-1">
                       <input

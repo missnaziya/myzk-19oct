@@ -21,15 +21,17 @@ const WishlistPage = () => {
     const wishlist = await response.json();
 
     const productArray: {
+    
       id: string;
       title: string;
       price: number;
+      salePrice: number;
       image: string;
       slug:string
       stockAvailabillity: number;
     }[] = [];
     
-    wishlist.map((item:any) => productArray.push({id: item?.product?.id, title: item?.product?.title, price: item?.product?.price, image: item?.product?.mainImage, slug: item?.product?.slug, stockAvailabillity: item?.product?.inStock}));
+    wishlist.map((item:any) => productArray.push({id: item?.product?.id, title: item?.product?.title, price: item?.product?.price, image: item?.product?.mainImage, slug: item?.product?.slug, stockAvailabillity: item?.product?.inStock, salePrice:item?.product?.salePrice}));
     
     setWishlist(productArray);
   };
@@ -74,6 +76,7 @@ const WishlistPage = () => {
                 {wishlist &&
                   wishlist?.map((item) => (
                     <WishItem
+                    salePrice={item.salePrice}
                       id={item?.id}
                       title={item?.title}
                       price={item?.price}

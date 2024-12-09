@@ -9,7 +9,8 @@ const axios = require("axios");
 const makePayment = async (mobile, total, orderId) => {
   
   try {
-    const response = await axios.post(`https://myzk.centralindia.cloudapp.azure.com:3001/api/payment/makePayment`, {
+    // const response = await axios.post(`http://localhost:3001/api/payment/makePayment`, {
+    const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/payment/makePayment`, {
       mobile,
       total,
       orderId,
@@ -19,7 +20,7 @@ const makePayment = async (mobile, total, orderId) => {
 
     if (redirectUrl) {
       console.log("Redirecting to payment page:", redirectUrl);
-      window.location.href = "https://myzk.in"; // Redirect to the payment page
+      window.location.href = redirectUrl; // Redirect to the payment page
     } else {
       console.error("Failed to retrieve redirect URL.");
       alert("Failed to initiate the payment. Please try again.");

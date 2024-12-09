@@ -54,6 +54,7 @@ const AddToWishlistBtn = ({ product, slug }: AddToWishlistBtnProps) => {
                 id: product?.id,
                 title: product?.title,
                 price: product?.price,
+                salePrice: product?.salePrice,
                 image: product?.mainImage,
                 slug: product?.slug,
                 stockAvailabillity: product?.inStock,
