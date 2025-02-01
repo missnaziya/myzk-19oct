@@ -38,7 +38,7 @@ const Page = () => {
   
         try {
           const orderData = await fetchOrderData(); // Fetch order details
-          console.log(orderData,"order");
+    
           
           const destination = orderData; // Assume 'destination' is part of the response
   
@@ -50,8 +50,8 @@ const Page = () => {
           bookShipment({
             consignments: [
               {
-                customer_code: "GL017",
-                service_type_id: "B2C PRIORITY",
+                customer_code: "GL017",     // 1
+                service_type_id: "B2C PRIORITY",   
                 load_type: "NON-DOCUMENT",
                 consignment_type: "Forward",
                 dimension_unit: "cm",

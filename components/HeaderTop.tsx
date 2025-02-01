@@ -48,6 +48,8 @@ const HeaderTop = () => {
           <li className="flex items-center gap-x-2 font-semibold">
             <span>00:00:00</span>
           </li> */}
+            {/* Add Visitor Counter */}
+
         </ul>
         <ul className='flex items-center gap-x-5 h-full max-[370px]:text-sm max-[370px]:gap-x-2 font-semibold'>
           {!session ? (
@@ -122,6 +124,11 @@ const HeaderTop = () => {
           )}
         </ul>
       </div>
+
+
+
+
+      
     </div>
   )
 }
